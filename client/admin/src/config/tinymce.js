@@ -1,4 +1,3 @@
-import { upload, qiniuUpload } from "@/api/upload.js";
 export let tinymceSet = {
   //避免图片地址和链接地址转换成相对路径
   convert_urls: false,

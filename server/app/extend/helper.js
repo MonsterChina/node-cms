@@ -163,6 +163,7 @@ exports.delImg = (link) => {
   });
 };
 
+//生成目录，异步改同步
 exports.mkdirsSync = (dirname) => {
   if (fs.existsSync(dirname)) {
     return true;
@@ -352,4 +353,13 @@ exports.cleanHTML = (htmlStr)=>{
   htmlStr = htmlStr.replace(/\s/g, '');
 
   return htmlStr;
+}
+
+
+exports.filterContainChinese = (str)=>{
+   // 提取数字、拼音、短横线和下划线
+   var result = str.match(/[0-9]+|[a-zA-Z]+|-|_/g);
+   // 拼接提取到的结果
+   var extracted = result.join('');
+   return extracted;
 }

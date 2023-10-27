@@ -470,6 +470,10 @@ export default {
     },
 
     beforeUpload(rawFile) {
+      if (rawFile.type.indexOf("image") === -1) {
+        this.$message("上传文件只能是图片格式");
+        return false;
+      }
       if (rawFile.size / 1024 / 1024 > 2) {
         this.$message("上传文件必须小于1M");
         return false;

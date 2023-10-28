@@ -42,7 +42,10 @@
 
         <p class="text-c mt-10 mb-10 c-333 f-12">
           Copyright © 2016-2023
-          <a href="https://gitee.com/yanyutao0402/chanyue-cms" target="_blank"
+          <a
+            class="c-9ca4bf"
+            href="https://gitee.com/yanyutao0402/chanyue-cms"
+            target="_blank"
             >禅悦cms</a
           >
         </p>

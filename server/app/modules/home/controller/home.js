@@ -8,7 +8,6 @@ class HomeController {
   // 首页
   static async index(req, res, next) {
     try {
-     
       const {config:{template},helper} = req.app.locals;
       let result = {};
       if (!("slide" in res.locals)) {
@@ -34,7 +33,7 @@ class HomeController {
       let navSub = helper.getChildrenId(cate || cid, category);
       // const navSubField = ["id", "name", "path"];
       // navSub.cate.children = filterFields(navSub.cate.children, navSubField);
-
+      console.log('navSub-->',navSub.cate.list_view)
       //获取栏目id
       const id = cid || navSub.cate.id || "";
       if (!id) {
@@ -55,7 +54,9 @@ class HomeController {
       let href = position.slice(-1)[0].path + "/index";
       let pageHtml = helper.pages(currentPage, count, pageSize, href);
 
-      await res.render(`${template}/list.html`, {
+      //获取模板
+      let view = navSub.cate.list_view || 'list.html';
+      await res.render(`${template}/${view}`, {
         position,
         navSub,
         pageHtml,
@@ -117,12 +118,11 @@ class HomeController {
       const data = await HomeService.article(cid);
 
       //模板配置 pdf文件必须选择pdf标签
-      let config = {
-        pdf: pdf.length > 0 ? `${template}/article-pdf.html` : "",
-        default: `${template}/article.html`,
-      };
-
-      await res.render(config["pdf"] || config.default, {
+    
+      //获取模板
+      let view = navSub.cate.article_view || (pdf.length > 0 ?'article-pdf.html':'article.html');
+       
+      await res.render(`${template}/${view}`, {
         ...data,
         article,
         navSub,
@@ -201,7 +201,10 @@ class HomeController {
         chanyue: `${template}/chanyue.html`,
         default: `${template}/page.html`,
       };
-      await res.render(config[cate] || config.default, {
+
+      //获取模板
+      let view = navSub.cate.article_view || 'page.html';
+      await res.render(`${template}/${view}`, {
         data: data.list,
         navSub,
         position,

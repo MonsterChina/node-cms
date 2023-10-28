@@ -65,7 +65,7 @@
 <script>
 import { Delete, Edit, View, Search } from "@element-plus/icons-vue";
 import { list, del } from "@/api/admin.js";
-import { getCookie, setCookie } from "@/utils/tool";
+import { getCookie } from "@/utils/tool";
 export default {
   name: "admin-index",
   setup() {

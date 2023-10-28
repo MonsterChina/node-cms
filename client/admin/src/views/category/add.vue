@@ -49,9 +49,46 @@
           <el-input v-model="params.path" disabled></el-input>
         </el-form-item>
 
+        <el-form-item label="列表模板">
+          <el-select v-model="params.list_view" placeholder="Select">
+            <el-option
+              v-for="item in views"
+              :key="item.value"
+              :label="item.label"
+              :value="item.value"
+            />
+          </el-select>
+        </el-form-item>
+
+        <el-form-item label="内容模板">
+          <el-select v-model="params.article_view" placeholder="Select">
+            <el-option
+              v-for="item in views"
+              :key="item.value"
+              :label="item.label"
+              :value="item.value"
+            />
+          </el-select>
+        </el-form-item>
+
         <el-form-item label="栏目类型">
           <el-radio v-model="params.type" label="0">栏目</el-radio>
           <el-radio v-model="params.type" label="1">单页</el-radio>
+        </el-form-item>
+
+        <el-form-item label="是否显示">
+          <el-radio v-model="params.status" label="0">显示</el-radio>
+          <el-radio v-model="params.status" label="1">隐藏</el-radio>
+        </el-form-item>
+      </div>
+
+      <div v-show="activeIndex == 1">
+        <el-form-item label="栏目描述">
+          <el-input v-model="params.description"></el-input>
+        </el-form-item>
+
+        <el-form-item label="栏目链接">
+          <el-input v-model="params.url"></el-input>
         </el-form-item>
 
         <el-form-item label="扩展模型">
@@ -66,28 +103,13 @@
           </el-radio-group>
         </el-form-item>
 
-        <el-form-item label="是否显示">
-          <el-radio v-model="params.status" label="0">显示</el-radio>
-          <el-radio v-model="params.status" label="1">隐藏</el-radio>
+        <el-form-item label="打开方式">
+          <el-radio v-model="params.target" label="0">当前页面</el-radio>
+          <el-radio v-model="params.target" label="1">新页面</el-radio>
         </el-form-item>
 
         <el-form-item label="栏目排序">
           <el-input v-model="params.sort"></el-input>
-        </el-form-item>
-      </div>
-
-      <div v-show="activeIndex == 1">
-        <el-form-item label="栏目描述">
-          <el-input v-model="params.description"></el-input>
-        </el-form-item>
-
-        <el-form-item label="栏目链接">
-          <el-input v-model="params.url"></el-input>
-        </el-form-item>
-
-        <el-form-item label="打开方式">
-          <el-radio v-model="params.target" label="0">当前页面</el-radio>
-          <el-radio v-model="params.target" label="1">新页面</el-radio>
         </el-form-item>
 
         <el-form-item label="seo标题">
@@ -110,6 +132,8 @@
 </template>
 
 <script>
+import { views } from "@/api/sys_app.js";
+
 import { find, create } from "@/api/category.js";
 import { addLabelValue, tree } from "@/utils/tool.js";
 import { list } from "@/api/model.js";
@@ -125,6 +149,7 @@ export default {
       activeIndex: "0", //tab 内容默认显示第一个
       category: [], //当前所有栏目
       modList: [], //模型列表
+      views: [], //模板
       params: {
         //接口入参
         pid: 0,
@@ -141,12 +166,15 @@ export default {
         type: "0",
         target: "0",
         status: "0",
+        article_view: "article.html",
+        list_view: "list.html",
       },
     };
   },
 
   created() {
     this.query();
+    this.getviews();
     this.modelList();
   },
 
@@ -174,6 +202,29 @@ export default {
           let data = addLabelValue(tree(res.data));
           this.cate = res.data;
           this.category = [...data];
+        }
+      } catch (error) {
+        console.log(error);
+      }
+    },
+
+    //查询模板
+    async getviews() {
+      try {
+        let res = await views();
+        if (res.code === 200) {
+          this.views = res.data
+            .filter((item) => {
+              if (item !== "404.html" && item !== "500.html") {
+                return true;
+              }
+            })
+            .map((item) => {
+              return {
+                label: item,
+                value: item,
+              };
+            });
         }
       } catch (error) {
         console.log(error);

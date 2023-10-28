@@ -39,8 +39,10 @@ router.post('/site/updateInfo', auth(), SiteController.updateInfo);
 router.post('/site/updateSeo', auth(), SiteController.updateSeo);
 router.get('/site/runEnv', SiteController.runEnv);
 router.get('/sysApp/find', SysAppController.find);
+router.get('/sysApp/views', SysAppController.getViews);
 router.get('/sysApp/config', SysAppController.config);
 router.post('/sysApp/update', auth(), SysAppController.update);
+
 
 // 网站栏目
 router.get('/category/find', CategoryController.find);

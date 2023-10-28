@@ -318,13 +318,11 @@ import { search } from "@/api/tag.js";
 import { upload } from "@/api/upload.js";
 import Vue3Tinymce from "@jsdawn/vue3-tinymce";
 import { tinymceSet } from "@/config/tinymce.js";
-import { Plus } from "@element-plus/icons-vue";
 import {
   addLabelValue,
   getImgUrlFromStr,
   filterAndReplaceImgSrc,
   filterHtml,
-  filterBody,
   tree,
 } from "@/utils/tool.js";
 
@@ -332,7 +330,6 @@ export default {
   name: "article-add",
   components: {
     Vue3Tinymce,
-    Plus,
   },
   data: () => {
     return {

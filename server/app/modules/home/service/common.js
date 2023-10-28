@@ -17,6 +17,8 @@ class CommonService {
         "sort",
         "target",
         "status",
+        "list_view",
+        "article_view",
         "type",
       ]);
       return res;

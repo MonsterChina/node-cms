@@ -14,6 +14,19 @@ class SysAppController  {
     }
   }
 
+// 查
+static async getViews(req, res, next) {
+  try {
+    const {config:{appRoot,template},helper:{getHtmlFilesSync}} = req.app.locals;
+    const viewsPath = path.join(appRoot,`/modules/home/view/${template}`);
+    const data = getHtmlFilesSync(viewsPath);
+    res.json({ ...success, data: data })
+  } catch (err) {
+    next(err);
+  }
+}
+
+  
    // app配置
   static async config(req, res, next) {
     try {

@@ -14,9 +14,9 @@
           <p class="f-14 mb-6">
             <strong>前端架构：</strong>vite4.0 vue3 element-plus pinia axios
           </p>
-          <p class="f-14 mb-6"><strong>程序版本：</strong>v.1.4.0</p>
+          <p class="f-14 mb-6"><strong>程序版本：</strong>v.1.6.0</p>
           <p class="f-14 mb-6"><strong>程序路径：</strong>{{ dirname }}</p>
-          <p class="f-14 mb-6"><strong>发布时间：</strong>2023-09-08</p>
+          <p class="f-14 mb-6"><strong>发布时间：</strong>2023-10-28</p>
           <p class="f-14 mb-6"><strong>独立开发：</strong>明空</p>
           <p class="f-14 mb-6 row"><strong>联系微信：</strong>yanyutao2014</p>
           <p class="f-14 mb-6 row">
@@ -68,27 +68,6 @@
               <p>第一次构想 基于express mongoDB开发第一版cms</p>
             </el-timeline-item>
           </el-timeline>
-        </el-card>
-      </el-col>
-
-      <el-col class="mb-20" :xs="24" :sm="12" :md="12" :lg="12" :xl="12">
-        <el-card class="chanyue">
-          <template #header>
-            <div class="chanyue-title">
-              <h1>禅悦由来</h1>
-            </div>
-          </template>
-
-          <p class="chanyue-title text-c bold f-16">禅悦二首·其二</p>
-          <p class="chanyue-author text-c f-14 mb-10 mt-10">清代·张问陶</p>
-          <p class="chanyue-txt text-c f-15">门庭清妙即禅关，</p>
-          <p class="chanyue-txt text-c f-15">枉费黄金去买山。</p>
-          <p class="chanyue-txt text-c f-15">只要心光如满月，</p>
-          <p class="chanyue-txt text-c f-15">在家还比出家闲。</p>
-          <p class="mt-20">
-            译文：在清幽的家中修持，同样也可以进入禅关，不必花费万金去买山寻求幽静。
-            只要心性澄明，智慧之光绽放如满月，就算在家被俗世缠身，内心也比出家人清闲。
-          </p>
         </el-card>
       </el-col>
     </el-row>

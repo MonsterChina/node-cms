@@ -8,6 +8,13 @@ export let find = () => {
   });
 };
 
+export let views = () => {
+  return http({
+    url: `${API.BASE_API}/api/sysApp/views`,
+    method: "get",
+  });
+};
+
 export let config = () => {
   return http({
     url: `${API.BASE_API}/api/sysApp/config`,

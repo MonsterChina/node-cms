@@ -306,7 +306,6 @@ import {
   getImgUrlFromStr,
   filterHtml,
   filterAndReplaceImgSrc,
-  filterBody,
   addLabelValue,
   treeById,
   tree,
@@ -441,7 +440,7 @@ export default {
           let data = res.data;
           let ids = treeById(this.params.cid, data);
           this.categorySelected = ids;
-          // this.findField(this.categorySelected);
+
           this.findField(this.params.cid);
           let end = addLabelValue(tree(data));
           this.cateList = addLabelValue(data);

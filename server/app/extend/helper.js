@@ -363,3 +363,27 @@ exports.filterContainChinese = (str)=>{
    var extracted = result.join('');
    return extracted;
 }
+
+/**
+ * @description 获取模板文件
+ * @param {*} folderPath 
+ * @returns 获取模板文件
+ */
+exports.getHtmlFilesSync = (folderPath)=>{
+  // 读取文件夹中的所有文件
+  const files = fs.readdirSync(folderPath);
+  // 存储所有的HTML文件名
+  const htmlFiles = [];
+  // 遍历所有文件
+  files.forEach(file => {
+    // 获取文件的完整路径
+    const filePath = path.join(folderPath, file);
+    // 获取文件的状态信息
+    const stats = fs.statSync(filePath);
+    // 如果是HTML文件，则将文件名存入数组
+    if (stats.isFile() && path.extname(file) === '.html') {
+      htmlFiles.push(file);
+    }
+  });
+  return htmlFiles;
+}

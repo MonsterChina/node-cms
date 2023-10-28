@@ -390,14 +390,14 @@ class ArticleService  {
   static async tongji() {
     try {
       // 昨天
-      const yesterdayStr =
-        "select count(*) AS count from article where TO_DAYS(NOW())-TO_DAYS(updatedAt)<=1";
-      const yesterday = await knex.raw(yesterdayStr);
+      // const yesterdayStr =
+      //   "select count(*) AS count from article where TO_DAYS(NOW())-TO_DAYS(updatedAt)<=1";
+      // const yesterday = await knex.raw(yesterdayStr);
 
-      // 今天
-      const todayStr =
-        "select count(*) AS count from article where TO_DAYS(NOW())=TO_DAYS(NOW())";
-      const today = await knex.raw(todayStr);
+      // // 今天
+      // const todayStr =
+      //   "select count(*) AS count from article where TO_DAYS(NOW())=TO_DAYS(NOW())";
+      // const today = await knex.raw(todayStr);
 
       // 7天
       const weekStr =
@@ -405,19 +405,19 @@ class ArticleService  {
       const week = await knex.raw(weekStr);
 
       // 30天
-      const monthStr =
-        "SELECT COUNT(*) AS count from article where DATE_SUB(CURDATE(),INTERVAL 30 DAY)<=DATE(updatedAt)";
-      const month = await knex.raw(monthStr);
+      // const monthStr =
+      //   "SELECT COUNT(*) AS count from article where DATE_SUB(CURDATE(),INTERVAL 30 DAY)<=DATE(updatedAt)";
+      // const month = await knex.raw(monthStr);
 
-      // 季度
-      const quarterStr =
-        "SELECT COUNT(*) AS count from article where QUARTER(createdAt)=QUARTER(NOW())";
-      const quarter = await knex.raw(quarterStr);
+      // // 季度
+      // const quarterStr =
+      //   "SELECT COUNT(*) AS count from article where QUARTER(createdAt)=QUARTER(NOW())";
+      // const quarter = await knex.raw(quarterStr);
 
-      // 年
-      const yearStr =
-        "SELECT COUNT(*) AS count from article where YEAR(createdAt)=YEAR(NOW())";
-      const year = await knex.raw(yearStr);
+      // // 年
+      // const yearStr =
+      //   "SELECT COUNT(*) AS count from article where YEAR(createdAt)=YEAR(NOW())";
+      // const year = await knex.raw(yearStr);
 
       // 留言数
       const messageStr = "SELECT COUNT(id) AS count FROM message LIMIT 0,1";
@@ -432,12 +432,12 @@ class ArticleService  {
         const article = await knex.raw(articleStr);
 
       return {
-        yesterday: yesterday[0][0].count,
-        today: today[0][0].count,
+        // yesterday: yesterday[0][0].count,
+        // today: today[0][0].count,
         week: week[0][0].count,
-        month: month[0][0].count,
-        quarter: quarter[0][0].count,
-        year: year[0][0].count,
+        // month: month[0][0].count,
+        // quarter: quarter[0][0].count,
+        // year: year[0][0].count,
         message: message[0][0].count,
         tag:tag[0][0].count,
         article:article[0][0].count,

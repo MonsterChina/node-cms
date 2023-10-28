@@ -126,12 +126,7 @@ export default {
   data: () => {
     return {
       data: {
-        month: 0,
-        quarter: 0,
-        today: 0,
         week: 0,
-        year: 0,
-        yesterday: 0,
         message: 0,
         tag: 0,
         article: 0,
@@ -248,41 +243,6 @@ export default {
         ],
       };
       this.chartData = JSON.parse(JSON.stringify(res));
-    },
-
-    articleNum() {
-      const data = [
-        {
-          type: "昨日",
-          num: this.data.yesterday,
-        },
-        {
-          type: "今天",
-          sales: this.data.today,
-        },
-        {
-          type: "7天",
-          sales: this.data.week,
-        },
-        {
-          type: "30天",
-          sales: this.data.month,
-        },
-        {
-          type: "一个季度",
-          sales: this.data.quarter,
-        },
-        {
-          type: "一年",
-          sales: this.data.year,
-        },
-        {
-          type: "留言总数",
-          sales: this.data.message,
-        },
-      ];
-
-      console.log("datav", data);
     },
   },
 };

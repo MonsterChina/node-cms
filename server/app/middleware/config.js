@@ -8,7 +8,9 @@ const helper = require("../extend/helper.js");
 module.exports = async function(app){
     let sysconfig = await SysAppService.find();
     app.locals.config =  {...config,...sysconfig};
-    console.log('0001',app.locals.config);
+    if(config.debug){
+        console.log('config',app.locals.config);
+    }
     app.locals.auth = auth;
     app.locals.helper = helper;
 }

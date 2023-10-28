@@ -1,123 +1,132 @@
 <template>
-  <!-- 搜索区域 -->
-  <div class="search row justify-between align-c pt-10 pl-20 pr-20 pb-20 mb-20">
-    <el-form :inline="true" :model="params" ref="form">
-      <el-form-item class="mt-10" label="栏目筛选" prop="categorySelected">
-        <el-cascader
-          class="w-auto ml-5"
-          :show-all-levels="false"
-          v-model="params.categorySelected"
-          :options="category"
-          @change="handleChange"
-        ></el-cascader>
-      </el-form-item>
-      <el-form-item class="mt-10" label="标题" prop="keywords">
-        <el-input
-          class="mr-10 w-auto"
-          placeholder="请输入文章标题"
-          :suffix-icon="Search"
-          v-model="params.keywords"
-          clearable
-          @clear="clearSearch"
-        ></el-input>
-      </el-form-item>
-      <el-form-item class="mt-10">
-        <el-button type="primary" @click="doSearch" round>搜索</el-button>
-        <el-button @click="clearSearch('form')" round>清空</el-button>
-      </el-form-item>
-    </el-form>
+  <div class="content-wrap">
+    <!-- 搜索区域 -->
+    <div
+      class="search row justify-between align-c pt-10 pl-20 pr-20 pb-20 mb-20"
+    >
+      <el-form :inline="true" :model="params" ref="form">
+        <el-form-item class="mt-10" label="栏目筛选" prop="categorySelected">
+          <el-cascader
+            class="w-auto ml-5"
+            :show-all-levels="false"
+            v-model="params.categorySelected"
+            :options="category"
+            @change="handleChange"
+          ></el-cascader>
+        </el-form-item>
+        <el-form-item class="mt-10" label="标题" prop="keywords">
+          <el-input
+            class="mr-10 w-auto"
+            placeholder="请输入文章标题"
+            :suffix-icon="Search"
+            v-model="params.keywords"
+            clearable
+            @clear="clearSearch"
+          ></el-input>
+        </el-form-item>
+        <el-form-item class="mt-10">
+          <el-button type="primary" @click="doSearch" round>搜索</el-button>
+          <el-button @click="clearSearch('form')" round>清空</el-button>
+        </el-form-item>
+      </el-form>
 
-    <router-link class="mt-10" to="/article/add">
-      <el-button type="primary" round>新增</el-button>
-    </router-link>
-  </div>
+      <router-link class="mt-10" to="/article/add">
+        <el-button type="primary" round>新增</el-button>
+      </router-link>
+    </div>
 
-  <el-table
-    ref="multipleTable"
-    :data="tableData"
-    tooltip-effect="dark"
-    row-key="id"
-    size="small"
-    @selection-change="handleSelectionChange"
-    v-loading="loading"
-  >
-    <el-table-column type="selection"></el-table-column>
-    <el-table-column prop="id" label="编号" width="60" fixed></el-table-column>
-    <el-table-column prop="title" label="标题">
-      <template #default="scope">
-        <a
-          class="block"
-          :href="`/article-${scope.row.id}.html`"
-          target="_blank"
-        >
-          {{ scope.row.title }}
-        </a>
-      </template>
-    </el-table-column>
-    <!-- <el-table-column prop="attr" label="属性">
+    <el-table
+      ref="multipleTable"
+      :data="tableData"
+      tooltip-effect="dark"
+      row-key="id"
+      size="small"
+      @selection-change="handleSelectionChange"
+      v-loading="loading"
+    >
+      <el-table-column type="selection"></el-table-column>
+      <el-table-column
+        prop="id"
+        label="编号"
+        width="60"
+        fixed
+      ></el-table-column>
+      <el-table-column prop="title" label="标题">
+        <template #default="scope">
+          <a
+            class="block"
+            :href="`/article-${scope.row.id}.html`"
+            target="_blank"
+          >
+            {{ scope.row.title }}
+          </a>
+        </template>
+      </el-table-column>
+      <!-- <el-table-column prop="attr" label="属性">
         <template #default="scope">
           <p v-if="scope.row.attr.includes('1')">头条</p>
           <p v-if="scope.row.attr.includes('2')">推荐</p>
         </template>
       </el-table-column> -->
-    <el-table-column prop="name" label="栏目" width="80"></el-table-column>
-    <!-- <el-table-column prop="pv" label="浏览次数"></el-table-column> -->
-    <el-table-column
-      prop="updatedAt"
-      label="更新时间"
-      width="160"
-    ></el-table-column>
-    <el-table-column prop="status" label="状态" width="60">
-      <template #default="scope">{{
-        scope.row.status == 0 ? "显示" : "隐藏"
-      }}</template>
-    </el-table-column>
-    <el-table-column fixed="right" label="操作" width="150">
-      <template #default="scope">
-        <el-button
-          :icon="View"
-          circle
-          @click="handleClick(scope.row)"
-        ></el-button>
-        <el-button :icon="Edit" circle @click="toEdit(scope.row)"></el-button>
-        <el-button
-          :icon="Delete"
-          circle
-          @click="handleDel(scope.row)"
-        ></el-button>
-      </template>
-    </el-table-column>
-  </el-table>
-
-  <!-- 分页 -->
-  <el-row type="flex" class="mt-20" justify="space-between">
-    <div style="margin-top: 20px">
-      批量操作：
-
-      <el-popconfirm
-        confirm-button-text="确定"
-        cancel-button-text="取消"
-        :icon="InfoFilled"
-        icon-color="#626AEF"
-        title="此操作将永久删除, 是否继续?"
-        @confirm="delSome"
-        @cancel="cancelEvent"
-      >
-        <template #reference>
-          <el-button>删除</el-button>
+      <el-table-column prop="name" label="栏目" width="80"></el-table-column>
+      <!-- <el-table-column prop="pv" label="浏览次数"></el-table-column> -->
+      <el-table-column
+        prop="updatedAt"
+        label="更新时间"
+        width="160"
+      ></el-table-column>
+      <el-table-column prop="status" label="状态" width="60">
+        <template #default="scope">{{
+          scope.row.status == 0 ? "显示" : "隐藏"
+        }}</template>
+      </el-table-column>
+      <el-table-column fixed="right" label="操作" width="150">
+        <template #default="scope">
+          <el-button
+            :icon="View"
+            circle
+            @click="handleClick(scope.row)"
+          ></el-button>
+          <el-button :icon="Edit" circle @click="toEdit(scope.row)"></el-button>
+          <el-button
+            :icon="Delete"
+            circle
+            @click="handleDel(scope.row)"
+          ></el-button>
         </template>
-      </el-popconfirm>
-    </div>
-    <el-pagination
-      background
-      layout="prev, pager, next"
-      @current-change="handleCurrentChange"
-      :page-size="20"
-      :total="count"
-      v-model:currentPage="cur"
-      hide-on-single-page
-    ></el-pagination>
-  </el-row>
+      </el-table-column>
+    </el-table>
+
+    <!-- 分页 -->
+    <el-row type="flex" class="mt-20" justify="space-between">
+      <div style="margin-top: 20px">
+        批量操作：
+
+        <el-popconfirm
+          confirm-button-text="确定"
+          cancel-button-text="取消"
+          :icon="InfoFilled"
+          icon-color="#626AEF"
+          title="此操作将永久删除, 是否继续?"
+          @confirm="delSome"
+          @cancel="cancelEvent"
+        >
+          <template #reference>
+            <el-button>删除</el-button>
+          </template>
+        </el-popconfirm>
+      </div>
+      <el-pagination
+        background
+        layout="prev, pager, next"
+        @current-change="handleCurrentChange"
+        :page-size="20"
+        :total="count"
+        v-model:currentPage="cur"
+        hide-on-single-page
+      ></el-pagination>
+    </el-row>
+  </div>
 </template>
 
 <script>

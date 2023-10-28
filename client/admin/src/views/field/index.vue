@@ -1,56 +1,58 @@
 <template>
-  <el-row type="flex" class="mt-10 mb-10" justify="end">
-    <router-link
-      :to="{
-        name: 'field-add',
-        query: {
-          mid: query.mid,
-          table_name: table_name,
-          model_name: model_name,
-        },
-      }"
+  <div class="content-wrap">
+    <el-row type="flex" class="mt-10 mb-10" justify="end">
+      <router-link
+        :to="{
+          name: 'field-add',
+          query: {
+            mid: query.mid,
+            table_name: table_name,
+            model_name: model_name,
+          },
+        }"
+      >
+        <el-button type="primary" round>新增</el-button>
+      </router-link>
+    </el-row>
+
+    <el-table
+      ref="multipleTable"
+      :data="tableData"
+      tooltip-effect="dark"
+      style="width: 100%"
+      row-key="id"
+      size="small"
+      @selection-change="handleSelectionChange"
+      v-loading="loading"
     >
-      <el-button type="primary" round>新增</el-button>
-    </router-link>
-  </el-row>
+      <el-table-column type="selection" width="55"></el-table-column>
+      <el-table-column prop="id" label="编号"></el-table-column>
+      <el-table-column prop="field_cname" label="中文名称"></el-table-column>
+      <el-table-column prop="field_ename" label="字段名称"></el-table-column>
+      <el-table-column prop="field_sort" label="排序"></el-table-column>
+      <el-table-column fixed="right" label="操作" width="150">
+        <template #default="scope">
+          <el-button :icon="Edit" circle @click="toEdit(scope.row)"></el-button>
+          <el-button
+            :icon="Delete"
+            circle
+            @click="handleDel(scope.row)"
+          ></el-button>
+        </template>
+      </el-table-column>
+    </el-table>
 
-  <el-table
-    ref="multipleTable"
-    :data="tableData"
-    tooltip-effect="dark"
-    style="width: 100%"
-    row-key="id"
-    size="small"
-    @selection-change="handleSelectionChange"
-    v-loading="loading"
-  >
-    <el-table-column type="selection" width="55"></el-table-column>
-    <el-table-column prop="id" label="编号"></el-table-column>
-    <el-table-column prop="field_cname" label="中文名称"></el-table-column>
-    <el-table-column prop="field_ename" label="字段名称"></el-table-column>
-    <el-table-column prop="field_sort" label="排序"></el-table-column>
-    <el-table-column fixed="right" label="操作" width="150">
-      <template #default="scope">
-        <el-button :icon="Edit" circle @click="toEdit(scope.row)"></el-button>
-        <el-button
-          :icon="Delete"
-          circle
-          @click="handleDel(scope.row)"
-        ></el-button>
-      </template>
-    </el-table-column>
-  </el-table>
-
-  <el-row type="flex" class="mt-20" justify="space-between">
-    <el-pagination
-      background
-      layout="prev, pager, next"
-      @current-change="handleCurrentChange"
-      :page-size="10"
-      :total="count"
-      hide-on-single-page
-    ></el-pagination>
-  </el-row>
+    <el-row type="flex" class="mt-20" justify="space-between">
+      <el-pagination
+        background
+        layout="prev, pager, next"
+        @current-change="handleCurrentChange"
+        :page-size="10"
+        :total="count"
+        hide-on-single-page
+      ></el-pagination>
+    </el-row>
+  </div>
 </template>
 
 <script>

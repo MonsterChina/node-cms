@@ -1,5 +1,5 @@
 <template>
-  <div class="mr-10 ml-10">
+  <div class="pd-20 content-wrap">
     <el-tabs v-model="activeName" @tab-click="handleClick">
       <!-- 基本设置 -->
       <el-tab-pane label="基本设置" class="mt-20" name="first">

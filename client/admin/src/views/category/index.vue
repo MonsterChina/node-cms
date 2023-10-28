@@ -1,75 +1,79 @@
 <template>
-  <!-- 搜索区域 -->
-  <div class="search row justify-between align-c pt-10 pl-20 pr-20 pb-20 mb-20">
-    <el-form :inline="true" :model="params">
-      <el-form-item class="mt-10" label="名称" prop="keywords">
-        <el-input
-          placeholder="请输入栏目名称"
-          :suffix-icon="Search"
-          v-model="params.keywords"
-          clearable
-        />
-      </el-form-item>
-      <el-form-item class="mt-10">
-        <el-button type="primary" @click="search" round>搜索</el-button>
-        <el-button @click="clearSearch" round>清空</el-button>
-      </el-form-item>
-    </el-form>
-    <router-link class="mt-10" to="/category/add">
-      <el-button type="primary" @click="search" round>新增</el-button>
-    </router-link>
+  <div class="content-wrap">
+    <!-- 搜索区域 -->
+    <div
+      class="search row justify-between align-c pt-10 pl-20 pr-20 pb-20 mb-20"
+    >
+      <el-form :inline="true" :model="params">
+        <el-form-item class="mt-10" label="名称" prop="keywords">
+          <el-input
+            placeholder="请输入栏目名称"
+            :suffix-icon="Search"
+            v-model="params.keywords"
+            clearable
+          />
+        </el-form-item>
+        <el-form-item class="mt-10">
+          <el-button type="primary" @click="search" round>搜索</el-button>
+          <el-button @click="clearSearch" round>清空</el-button>
+        </el-form-item>
+      </el-form>
+      <router-link class="mt-10" to="/category/add">
+        <el-button type="primary" @click="search" round>新增</el-button>
+      </router-link>
+    </div>
+
+    <el-table
+      ref="multipleTable"
+      :data="tableData"
+      tooltip-effect="dark"
+      row-key="id"
+      size="small"
+      :tree-props="{ children: 'children', hasChildren: 'hasChildren' }"
+      @selection-change="handleSelectionChange"
+      v-loading="loading"
+    >
+      <el-table-column type="selection"></el-table-column>
+
+      <el-table-column prop="id" label="编号"></el-table-column>
+
+      <el-table-column prop="name" label="名称"></el-table-column>
+
+      <el-table-column prop="type" label="类型">
+        <template #default="scope">
+          <p v-if="scope.row.type == 0">栏目</p>
+          <p v-else>单页</p>
+        </template>
+      </el-table-column>
+
+      <el-table-column prop="sort" label="排序">
+        <template #default="scope">{{ scope.row.sort }}</template>
+      </el-table-column>
+
+      <el-table-column prop="status" label="状态">
+        <template #default="scope">
+          <p v-if="scope.row.status == 0">显示</p>
+          <p v-else>隐藏</p>
+        </template>
+      </el-table-column>
+
+      <el-table-column fixed="right" label="操作" width="160">
+        <template #default="scope">
+          <el-button
+            :icon="View"
+            circle
+            @click="handleClick(scope.row)"
+          ></el-button>
+          <el-button :icon="Edit" circle @click="toEdit(scope.row)"></el-button>
+          <el-button
+            :icon="Delete"
+            circle
+            @click="handleDel(scope.row)"
+          ></el-button>
+        </template>
+      </el-table-column>
+    </el-table>
   </div>
-
-  <el-table
-    ref="multipleTable"
-    :data="tableData"
-    tooltip-effect="dark"
-    row-key="id"
-    size="small"
-    :tree-props="{ children: 'children', hasChildren: 'hasChildren' }"
-    @selection-change="handleSelectionChange"
-    v-loading="loading"
-  >
-    <el-table-column type="selection"></el-table-column>
-
-    <el-table-column prop="id" label="编号"></el-table-column>
-
-    <el-table-column prop="name" label="名称"></el-table-column>
-
-    <el-table-column prop="type" label="类型">
-      <template #default="scope">
-        <p v-if="scope.row.type == 0">栏目</p>
-        <p v-else>单页</p>
-      </template>
-    </el-table-column>
-
-    <el-table-column prop="sort" label="排序">
-      <template #default="scope">{{ scope.row.sort }}</template>
-    </el-table-column>
-
-    <el-table-column prop="status" label="状态">
-      <template #default="scope">
-        <p v-if="scope.row.status == 0">显示</p>
-        <p v-else>隐藏</p>
-      </template>
-    </el-table-column>
-
-    <el-table-column fixed="right" label="操作" width="160">
-      <template #default="scope">
-        <el-button
-          :icon="View"
-          circle
-          @click="handleClick(scope.row)"
-        ></el-button>
-        <el-button :icon="Edit" circle @click="toEdit(scope.row)"></el-button>
-        <el-button
-          :icon="Delete"
-          circle
-          @click="handleDel(scope.row)"
-        ></el-button>
-      </template>
-    </el-table-column>
-  </el-table>
 </template>
 
 <script>

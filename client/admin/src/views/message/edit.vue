@@ -1,5 +1,5 @@
 <template>
-  <div class="mr-10 ml-10 mb-20">
+  <div class="mr-10 ml-10 mb-20 pd-20 content-wrap">
     <el-form ref="params" :model="params" label-width="84px" class="mt-20">
       <el-form-item
         label="留言标题"

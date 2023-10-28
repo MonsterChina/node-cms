@@ -1,5 +1,5 @@
 <template>
-  <div class="mr-10 mt-30 ml-10 mb-20">
+  <div class="content-wrap">
     <el-form
       ref="params"
       :model="params"

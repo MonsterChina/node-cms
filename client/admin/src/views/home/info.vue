@@ -1,13 +1,9 @@
 <template>
   <div class="pd-10">
     <el-row :gutter="20">
-      <el-col class="mb-20" :xs="24" :sm="12" :md="12" :lg="12" :xl="12">
-        <el-card class="box-card">
-          <template #header>
-            <div class="card-header">
-              <h1>技术架构</h1>
-            </div>
-          </template>
+      <el-col :xs="24" :sm="18" :md="18" :lg="18" :xl="18">
+        <div class="bg-fff pd-20 radius-6">
+          <h3>技术架构</h3>
           <p class="f-14 mb-6">
             <strong>技术架构：</strong>nodejs v18.16.0 express4+ mysql-5.6/5.7
           </p>
@@ -22,53 +18,38 @@
           <p class="f-14 mb-6 row">
             <strong>联系邮箱：</strong>867528315@qq.com
           </p>
-          <p class="f-14 mb-6">
+          <!-- <p class="f-14 mb-6">
             <strong>禅悦内容管理系统：</strong>
             <a class="c-9ca4bf" href="http://www.chanyue.top" target="_blank">
               &copy; www.chanyue.top
             </a>
-          </p>
-        </el-card>
+          </p> -->
+        </div>
       </el-col>
 
-      <el-col class="mb-20" :xs="24" :sm="12" :md="12" :lg="12" :xl="12">
-        <el-card>
-          <template #header>
-            <div class="card-header">
-              <h1>历史进程</h1>
-            </div>
-          </template>
-          <el-timeline>
-            <el-timeline-item
-              type="primary"
-              :hollow="true"
-              timestamp="2022/6/12"
-            >
-              <p>第四次重构（chanyue-cms）基于express mysql knex开发第三版</p>
-            </el-timeline-item>
-            <el-timeline-item
-              type="primary"
-              :hollow="true"
-              timestamp="2020/10/1"
-            >
-              <p>第三次重构 基于egg mysql Sequelize重构</p>
-            </el-timeline-item>
-            <el-timeline-item
-              type="primary"
-              :hollow="true"
-              timestamp="2018/4/2"
-            >
-              <p>第二次重构 基于koa2 mysql重构</p>
-            </el-timeline-item>
-            <el-timeline-item
-              type="primary"
-              :hollow="true"
-              timestamp="2015/6/2"
-            >
-              <p>第一次构想 基于express mongoDB开发第一版cms</p>
-            </el-timeline-item>
-          </el-timeline>
-        </el-card>
+      <el-col :xs="24" :sm="6" :md="6" :lg="6" :xl="6">
+        <div class="bg-fff pd-20 radius-6">
+          <h3 class="mb-12 f-20">技术架构</h3>
+          <p class="f-14 mb-6 c-666">
+            <span class="c-333">服务架构：</span>nodejs v18.16.0 express4+
+            mysql-5.6/5.7
+          </p>
+          <p class="f-14 mb-6">
+            <span>前端架构：</span>vite4.0 vue3 element-plus pinia axios
+          </p>
+          <p class="f-14 mb-6"><span>程序版本：</span>v.1.6.0</p>
+          <p class="f-14 mb-6"><span>程序路径：</span>{{ dirname }}</p>
+          <p class="f-14 mb-6"><span>发布时间：</span>2023-10-28</p>
+          <p class="f-14 mb-6"><span>技术开发：</span>明空</p>
+          <p class="f-14 mb-6 row"><span>联系微信：</span>yanyutao2014</p>
+          <p class="f-14 mb-6 row"><span>联系邮箱：</span>867528315@qq.com</p>
+          <!-- <p class="f-14 mb-6">
+            <strong>禅悦内容管理系统：</strong>
+            <a class="c-9ca4bf" href="http://www.chanyue.top" target="_blank">
+              &copy; www.chanyue.top
+            </a>
+          </p> -->
+        </div>
       </el-col>
     </el-row>
   </div>
@@ -168,26 +149,15 @@ export default {
           sales: this.data.message,
         },
       ];
+
+      console.log("datav", data);
     },
   },
 };
 </script>
 <style scoped>
-#article {
-  height: 320px;
-  box-shadow:
-    0 0 4px rgba(0, 0, 0, 0.1),
-    0 0 14px hsla(0, 0%, 93.3%, 0.5);
-  border-radius: 4px;
-  padding: 35px 25px 30px;
-}
-
-.info {
-  box-shadow:
-    0 0 4px rgba(0, 0, 0, 0.1),
-    0 0 14px hsla(0, 0%, 93.3%, 0.5);
-  border-radius: 4px;
-  padding: 25px;
+.radius-6 {
+  border-radius: 6px;
 }
 
 .c-9ca4bf {

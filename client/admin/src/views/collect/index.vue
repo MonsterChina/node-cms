@@ -1,62 +1,64 @@
 <template>
-  <el-row type="flex" class="mt-10 mb-10" justify="end">
-    <router-link to="/collect/add">
-      <el-button type="primary" round>新增</el-button>
-    </router-link>
-  </el-row>
+  <div class="content-wrap">
+    <el-row type="flex" class="mt-10 mb-10" justify="end">
+      <router-link to="/collect/add">
+        <el-button type="primary" round>新增</el-button>
+      </router-link>
+    </el-row>
 
-  <el-table
-    ref="multipleTable"
-    :data="tableData"
-    tooltip-effect="dark"
-    row-key="id"
-    size="small"
-    @selection-change="handleSelectionChange"
-  >
-    <el-table-column type="selection"></el-table-column>
-    <el-table-column prop="id" width="60" label="编号"></el-table-column>
-    <el-table-column prop="taskName" label="任务名称"> </el-table-column>
-    <el-table-column prop="charset" label="编码">
-      <template #default="scope">{{
-        scope.row.charset == 1 ? "UTF-8" : "GB2312"
-      }}</template>
-    </el-table-column>
-    <el-table-column prop="status" label="状态">
-      <template #default="scope">{{
-        scope.row.status == 1 ? "草稿" : "发布"
-      }}</template>
-    </el-table-column>
-    <el-table-column prop="createdAt" label="发布时间">
-      <template #default="scope">{{ scope.row.createdAt }}</template>
-    </el-table-column>
-    <el-table-column fixed="right" width="222" label="操作">
-      <template #default="scope">
-        <el-button :icon="Edit" circle @click="toEdit(scope.row)"></el-button>
+    <el-table
+      ref="multipleTable"
+      :data="tableData"
+      tooltip-effect="dark"
+      row-key="id"
+      size="small"
+      @selection-change="handleSelectionChange"
+    >
+      <el-table-column type="selection"></el-table-column>
+      <el-table-column prop="id" width="60" label="编号"></el-table-column>
+      <el-table-column prop="taskName" label="任务名称"> </el-table-column>
+      <el-table-column prop="charset" label="编码">
+        <template #default="scope">{{
+          scope.row.charset == 1 ? "UTF-8" : "GB2312"
+        }}</template>
+      </el-table-column>
+      <el-table-column prop="status" label="状态">
+        <template #default="scope">{{
+          scope.row.status == 1 ? "草稿" : "发布"
+        }}</template>
+      </el-table-column>
+      <el-table-column prop="createdAt" label="发布时间">
+        <template #default="scope">{{ scope.row.createdAt }}</template>
+      </el-table-column>
+      <el-table-column fixed="right" width="222" label="操作">
+        <template #default="scope">
+          <el-button :icon="Edit" circle @click="toEdit(scope.row)"></el-button>
 
-        <el-button
-          :icon="Delete"
-          circle
-          @click="handleDel(scope.row)"
-        ></el-button>
+          <el-button
+            :icon="Delete"
+            circle
+            @click="handleDel(scope.row)"
+          ></el-button>
 
-        <el-button type="primary" round :icon="Cpu" @click="toRun(scope.row)"
-          >执行</el-button
-        >
-      </template>
-    </el-table-column>
-  </el-table>
+          <el-button type="primary" round :icon="Cpu" @click="toRun(scope.row)"
+            >执行</el-button
+          >
+        </template>
+      </el-table-column>
+    </el-table>
 
-  <!-- 分页 -->
-  <el-row type="flex" class="mt-20 align-c" justify="center">
-    <el-pagination
-      background
-      layout="prev, pager, next"
-      @current-change="handleCurrentChange"
-      :page-size="10"
-      :total="count"
-      hide-on-single-page
-    ></el-pagination>
-  </el-row>
+    <!-- 分页 -->
+    <el-row type="flex" class="mt-20 align-c" justify="center">
+      <el-pagination
+        background
+        layout="prev, pager, next"
+        @current-change="handleCurrentChange"
+        :page-size="10"
+        :total="count"
+        hide-on-single-page
+      ></el-pagination>
+    </el-row>
+  </div>
 </template>
 
 <script>

@@ -1,7 +1,7 @@
 <!-- eslint-disable no-useless-escape -->
 <template>
-  <div class="mr-10 ml-10 mb-20">
-    <el-form ref="params" :model="params" label-width="84px" class="mt-20">
+  <div class="mb-20 bg-fff pd-20">
+    <el-form ref="params" :model="params" label-width="84px">
       <el-tabs v-model="activeName" class="demo-tabs">
         <el-tab-pane label="列表测试" name="list">
           <el-form-item

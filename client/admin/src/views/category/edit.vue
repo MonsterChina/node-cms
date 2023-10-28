@@ -1,146 +1,148 @@
 <template>
-  <div class="mr-10 ml-10">
-    <el-tabs v-model="activeName" @tab-click="handleClick">
-      <el-tab-pane label="基本信息" name="first"></el-tab-pane>
-      <el-tab-pane label="SEO设置" name="second"></el-tab-pane>
-    </el-tabs>
-  </div>
+  <div class="content-wrap">
+    <div class="mr-10 ml-10">
+      <el-tabs v-model="activeName" @tab-click="handleClick">
+        <el-tab-pane label="基本信息" name="first"></el-tab-pane>
+        <el-tab-pane label="SEO设置" name="second"></el-tab-pane>
+      </el-tabs>
+    </div>
 
-  <div class="mr-10 ml-10 mb-20">
-    <el-form ref="params" :model="params" label-width="84px" class="w640">
-      <div v-show="activeIndex == 0">
-        <el-form-item label="上级栏目" v-if="params.pid != 0">
-          <el-cascader
-            :props="categoryProps"
-            :show-all-levels="false"
-            v-model="categorySelected"
-            :options="category"
-            @change="handleChange"
-            placeholder="不选择为顶级栏目"
+    <div class="mr-10 ml-10 mb-20">
+      <el-form ref="params" :model="params" label-width="84px" class="w640">
+        <div v-show="activeIndex == 0">
+          <el-form-item label="上级栏目" v-if="params.pid != 0">
+            <el-cascader
+              :props="categoryProps"
+              :show-all-levels="false"
+              v-model="categorySelected"
+              :options="category"
+              @change="handleChange"
+              placeholder="不选择为顶级栏目"
+            >
+            </el-cascader>
+          </el-form-item>
+
+          <el-form-item
+            label="栏目名称"
+            prop="name"
+            :rules="[
+              {
+                required: true,
+                message: '请输入栏目名称',
+                trigger: 'blur',
+              },
+              {
+                min: 1,
+                max: 50,
+                message: '栏目不能超过50个字',
+                trigger: 'blur',
+              },
+            ]"
           >
-          </el-cascader>
-        </el-form-item>
+            <el-input v-model="params.name" @change="createPinyin"></el-input>
+          </el-form-item>
 
-        <el-form-item
-          label="栏目名称"
-          prop="name"
-          :rules="[
-            {
-              required: true,
-              message: '请输入栏目名称',
-              trigger: 'blur',
-            },
-            {
-              min: 1,
-              max: 50,
-              message: '栏目不能超过50个字',
-              trigger: 'blur',
-            },
-          ]"
-        >
-          <el-input v-model="params.name" @change="createPinyin"></el-input>
-        </el-form-item>
+          <el-form-item label="栏目标识">
+            <el-input v-model="params.pinyin" @change="changePath"></el-input>
+          </el-form-item>
 
-        <el-form-item label="栏目标识">
-          <el-input v-model="params.pinyin" @change="changePath"></el-input>
-        </el-form-item>
+          <el-form-item label="栏目路径">
+            <el-input v-model="params.path" disabled></el-input>
+          </el-form-item>
 
-        <el-form-item label="栏目路径">
-          <el-input v-model="params.path" disabled></el-input>
-        </el-form-item>
+          <el-form-item label="列表模板">
+            <el-select v-model="params.list_view" placeholder="Select">
+              <el-option
+                v-for="item in views"
+                :key="item.value"
+                :label="item.label"
+                :value="item.value"
+              />
+            </el-select>
+          </el-form-item>
 
-        <el-form-item label="列表模板">
-          <el-select v-model="params.list_view" placeholder="Select">
-            <el-option
-              v-for="item in views"
-              :key="item.value"
-              :label="item.label"
-              :value="item.value"
-            />
-          </el-select>
-        </el-form-item>
+          <el-form-item label="内容模板">
+            <el-select v-model="params.article_view" placeholder="Select">
+              <el-option
+                v-for="item in views"
+                :key="item.value"
+                :label="item.label"
+                :value="item.value"
+              />
+            </el-select>
+          </el-form-item>
 
-        <el-form-item label="内容模板">
-          <el-select v-model="params.article_view" placeholder="Select">
-            <el-option
-              v-for="item in views"
-              :key="item.value"
-              :label="item.label"
-              :value="item.value"
-            />
-          </el-select>
-        </el-form-item>
+          <el-form-item label="栏目类型">
+            <el-radio v-model="params.type" label="0">栏目</el-radio>
+            <el-radio v-model="params.type" label="1">单页</el-radio>
+          </el-form-item>
 
-        <el-form-item label="栏目类型">
-          <el-radio v-model="params.type" label="0">栏目</el-radio>
-          <el-radio v-model="params.type" label="1">单页</el-radio>
-        </el-form-item>
+          <el-form-item label="是否显示">
+            <el-radio v-model="params.status" label="0">显示</el-radio>
+            <el-radio v-model="params.status" label="1">隐藏</el-radio>
+          </el-form-item>
+        </div>
 
-        <el-form-item label="是否显示">
-          <el-radio v-model="params.status" label="0">显示</el-radio>
-          <el-radio v-model="params.status" label="1">隐藏</el-radio>
-        </el-form-item>
-      </div>
+        <div v-show="activeIndex == 1">
+          <el-form-item label="栏目描述">
+            <el-input v-model="params.description"></el-input>
+          </el-form-item>
 
-      <div v-show="activeIndex == 1">
-        <el-form-item label="栏目描述">
-          <el-input v-model="params.description"></el-input>
-        </el-form-item>
+          <el-form-item label="栏目链接">
+            <el-input v-model="params.url"></el-input>
+          </el-form-item>
 
-        <el-form-item label="栏目链接">
-          <el-input v-model="params.url"></el-input>
-        </el-form-item>
+          <el-form-item label="扩展模型">
+            <el-radio-group v-model="params.mid">
+              <el-radio label="0">基本模型</el-radio>
+              <template v-if="modList.length > 0">
+                <el-radio
+                  :disabled="modelFlag"
+                  v-for="(item, index) of modList"
+                  :key="index"
+                  :label="item.id"
+                >
+                  {{ item.model_name }}模型
+                </el-radio>
+              </template>
+            </el-radio-group>
+            <el-tooltip
+              content="如果栏目已经存在文章，则不能更换模型"
+              effect="light"
+              placement="top-start"
+            >
+              <el-icon class="ml-20 pointer"
+                ><QuestionFilled class="c-165dff"
+              /></el-icon>
+            </el-tooltip>
+          </el-form-item>
 
-        <el-form-item label="扩展模型">
-          <el-radio-group v-model="params.mid">
-            <el-radio label="0">基本模型</el-radio>
-            <template v-if="modList.length > 0">
-              <el-radio
-                :disabled="modelFlag"
-                v-for="(item, index) of modList"
-                :key="index"
-                :label="item.id"
-              >
-                {{ item.model_name }}模型
-              </el-radio>
-            </template>
-          </el-radio-group>
-          <el-tooltip
-            content="如果栏目已经存在文章，则不能更换模型"
-            effect="light"
-            placement="top-start"
-          >
-            <el-icon class="ml-20 pointer"
-              ><QuestionFilled class="c-165dff"
-            /></el-icon>
-          </el-tooltip>
-        </el-form-item>
+          <el-form-item label="打开方式">
+            <el-radio v-model="params.target" label="0">当前页面</el-radio>
+            <el-radio v-model="params.target" label="1">新页面</el-radio>
+          </el-form-item>
 
-        <el-form-item label="打开方式">
-          <el-radio v-model="params.target" label="0">当前页面</el-radio>
-          <el-radio v-model="params.target" label="1">新页面</el-radio>
-        </el-form-item>
+          <el-form-item label="栏目排序">
+            <el-input v-model="params.sort"></el-input>
+          </el-form-item>
 
-        <el-form-item label="栏目排序">
-          <el-input v-model="params.sort"></el-input>
-        </el-form-item>
+          <el-form-item label="seo标题">
+            <el-input v-model="params.seo_title"></el-input>
+          </el-form-item>
 
-        <el-form-item label="seo标题">
-          <el-input v-model="params.seo_title"></el-input>
-        </el-form-item>
+          <el-form-item label="seo关键词">
+            <el-input v-model="params.seo_keywords"></el-input>
+          </el-form-item>
 
-        <el-form-item label="seo关键词">
-          <el-input v-model="params.seo_keywords"></el-input>
+          <el-form-item label="seo描述">
+            <el-input v-model="params.seo_description"></el-input>
+          </el-form-item>
+        </div>
+        <el-form-item>
+          <el-button type="primary" @click="submit('params')">保存</el-button>
         </el-form-item>
-
-        <el-form-item label="seo描述">
-          <el-input v-model="params.seo_description"></el-input>
-        </el-form-item>
-      </div>
-      <el-form-item>
-        <el-button type="primary" @click="submit('params')">保存</el-button>
-      </el-form-item>
-    </el-form>
+      </el-form>
+    </div>
   </div>
 </template>
 

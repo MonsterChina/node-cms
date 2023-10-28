@@ -39,6 +39,13 @@
             <!-- </transition> -->
           </router-view>
         </article>
+
+        <p class="text-c mt-10 mb-10 c-333 f-12">
+          Copyright © 2016-2023
+          <a href="https://gitee.com/yanyutao0402/chanyue-cms" target="_blank"
+            >禅悦cms</a
+          >
+        </p>
       </div>
     </div>
   </div>
@@ -151,14 +158,14 @@ export default defineComponent({
 
     .app-main {
       height: calc(100vh - 51px);
-      padding: 10px;
+      padding: 20px 20px 10px;
       background-color: #f2f3f5;
       overflow: auto;
       .container {
-        background-color: #fff;
+        // background-color: #fff;
         border-radius: 6px;
-        padding: 10px;
-        min-height: calc(100vh - 71px);
+        // padding: 10px;
+        min-height: calc(100vh - 120px);
       }
     }
   }

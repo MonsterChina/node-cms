@@ -156,3 +156,35 @@ body {
 .w-80{
   width: 80px!important;
 }
+
+.content-wrap{
+  min-height: calc(100vh - 120px);
+  border-radius: 6px;
+  background-color: #fff;
+  padding: 20px;
+}
+
+
+/* 设置所有滚动条的样式 */
+::-webkit-scrollbar {
+  width: 7px;
+  /* 设置滚动条的宽度 */
+
+}
+
+::-webkit-scrollbar-track {
+  background-color: transparent;
+  /* 设置滚动条的轨道背景色 */
+}
+
+::-webkit-scrollbar-thumb {
+  background-color: rgba(224, 224, 224, 0.9);
+  /* 设置滚动条的颜色 */
+  border-radius: 6px;
+  /* 设置滚动条的边框半径 */
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background-image: linear-gradient(#32dc5c,#81b8ee,#017df9);
+  /* 设置鼠标悬停时的滚动条颜色 */
+}

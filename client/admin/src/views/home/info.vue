@@ -7,14 +7,18 @@
             <img src="@/assets/img/ico-article.svg" />
           </div>
           <p class="f-12 text-c mt-5">文章内容</p>
-          <p class="f-20 text-c">3735 <sub class="pos-r f-12">篇</sub></p>
+          <p class="f-20 text-c">
+            {{ data.article }} <sub class="pos-r f-12">篇</sub>
+          </p>
         </div>
         <div class="row flex-col align-c">
           <div class="tj-img">
             <img src="@/assets/img/ico-will.svg" />
           </div>
           <p class="f-12 text-c mt-5">文章标签</p>
-          <p class="f-20 text-c">3735 <sub class="pos-r f-12">篇</sub></p>
+          <p class="f-20 text-c">
+            {{ data.tag }} <sub class="pos-r f-12">个</sub>
+          </p>
         </div>
 
         <div>
@@ -42,7 +46,7 @@
           <el-col :xs="24" :sm="12" :md="12" :lg="12" :xl="12">
             <div
               class="bg-fff pd-20 radius-6 mb-20 row"
-              style="min-width: 17rem; max-width: 480px; height: 330px"
+              style="min-width: 17rem; max-width: 480px; height: 326px"
             >
               <qiun-vue-ucharts
                 type="ring"
@@ -73,9 +77,7 @@
               <p class="f-13 mb-6 c-4e5969">
                 模块化。一切模块相互独立，互不干扰。
               </p>
-              <p class="f-13 mb-6 c-4e5969">
-                插件化。灵活开发，支持完整功能模块。
-              </p>
+              <p class="f-13 c-4e5969">插件化。灵活开发，支持完整功能模块。</p>
             </div>
           </el-col>
         </el-row>
@@ -131,6 +133,8 @@ export default {
         year: 0,
         yesterday: 0,
         message: 0,
+        tag: 0,
+        article: 0,
       },
       dirname: "",
       loading: true,

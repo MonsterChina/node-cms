@@ -79,15 +79,15 @@
 
     <footer class="login-footer overflow-h">
       <p class="f-13 text-c mt-10 c-fff">
-        &copy;
+        Copyright &copy; 2016-2023
         <a
-          href="http://www.chanyue.top"
+          href="https://gitee.com/yanyutao0402/chanyue-cms"
           class="mr-5 c-fff"
           target="_blank"
           title="chanyue"
-          >www.chanyue.top</a
+          >禅悦CMS</a
         >
-        禅悦系统 ● 位于南京 服务全国
+        ● 位于南京 服务全国
       </p>
     </footer>
   </div>

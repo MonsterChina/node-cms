@@ -144,6 +144,7 @@ class ArticleController {
   static async tongji(req, res, next) {
     try {
       const data = await ArticleService.tongji();
+      console.log('1---->',data)
       res.json({ ...success, data: data });
     } catch (err) {
       next(err);

@@ -388,7 +388,6 @@ class ArticleService  {
   }
 
   static async tongji() {
-    const { app } = this;
     try {
       // 昨天
       const yesterdayStr =
@@ -424,6 +423,14 @@ class ArticleService  {
       const messageStr = "SELECT COUNT(id) AS count FROM message LIMIT 0,1";
       const message = await knex.raw(messageStr);
 
+       // tag
+       const tagStr = "SELECT COUNT(id) AS count FROM tag LIMIT 0,1";
+       const tag = await knex.raw(tagStr);
+
+        // tag
+        const articleStr = "SELECT COUNT(id) AS count FROM article LIMIT 0,1";
+        const article = await knex.raw(articleStr);
+
       return {
         yesterday: yesterday[0][0].count,
         today: today[0][0].count,
@@ -432,6 +439,8 @@ class ArticleService  {
         quarter: quarter[0][0].count,
         year: year[0][0].count,
         message: message[0][0].count,
+        tag:tag[0][0].count,
+        article:article[0][0].count,
       };
     } catch (err) {
       console.error(err)

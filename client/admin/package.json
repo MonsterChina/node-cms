@@ -19,7 +19,7 @@
     "pinia": "^2.1.7",
     "pinia-plugin-persist": "^1.0.0",
     "pinyin-pro": "^3.17.0",
-    "saduocss": "^1.0.9",
+    "saduocss": "^1.1.1",
     "vite-plugin-vue-setup-extend": "^0.4.0",
     "vue": "^3.3.7",
     "vue-router": "^4.2.5"

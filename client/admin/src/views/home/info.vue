@@ -44,10 +44,7 @@
       <div class="row">
         <el-row :gutter="20">
           <el-col :xs="24" :sm="12" :md="12" :lg="12" :xl="12">
-            <div
-              class="bg-fff pd-20 radius-6 mb-20 row"
-              style="min-width: 17rem; max-width: 480px; height: 326px"
-            >
+            <div class="bg-fff pd-20 radius-6 mb-20 row chart">
               <qiun-vue-ucharts
                 type="ring"
                 :opts="opts"
@@ -278,5 +275,17 @@ export default {
   height: 54px;
   background-color: #f2f3f5;
   border-radius: 50%;
+}
+
+.chart {
+  max-width: calc(50vw - 45px);
+  height: 330px;
+}
+
+@media only screen and (max-width: 992px) {
+  .chart {
+    max-width: calc(100vw - 45px);
+    height: 320px;
+  }
 }
 </style>

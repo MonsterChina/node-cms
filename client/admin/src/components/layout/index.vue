@@ -9,6 +9,16 @@
       <SideBar :isCollapse="isCollapse" />
     </el-scrollbar>
 
+    <el-drawer
+      v-model="drawer"
+      :before-close="close"
+      direction="ltr"
+      :with-header="false"
+    >
+      <Logo />
+      <SideBar />
+    </el-drawer>
+
     <!-- 右侧内容 -->
     <div class="main-container">
       <!-- 顶部 -->
@@ -74,6 +84,7 @@ export default defineComponent({
   data() {
     return {
       isCollapse: false,
+      drawer: false,
     };
   },
   watch: {
@@ -85,20 +96,29 @@ export default defineComponent({
     window.addEventListener("resize", this.changeCollapse);
   },
   mounted() {
-    this.changeCollapse();
+    // this.changeCollapse();
   },
   methods: {
     changeCollapse() {
-      let w = document.documentElement.clientWidth;
-      if (w <= 640) {
-        this.isCollapse = true;
-      } else {
-        this.isCollapse = false;
-      }
+      // let w = document.documentElement.clientWidth;
+      // if (w <= 920) {
+      //   this.isCollapse = true;
+      // }
+      // else {
+      //   this.isCollapse = false;
+      // }
     },
     switchCollapse(key, keyPath) {
       console.log(key, keyPath);
       this.isCollapse = !this.isCollapse;
+      if (document.body.clientWidth <= 920) {
+        this.drawer = !this.drawer;
+        this.isCollapse = true;
+      }
+    },
+    close() {
+      this.isCollapse = !this.isCollapse;
+      this.drawer = !this.drawer;
     },
     handleClose(key, keyPath) {
       console.log(key, keyPath);
@@ -171,6 +191,18 @@ export default defineComponent({
         min-height: calc(100vh - 120px);
       }
     }
+  }
+}
+
+:deep(.el-drawer) {
+  width: 200px !important;
+}
+:deep(.el-drawer__body) {
+  padding: 0;
+}
+@media only screen and (max-width: 992px) {
+  .sidebar {
+    display: none;
   }
 }
 </style>

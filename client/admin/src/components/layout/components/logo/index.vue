@@ -1,7 +1,7 @@
 <template>
   <h1 class="logo">
     <IconLogo class="icon mr-10"></IconLogo>
-    <span v-show="!isCollapse">禅悦cms</span>
+    <span v-show="!flag">禅悦cms</span>
   </h1>
 </template>
 
@@ -13,12 +13,18 @@ export default defineComponent({
   props: {
     isCollapse: {
       type: Boolean,
-      default: true,
+      default: false,
     },
   },
-
+  watch: {
+    isCollapse(v, o) {
+      this.flag = v;
+    },
+  },
   data() {
-    return {};
+    return {
+      flag: false,
+    };
   },
   created() {},
   methods: {},

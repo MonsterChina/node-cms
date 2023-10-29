@@ -19,6 +19,9 @@ class CommonService {
         "status",
         "list_view",
         "article_view",
+        "seo_title",
+        "seo_keywords",
+        "seo_description",
         "type",
       ]);
       return res;

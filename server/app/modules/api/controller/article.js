@@ -143,8 +143,9 @@ class ArticleController {
 
   static async tongji(req, res, next) {
     try {
+      const {config:{version,appName,port,versionTime,author}} = req.app.locals;
       const data = await ArticleService.tongji();
-      res.json({ ...success, data: data });
+      res.json({ ...success, data: {...data,version,appName,port,versionTime,author }});
     } catch (err) {
       next(err);
     }

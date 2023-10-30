@@ -4,7 +4,7 @@ import API from "../config/index.js";
 //文章列表
 export let list = (cur) => {
   return http({
-    url: `${API.BASE_API}/api/admin/list?cur=${cur}&pageSize=10`,
+    url: `${API.BASE_API}/api/sysUser/list?cur=${cur}&pageSize=10`,
     method: "get",
   });
 };
@@ -12,7 +12,7 @@ export let list = (cur) => {
 //增
 export let create = (opt) => {
   return http({
-    url: `${API.BASE_API}/api/admin/create`,
+    url: `${API.BASE_API}/api/sysUser/create`,
     method: "post",
     data: opt,
   });
@@ -21,7 +21,7 @@ export let create = (opt) => {
 //删
 export let del = (id) => {
   return http({
-    url: `${API.BASE_API}/api/admin/delete?id=${id}`,
+    url: `${API.BASE_API}/api/sysUser/delete?id=${id}`,
     method: "get",
   });
 };
@@ -29,7 +29,7 @@ export let del = (id) => {
 //改
 export let update = (opt) => {
   return http({
-    url: `${API.BASE_API}/api/admin/update`,
+    url: `${API.BASE_API}/api/sysUser/update`,
     method: "post",
     data: opt,
   });
@@ -38,7 +38,7 @@ export let update = (opt) => {
 //文章详情
 export let detail = (id) => {
   return http({
-    url: `${API.BASE_API}/api/admin/detail?id=${id}`,
+    url: `${API.BASE_API}/api/sysUser/detail?id=${id}`,
     method: "get",
   });
 };

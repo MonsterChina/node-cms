@@ -1,7 +1,7 @@
 <template>
   <div class="pd-20 content-wrap">
     <el-row type="flex" class="mt-10 mb-10" justify="end">
-      <router-link to="/admin/add">
+      <router-link to="/user/add">
         <el-button type="primary" round>新增</el-button>
       </router-link>
     </el-row>
@@ -19,6 +19,7 @@
           <el-table-column type="selection"></el-table-column>
           <el-table-column prop="id" label="编号"></el-table-column>
           <el-table-column prop="username" label="管理员"></el-table-column>
+          <el-table-column prop="value" label="角色"></el-table-column>
           <el-table-column prop="status" label="状态">
             <template #default="scope">{{
               scope.row.status == 1 ? "启用" : "关闭"
@@ -66,10 +67,10 @@
 
 <script>
 import { Delete, Edit, View, Search } from "@element-plus/icons-vue";
-import { list, del } from "@/api/admin.js";
+import { list, del } from "@/api/sys_user.js";
 import { getCookie } from "@/utils/tool";
 export default {
-  name: "admin-index",
+  name: "sysUser-index",
   setup() {
     return {
       Edit,
@@ -167,3 +168,4 @@ export default {
 };
 </script>
 <style scoped></style>
+@/api/sys_user.js

@@ -70,7 +70,7 @@
     <el-tooltip
       class="mr-10"
       effect="dark"
-      content="管理员"
+      :content="username"
       placement="top-start"
     >
       <el-dropdown trigger="click">
@@ -96,8 +96,9 @@ import IconLaunch from "../../../icons/IconLaunch.vue";
 import { ref, computed } from "vue";
 import { useRoute } from "vue-router";
 import { userStore } from "@/stores/user";
+const user = userStore();
+const username = user.userInfo.username;
 const logout = () => {
-  const user = userStore();
   user.logout();
   location.reload();
 };

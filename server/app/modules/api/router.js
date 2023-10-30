@@ -1,12 +1,13 @@
 const express = require('express');
 const router = express.Router();
 
-const AdminController = require('./controller/admin.js');
-const ArticleController = require('./controller/article.js');
 const SiteController = require('./controller/site.js');
 const SysAppController = require('./controller/sysApp.js');
+const SysUserController = require('./controller/sysUser.js');
+const SysRoleController = require('./controller/sysRole.js');
 
 const CategoryController = require('./controller/category.js');
+const ArticleController = require('./controller/article.js');
 const CollectController = require('./controller/collect.js')
 const ModelController = require('./controller/model.js');
 const FieldController = require('./controller/field.js');
@@ -22,16 +23,16 @@ const SysAppService = require('./service/sysApp.js');
 const auth = require('../../middleware/auth.js');
 
 // 验证码
-router.get('/captcha', AdminController.captcha); // 验证码
+router.get('/captcha', SysUserController.captcha); // 验证码
 
 // 登录
-router.post('/admin/login', AdminController.login);
-router.get('/admin/list', AdminController.list);
-router.get('/admin/search', AdminController.search);
-router.get('/admin/detail', AdminController.detail);
-router.post('/admin/create', auth(), AdminController.create);
-router.get('/admin/delete', auth(), AdminController.delete);
-router.post('/admin/update', auth(), AdminController.update);
+router.post('/sysUser/login', SysUserController.login);
+router.get('/sysUser/list', SysUserController.list);
+router.get('/sysUser/search', SysUserController.search);
+router.get('/sysUser/detail', SysUserController.detail);
+router.post('/sysUser/create', auth(), SysUserController.create);
+router.get('/sysUser/delete', auth(), SysUserController.delete);
+router.post('/sysUser/update', auth(), SysUserController.update);
 
 // 站点信息
 router.get('/site/find', auth(), SiteController.find);
@@ -138,5 +139,14 @@ router.post('/collect/update', auth(), CollectController.update);
 
 // 七牛云相关
 router.get('/qiniu/getUploadToken', QiniuController.getUploadToken);
+
+
+//角色管理
+router.get('/sysRole/list', auth(),SysRoleController.list);
+router.post('/sysRole/create', auth(), SysRoleController.create);
+router.get('/sysRole/delete', auth(), SysRoleController.delete);
+router.post('/sysRole/update', auth(), SysRoleController.update);
+router.get('/sysRole/detail',auth(), SysRoleController.detail);
+
 
 module.exports = router;

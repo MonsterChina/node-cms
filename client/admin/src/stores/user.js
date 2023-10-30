@@ -16,6 +16,7 @@ export const userStore = defineStore("user", {
         if (res.code == 200) {
           this.token = res.data.token;
           setCookie("token", res.data.token);
+          setCookie("uid", res.data.id);
         }
         return res;
       } catch (error) {
@@ -25,11 +26,13 @@ export const userStore = defineStore("user", {
 
     async getUserInfo() {
       try {
-        const res = await Login.userInfo();
+        let uid = getCookie("uid");
+
+        const res = await Login.userInfo(uid);
         console.log("getUserInfo", res);
         if (res.code == 200) {
           this.userInfo = res.data;
-          return res.data.role;
+          return res.data.value;
         }
       } catch (error) {
         console.log(error);

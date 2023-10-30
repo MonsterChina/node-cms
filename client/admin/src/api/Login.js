@@ -1,7 +1,7 @@
 import http from "../utils/http.js";
 import Base from "./Base";
 import { asyncRoutes } from "@/router/index.js";
-
+import { setCookie, getCookie } from "@/utils/tool.js";
 import API from "../config/index.js";
 export default class Login extends Base {
   constructor(props) {
@@ -10,7 +10,7 @@ export default class Login extends Base {
 
   static toLogin(data) {
     return http({
-      url: `${API.BASE_API}/api/admin/login`,
+      url: `${API.BASE_API}/api/sysUser/login`,
       method: "post",
       data: data,
     });
@@ -28,21 +28,25 @@ export default class Login extends Base {
     // });
   }
   //改成真实的就就支持了角色权限控制
-  static userInfo() {
-    return new Promise((resovle, reject) => {
-      setTimeout(() => {
-        let res = {
-          code: 200,
-          data: {
-            userId: "123456",
-            userName: "mingkong",
-            nickName: "明空",
-            role: "admin",
-          },
-        };
-        resovle(res);
-      }, 300);
+  static userInfo(uid) {
+    return http({
+      url: `${API.BASE_API}/api/sysUser/detail?id=${uid}`,
+      method: "get",
     });
+    // return new Promise((resovle, reject) => {
+    //   setTimeout(() => {
+    //     let res = {
+    //       code: 200,
+    //       data: {
+    //         userId: "123456",
+    //         userName: "mingkong",
+    //         nickName: "明空",
+    //         role: "admin",
+    //       },
+    //     };
+    //     resovle(res);
+    //   }, 300);
+    // });
   }
 
   static menuList() {

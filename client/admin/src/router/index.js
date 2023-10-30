@@ -37,28 +37,28 @@ export const asyncRoutes = [
       title: "网站信息",
       icon: "DataLine",
       isShow: true,
-      role: ["admin"],
+      role: ["admin", "super", "editor"],
     },
   },
   {
-    path: "/sys",
-    name: "sys",
+    path: "/site",
+    name: "site",
     meta: {
-      title: "系统管理",
-      icon: "Setting",
+      title: "站点管理",
+      icon: "Monitor",
       isShow: true,
-      role: ["admin"],
+      role: ["admin", "super", "editor"],
     },
-    redirect: "/system",
+    redirect: "/site",
     children: [
       {
-        path: "/system",
-        name: "sys-index",
-        component: "@/views/home/sys.vue",
+        path: "/site",
+        name: "site-index",
+        component: "@/views/home/site.vue",
         meta: {
-          title: "系统设置",
+          title: "站点设置",
           isShow: true,
-          role: ["admin"],
+          role: ["admin", "super", "editor"],
         },
       },
     ],
@@ -71,7 +71,7 @@ export const asyncRoutes = [
       title: "内容管理",
       isShow: true,
       icon: "Grid",
-      role: ["admin"],
+      role: ["admin", "super", "editor"],
     },
     redirect: "/category",
     children: [
@@ -82,7 +82,7 @@ export const asyncRoutes = [
         meta: {
           title: "栏目管理",
           isShow: true,
-          role: ["admin"],
+          role: ["admin", "super", "editor"],
         },
       },
       {
@@ -92,7 +92,7 @@ export const asyncRoutes = [
         meta: {
           title: "栏目管理-新增",
           isShow: false,
-          role: ["admin"],
+          role: ["admin", "super", "editor"],
         },
       },
       {
@@ -102,7 +102,7 @@ export const asyncRoutes = [
         meta: {
           title: "页面管理-更新",
           isShow: false,
-          role: ["admin"],
+          role: ["admin", "super", "editor"],
         },
       },
       {
@@ -112,7 +112,7 @@ export const asyncRoutes = [
         meta: {
           title: "文章管理",
           isShow: true,
-          role: ["admin"],
+          role: ["admin", "super", "editor"],
         },
       },
 
@@ -123,7 +123,7 @@ export const asyncRoutes = [
         meta: {
           title: "文章管理-新增",
           isShow: false,
-          role: ["admin"],
+          role: ["admin", "super", "editor"],
         },
       },
       {
@@ -133,7 +133,7 @@ export const asyncRoutes = [
         meta: {
           title: "文章管理-更新",
           isShow: false,
-          role: ["admin"],
+          role: ["admin", "super", "editor"],
         },
       },
 
@@ -144,7 +144,7 @@ export const asyncRoutes = [
         meta: {
           title: "标签管理",
           isShow: true,
-          role: ["admin"],
+          role: ["admin", "super", "editor"],
         },
       },
       {
@@ -154,7 +154,7 @@ export const asyncRoutes = [
         meta: {
           title: "标签管理-新增",
           isShow: false,
-          role: ["admin"],
+          role: ["admin", "super", "editor"],
         },
       },
       {
@@ -164,7 +164,7 @@ export const asyncRoutes = [
         meta: {
           title: "标签管理-更新",
           isShow: false,
-          role: ["admin"],
+          role: ["admin", "super", "editor"],
         },
       },
       {
@@ -174,7 +174,7 @@ export const asyncRoutes = [
         meta: {
           title: "碎片管理",
           isShow: true,
-          role: ["admin"],
+          role: ["admin", "super", "editor"],
         },
       },
       {
@@ -184,7 +184,7 @@ export const asyncRoutes = [
         meta: {
           title: "碎片管理-新增",
           isShow: false,
-          role: ["admin"],
+          role: ["admin", "super", "editor"],
         },
       },
       {
@@ -194,7 +194,7 @@ export const asyncRoutes = [
         meta: {
           title: "碎片管理-更新",
           isShow: false,
-          role: ["admin"],
+          role: ["admin", "super", "editor"],
         },
       },
     ],
@@ -207,7 +207,7 @@ export const asyncRoutes = [
       title: "采集功能",
       icon: "MagicStick",
       isShow: true,
-      role: ["admin"],
+      role: ["super"],
     },
     redirect: "/collect",
     children: [
@@ -218,7 +218,7 @@ export const asyncRoutes = [
         meta: {
           title: "采集配置",
           isShow: true,
-          role: ["admin"],
+          role: ["super"],
         },
       },
       {
@@ -228,7 +228,7 @@ export const asyncRoutes = [
         meta: {
           title: "采集配置-新增",
           isShow: false,
-          role: ["admin"],
+          role: ["super"],
         },
       },
       {
@@ -238,7 +238,7 @@ export const asyncRoutes = [
         meta: {
           title: "采集配置-更新",
           isShow: false,
-          role: ["admin"],
+          role: ["super"],
         },
       },
     ],
@@ -251,7 +251,7 @@ export const asyncRoutes = [
       title: "功能管理",
       icon: "Operation",
       isShow: true,
-      role: ["admin"],
+      role: ["super"],
     },
     children: [
       {
@@ -261,7 +261,7 @@ export const asyncRoutes = [
         meta: {
           title: "模型管理",
           isShow: true,
-          role: ["admin"],
+          role: ["super"],
         },
       },
       {
@@ -271,7 +271,7 @@ export const asyncRoutes = [
         meta: {
           title: "模型管理-新增",
           isShow: false,
-          role: ["admin"],
+          role: ["super"],
         },
       },
       {
@@ -281,7 +281,7 @@ export const asyncRoutes = [
         meta: {
           title: "模型管理-更新",
           isShow: false,
-          role: ["admin"],
+          role: ["super"],
         },
       },
       {
@@ -291,7 +291,7 @@ export const asyncRoutes = [
         meta: {
           title: "字段管理",
           isShow: false,
-          role: ["admin"],
+          role: ["super"],
         },
       },
       {
@@ -301,7 +301,7 @@ export const asyncRoutes = [
         meta: {
           title: "字段管理-新增",
           isShow: false,
-          role: ["admin"],
+          role: ["super"],
         },
       },
       {
@@ -311,7 +311,7 @@ export const asyncRoutes = [
         meta: {
           title: "字段管理-更新",
           isShow: false,
-          role: ["admin"],
+          role: ["super"],
         },
       },
 
@@ -322,7 +322,7 @@ export const asyncRoutes = [
         meta: {
           title: "友情链接",
           isShow: true,
-          role: ["admin"],
+          role: ["admin", "super", "editor"],
         },
       },
       {
@@ -332,7 +332,7 @@ export const asyncRoutes = [
         meta: {
           title: "友情链接-新增",
           isShow: false,
-          role: ["admin"],
+          role: ["admin", "super", "editor"],
         },
       },
       {
@@ -342,7 +342,7 @@ export const asyncRoutes = [
         meta: {
           title: "友情链接-更新",
           isShow: false,
-          role: ["admin"],
+          role: ["admin", "super", "editor"],
         },
       },
 
@@ -353,7 +353,7 @@ export const asyncRoutes = [
         meta: {
           title: "消息管理",
           isShow: true,
-          role: ["admin"],
+          role: ["admin", "super", "editor"],
         },
       },
       {
@@ -363,7 +363,7 @@ export const asyncRoutes = [
         meta: {
           title: "消息管理-新增",
           isShow: false,
-          role: ["admin"],
+          role: ["admin", "super", "editor"],
         },
       },
       {
@@ -373,51 +373,82 @@ export const asyncRoutes = [
         meta: {
           title: "消息管理-更新",
           isShow: false,
-          role: ["admin"],
+          role: ["admin", "super", "editor"],
         },
       },
     ],
   },
 
   {
-    path: "/manage",
-    name: "manage",
+    path: "/sys",
+    name: "sys",
     meta: {
-      title: "管理员",
+      title: "系统管理",
       isShow: true,
-      icon: "CreditCard",
-      role: ["admin"],
+      icon: "Setting",
+      role: ["admin", "super"],
     },
-    redirect: "/admin",
+    redirect: "/user",
     children: [
       {
-        path: "/admin",
-        name: "admin-index",
-        component: "@/views/admin/index.vue",
+        path: "/user",
+        name: "user-index",
+        component: "@/views/user/index.vue",
         meta: {
-          title: "管理员列表",
+          title: "用户管理",
           isShow: true,
-          role: ["admin"],
+          role: ["admin", "super"],
         },
       },
       {
-        path: "/admin/add",
-        name: "admin-add",
-        component: "@/views/admin/add.vue",
+        path: "/user/add",
+        name: "user-add",
+        component: "@/views/user/add.vue",
         meta: {
-          title: "管理员列表-新增",
+          title: "用户列表-新增",
           isShow: false,
-          role: ["admin"],
+          role: ["admin", "super"],
         },
       },
       {
-        path: "/admin/edit/:id",
-        name: "admin-edit",
-        component: "@/views/admin/edit.vue",
+        path: "/user/edit/:id",
+        name: "user-edit",
+        component: "@/views/user/edit.vue",
         meta: {
-          title: "管理员列表-更新",
+          title: "用户列表-更新",
           isShow: false,
-          role: ["admin"],
+          role: ["admin", "super"],
+        },
+      },
+
+      {
+        path: "/role",
+        name: "role-index",
+        component: "@/views/role/index.vue",
+        meta: {
+          title: "角色管理",
+          isShow: true,
+          role: ["admin", "super"],
+        },
+      },
+      {
+        path: "/role/add",
+        name: "role-add",
+        component: "@/views/role/add.vue",
+        meta: {
+          title: "角色列表-新增",
+          isShow: false,
+          role: ["admin", "super"],
+        },
+      },
+      {
+        path: "/role/edit/:id",
+        name: "role-edit",
+        component: "@/views/role/edit.vue",
+        meta: {
+          title: "角色列表-更新",
+          isShow: false,
+          role: ["admin", "super"],
         },
       },
     ],

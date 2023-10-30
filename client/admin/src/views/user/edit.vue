@@ -8,7 +8,7 @@
       class
     >
       <el-form-item label="用户名" prop="username">
-        <el-input v-model="params.username"></el-input>
+        <el-input v-model="params.username" :disabled="true"></el-input>
       </el-form-item>
 
       <el-form-item label="密码" prop="password">
@@ -17,12 +17,16 @@
 
       <el-form-item label="发布时间">
         <el-date-picker
-          v-model="params.createdAt"
+          v-model="params.updatedAt"
           type="datetime"
           placeholder="选择日期时间"
         ></el-date-picker>
       </el-form-item>
-
+      <el-form-item label="角色">
+        <el-radio v-model="params.role_id" label="1">超级管理员</el-radio>
+        <el-radio v-model="params.role_id" label="2">普通管理员</el-radio>
+        <el-radio v-model="params.role_id" label="3">编辑</el-radio>
+      </el-form-item>
       <el-form-item label="是否显示">
         <el-radio v-model="params.status" label="1">启用</el-radio>
         <el-radio v-model="params.status" label="2">关闭</el-radio>
@@ -36,17 +40,17 @@
 </template>
 
 <script>
-import { create } from "@/api/admin.js";
+import { update, detail } from "@/api/sys_user.js";
+import { getCookie, setCookie } from "@/utils/tool";
 export default {
-  name: "admin-add",
+  name: "admin-edit",
   data: () => {
     return {
       params: {
         username: "",
         password: "",
-        createdAt: new Date(),
-        updatedAt: new Date(),
         status: "1",
+        role_id: "3",
       },
       paramsRules: {
         username: [
@@ -72,23 +76,46 @@ export default {
   },
   computed: {},
   mounted() {},
-  async created() {},
+  async created() {
+    this.params.id = this.$route.params.id;
+    this.username = getCookie("username");
+    await this.detail();
+  },
   methods: {
-    //新增
-    async create() {
+    // 文章详情
+    async detail() {
       try {
-        let res = await create(this.params);
+        let res = await detail(this.params.id);
+        if (res.code === 200) {
+          let params = res.data;
+          params.status = params.status.toString();
+          params.updatedAt = new Date(params.createdAt);
+          this.params = params;
+        }
+      } catch (error) {
+        console.error(error);
+      }
+    },
+
+    //更新
+    async update() {
+      try {
+        let res = await update(this.params);
         if (res.code == 200) {
-          this.$message({
-            message: "更新成功^_^",
-            type: "success",
-          });
-          this.$router.go(-1);
-        } else {
-          this.$message({
-            message: res.msg,
-            type: "success",
-          });
+          if (this.params.username == this.username) {
+            this.$message({
+              message: "密码更新成功,请重新登录^_^",
+              type: "success",
+            });
+            setCookie("token", "");
+            this.$router.push({ name: "login-in" });
+          } else {
+            this.$message({
+              message: "更新成功^_^",
+              type: "success",
+            });
+            this.$router.go(-1);
+          }
         }
       } catch (error) {
         console.log(error);
@@ -98,7 +125,7 @@ export default {
     submit(formName) {
       this.$refs[formName].validate((valid) => {
         if (valid) {
-          this.create();
+          this.update();
         } else {
           console.log("error submit!!");
           return false;
@@ -109,3 +136,4 @@ export default {
 };
 </script>
 <style></style>
+@/api/sys_user.js

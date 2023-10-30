@@ -1,19 +1,19 @@
 "use strict";
 const dayjs = require("dayjs");
 const svgCaptcha = require("svg-captcha");
-const AdminService = require("../service/admin.js");
+const SysUserService = require("../service/sysUser.js");
 const {
   config,
   helper: { md5, setToken, success, fail },
 } = require("../../config.js");
 
-class AdminController {
+class SysUserController {
   // 登录
   static async login(req, res, next) {
     try {
       let { username, password } = req.body;
       const pass = md5(password + config.secret.key);
-      const result = await AdminService.find(username, pass);
+      const result = await SysUserService.find(username, pass);
       if (result) {
         const { id, status } = result;
         // 设置token
@@ -39,7 +39,7 @@ class AdminController {
       body.password = md5(body.password + config.secret.key);
       body.createdAt = dayjs(body.createdAt).format("YYYY-MM-DD HH:mm:ss");
       body.updatedAt = dayjs(body.updatedAt).format("YYYY-MM-DD HH:mm:ss");
-      const data = await AdminService.create(body);
+      const data = await SysUserService.create(body);
       res.json({ ...success, data: data });
     } catch (err) {
       next(err);
@@ -50,7 +50,7 @@ class AdminController {
   static async delete(req, res, next) {
     try {
       const id = req.query.id;
-      const data = await AdminService.delete(id);
+      const data = await SysUserService.delete(id);
       res.json({ ...success, data: data });
     } catch (err) {
       next(err);
@@ -64,7 +64,7 @@ class AdminController {
       body.password = md5(body.password + config.secret.key);
       body.createdAt = dayjs(body.createdAt).format("YYYY-MM-DD HH:mm:ss");
       body.updatedAt = dayjs(body.updatedAt).format("YYYY-MM-DD HH:mm:ss");
-      const data = await AdminService.update(body);
+      const data = await SysUserService.update(body);
       res.json({ ...success, data: data });
     } catch (err) {
       next(err);
@@ -75,7 +75,7 @@ class AdminController {
   static async detail(req, res, next) {
     try {
       const id = req.query.id;
-      const data = await AdminService.detail(id);
+      const data = await SysUserService.detail(id);
       res.json({ ...success, data: data });
     } catch (err) {
       next(err);
@@ -88,7 +88,7 @@ class AdminController {
       const cur = req.query.cur;
       const key = req.query.keyword;
       const pageSize = 10;
-      const data = await AdminService.search(key, cur, pageSize);
+      const data = await SysUserService.search(key, cur, pageSize);
       data.list.forEach((ele) => {
         ele.createdAt = dayjs(ele.createdAt).format("YYYY-MM-DD HH:MM");
       });
@@ -103,7 +103,7 @@ class AdminController {
     try {
       const cur = req.query.cur;
       const pageSize = 10;
-      let data = await AdminService.list(cur, pageSize);
+      let data = await SysUserService.list(cur, pageSize);
       data.list.forEach((ele) => {
         ele.createdAt = dayjs(ele.createdAt).format("YYYY-MM-DD HH:MM");
       });
@@ -134,4 +134,4 @@ class AdminController {
   }
 }
 
-module.exports = AdminController;
+module.exports = SysUserController;

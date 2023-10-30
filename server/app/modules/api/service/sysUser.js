@@ -62,7 +62,7 @@ class SysUserService {
       const total = await knex(SysUserService.model).count('id', { as: 'count' });
       const offset = parseInt((cur - 1) * pageSize);
       const list = await knex('sys_user as u')
-      .select('u.id','u.username', 'u.role_id', 'r.name', 'r.value')
+      .select('u.id','u.username', 'u.role_id','u.status', 'r.name', 'r.value')
       .leftJoin('sys_role as r', 'u.role_id', 'r.id')
         .limit(pageSize)
         .offset(offset)

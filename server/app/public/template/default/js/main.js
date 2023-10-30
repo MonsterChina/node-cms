@@ -14,8 +14,6 @@ document.querySelectorAll('.search-input').forEach((item) => {
             toSearch()
         }
     })
-
-   
 });
 
 
@@ -24,8 +22,6 @@ document.querySelectorAll('.search-wrap').forEach((item) => {
         event.stopPropagation()
     })
 });
-
-
 
 
 (function audio() {
@@ -50,7 +46,6 @@ document.querySelectorAll('.search-wrap').forEach((item) => {
             speech.onboundary = (e) => {
                 // 获取边界索引或其它标识
             };
-
 
             // 错误语音播报事件
             speech.onerror = () => {
@@ -100,7 +95,6 @@ document.querySelectorAll('.search-wrap').forEach((item) => {
                 speechSynthesis.cancel();
             }
         }
-
     }
 }());
 
@@ -133,9 +127,6 @@ document.querySelectorAll('.search-wrap').forEach((item) => {
     })
 }());
 
-
-
-
 var swiper = new Swiper(".mySwiper", {
     navigation: {
         nextEl: ".swiper-button-next",
@@ -146,7 +137,6 @@ var swiper = new Swiper(".mySwiper", {
         dynamicBullets: true,
     },
 });
-
 
 document.querySelector('.ico-open').addEventListener('click', function () {
     document.querySelector('.m-mask').classList.remove("none")

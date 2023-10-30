@@ -179,15 +179,9 @@
         <p class="mb-20">next------>{{next}}</p>
 
     </div>
-
-  
-
     {{include './common/js.html'}}
     <script src="{{base_url}}/js/katelog.min.js"></script>
-
     <script>
-     
-
         const katelogIns = new katelog({
             contentEl: 'article',
             catelogEl: 'article-outline',
@@ -198,7 +192,6 @@
             active: function (el) {
             }
         });
-
     // const html = '<h2>动态添加的标题</h2>'
     // katelogIns.contentEl.insertAdjacentHTML('afterBegin', html);
     // katelogIns.rebuild();

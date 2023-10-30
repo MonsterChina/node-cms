@@ -75,11 +75,6 @@ server 部署代码
         |-- service
         |-- view
         |-- router.js
-      |-admin 
-        |-- controller
-        |-- middleware
-        |-- service
-        |-- router.js  
     |- plugin 
         |- open
           |-- controller

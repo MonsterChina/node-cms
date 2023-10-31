@@ -21,26 +21,47 @@
           <el-table-column prop="username" label="管理员"></el-table-column>
           <el-table-column prop="value" label="角色"></el-table-column>
           <el-table-column prop="status" label="状态">
-            <template #default="scope">{{
-              scope.row.status == 1 ? "启用" : "关闭"
-            }}</template>
+            <template #default="scope">
+              {{ scope.row.status == 1 ? "启用" : "关闭" }}
+            </template>
           </el-table-column>
           <el-table-column prop="createdAt" label="发布时间">
             <template #default="scope">{{ scope.row.createdAt }}</template>
           </el-table-column>
-          <el-table-column fixed="right" width="100" label="操作">
+          <el-table-column fixed="right" width="200" label="操作">
             <template #default="scope">
               <el-button
                 :icon="Edit"
                 circle
                 @click="toEdit(scope.row)"
               ></el-button>
-              <el-button
-                :icon="Delete"
-                :disabled="username == scope.row.username"
-                circle
-                @click="handleDel(scope.row)"
-              ></el-button>
+
+              <el-popconfirm
+                width="220"
+                @confirm="handleDel(scope.row)"
+                confirm-button-text="确定"
+                cancel-button-text="取消"
+                icon-color="#626AEF"
+                title="你确定吗？要删管理员？"
+              >
+                <template #reference>
+                  <el-button
+                    :icon="Delete"
+                    :disabled="username == scope.row.username"
+                    circle
+                  ></el-button>
+                </template>
+              </el-popconfirm>
+              <el-tooltip
+                v-if="username == scope.row.username"
+                content="当前登录用户不可删除"
+                effect="light"
+                placement="top-start"
+              >
+                <el-icon class="ml-10 t-4 pointer">
+                  <QuestionFilled class="c-165dff" />
+                </el-icon>
+              </el-tooltip>
             </template>
           </el-table-column>
         </el-table>
@@ -132,34 +153,21 @@ export default {
     //编辑
     toEdit(e) {
       let id = e.id;
-      this.$router.push({ name: "admin-edit", params: { id: id } });
+      this.$router.push({ name: "user-edit", params: { id: id } });
     },
 
     //删除
     async handleDel(e) {
       let id = e.id;
       try {
-        this.$confirm("这么疯狂，要删管理员？", "提示", {
-          confirmButtonText: "确定",
-          cancelButtonText: "取消",
-          type: "warning",
-        })
-          .then(async () => {
-            let res = await del(id);
-            if (res.code === 200) {
-              this.$message({
-                message: "删除成功 ^_^",
-                type: "success",
-              });
-              this.list();
-            }
-          })
-          .catch(() => {
-            this.$message({
-              type: "info",
-              message: "已取消删除",
-            });
+        let res = await del(id);
+        if (res.code === 200) {
+          this.$message({
+            message: "删除成功 ^_^",
+            type: "success",
           });
+          this.list();
+        }
       } catch (error) {
         console.log(error);
       }
@@ -168,4 +176,3 @@ export default {
 };
 </script>
 <style scoped></style>
-@/api/sys_user.js

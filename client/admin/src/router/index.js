@@ -451,12 +451,22 @@ export const asyncRoutes = [
           role: ["admin", "super"],
         },
       },
+      {
+        path: "/menu",
+        name: "menu-index",
+        component: "@/views/menu/index.vue",
+        meta: {
+          title: "菜单管理",
+          isShow: true,
+          role: ["admin", "super"],
+        },
+      },
     ],
   },
 ];
 
 //导出最终路由
-export const routes = constantRoutes;
+export var routes = constantRoutes;
 
 const router = createRouter({
   history: createWebHashHistory(),

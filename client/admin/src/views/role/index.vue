@@ -23,7 +23,7 @@
           scope.row.status == "1" ? "正常" : "停用"
         }}</template>
       </el-table-column>
-      <el-table-column fixed="right" width="92" label="操作">
+      <el-table-column fixed="right" width="150" label="操作">
         <template #default="scope">
           <el-button
             :icon="Edit"
@@ -37,6 +37,17 @@
             circle
             @click="handleDel(scope.row)"
           ></el-button>
+
+          <el-tooltip
+            v-if="scope.row.id < 4"
+            content="系统默认角色，禁止删除"
+            effect="light"
+            placement="top-start"
+          >
+            <el-icon class="ml-10 t-4 pointer">
+              <QuestionFilled class="c-165dff" />
+            </el-icon>
+          </el-tooltip>
         </template>
       </el-table-column>
     </el-table>
@@ -60,7 +71,7 @@ import { Delete, Edit, View, Search } from "@element-plus/icons-vue";
 import { list, del } from "@/api/sys_role.js";
 
 export default {
-  name: "message-index",
+  name: "role-index",
   setup() {
     return {
       Edit,

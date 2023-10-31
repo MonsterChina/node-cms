@@ -5,6 +5,7 @@ const SiteController = require('./controller/site.js');
 const SysAppController = require('./controller/sysApp.js');
 const SysUserController = require('./controller/sysUser.js');
 const SysRoleController = require('./controller/sysRole.js');
+const SysMenuController = require('./controller/menu.js');
 
 const CategoryController = require('./controller/category.js');
 const ArticleController = require('./controller/article.js');
@@ -147,6 +148,10 @@ router.post('/sysRole/create', auth(), SysRoleController.create);
 router.get('/sysRole/delete', auth(), SysRoleController.delete);
 router.post('/sysRole/update', auth(), SysRoleController.update);
 router.get('/sysRole/detail',auth(), SysRoleController.detail);
+
+//系统菜单
+router.get('/sysMenu/find', auth(), SysMenuController.find);
+router.post('/sysMenu/update', auth(), SysMenuController.update);
 
 
 module.exports = router;

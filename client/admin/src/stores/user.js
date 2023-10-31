@@ -1,6 +1,6 @@
 import { defineStore } from "pinia";
 import Login from "@/api/Login";
-
+import { find } from "@/api/menu.js";
 const modules = import.meta.glob("@/views/*/*.vue");
 import { setCookie, getCookie } from "@/utils/tool.js";
 export const userStore = defineStore("user", {
@@ -27,7 +27,6 @@ export const userStore = defineStore("user", {
     async getUserInfo() {
       try {
         let uid = getCookie("uid");
-
         const res = await Login.userInfo(uid);
         console.log("getUserInfo", res);
         if (res.code == 200) {
@@ -41,10 +40,10 @@ export const userStore = defineStore("user", {
 
     async getMenuList() {
       try {
-        const res = await Login.menuList();
+        let res = await find();
         if (res.code == 200) {
-          let router = dealRoute(res.data);
-          console.log("res---->", router);
+          let menu = res.data.content;
+          let router = dealRoute(JSON.parse(menu).route);
           this.menuList = router;
         }
       } catch (error) {

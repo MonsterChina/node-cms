@@ -2,11 +2,11 @@
   <div class="mr-10 ml-10 mb-20 pd-20 content-wrap">
     <el-form ref="params" :model="params" label-width="84px" class="mt-20">
       <el-form-item
-        label="留言标题"
+        label="角色名称"
         :rules="[
           {
             required: true,
-            message: '请输入标题',
+            message: '请输入角色名称',
             trigger: 'blur',
           },
         ]"
@@ -15,41 +15,13 @@
         <el-input v-model="params.name"></el-input>
       </el-form-item>
 
-      <el-form-item label="手机号">
-        <el-input v-model="params.tel"></el-input>
+      <el-form-item label="角色值">
+        <el-input v-model="params.value"></el-input>
       </el-form-item>
 
-      <el-form-item label="微信">
-        <el-input v-model="params.wx"></el-input>
-      </el-form-item>
-
-      <el-form-item
-        label="留言内容"
-        prop="content"
-        :rules="[
-          {
-            required: true,
-            message: '请输入内容',
-            trigger: 'blur',
-          },
-        ]"
-      >
-        <el-input
-          type="textarea"
-          :rows="3"
-          placeholder="请输入内容"
-          v-model="params.content"
-        >
-        </el-input>
-      </el-form-item>
-
-      <el-form-item label="发布时间">
-        <el-date-picker
-          v-model="params.createdAt"
-          type="datetime"
-          placeholder="选择日期时间"
-        >
-        </el-date-picker>
+      <el-form-item label="是否显示">
+        <el-radio v-model="params.status" label="1">启用</el-radio>
+        <el-radio v-model="params.status" label="2">关闭</el-radio>
       </el-form-item>
 
       <el-form-item>
@@ -60,20 +32,17 @@
 </template>
 
 <script>
-import { update, detail } from "@/api/message.js";
+import { update, detail } from "@/api/sys_role.js";
 
 export default {
-  name: "message-edit",
+  name: "role-edit",
 
   data: () => {
     return {
       params: {
         id: 0,
         name: "",
-        tel: "",
-        wx: "",
-        content: "",
-        createdAt: new Date(),
+        value: "",
       },
 
       paramsRules: {
@@ -103,7 +72,6 @@ export default {
         let res = await detail(this.params.id);
         if (res.code === 200) {
           this.params = res.data;
-          this.params.createdAt = new Date(this.params.createdAt);
         } else {
           this.$message({
             message: res.msg,

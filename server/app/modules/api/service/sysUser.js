@@ -84,7 +84,7 @@ class SysUserService {
   static async detail(id) {
     try {
       const data = await knex('sys_user as u')
-      .select('u.username', 'u.role_id', 'r.name', 'r.value')
+      .select('u.username', 'u.role_id','u.status', 'u.id','r.name', 'r.value')
       .leftJoin('sys_role as r', 'u.role_id', 'r.id')
       .where('u.id', id)
 

@@ -15,17 +15,12 @@
         <el-input v-model="params.password"></el-input>
       </el-form-item>
 
-      <el-form-item label="发布时间">
-        <el-date-picker
-          v-model="params.updatedAt"
-          type="datetime"
-          placeholder="选择日期时间"
-        ></el-date-picker>
-      </el-form-item>
       <el-form-item label="角色">
-        <el-radio v-model="params.role_id" label="1">超级管理员</el-radio>
-        <el-radio v-model="params.role_id" label="2">普通管理员</el-radio>
-        <el-radio v-model="params.role_id" label="3">编辑</el-radio>
+        <el-radio-group v-model="params.role_id">
+          <el-radio :label="item.id" v-for="item in role" :key="item.id">
+            {{ item.name }}</el-radio
+          >
+        </el-radio-group>
       </el-form-item>
       <el-form-item label="是否显示">
         <el-radio v-model="params.status" label="1">启用</el-radio>
@@ -42,16 +37,21 @@
 <script>
 import { update, detail } from "@/api/sys_user.js";
 import { getCookie, setCookie } from "@/utils/tool";
+import { list, del } from "@/api/sys_role.js";
+
 export default {
   name: "admin-edit",
   data: () => {
     return {
       params: {
+        id: "",
         username: "",
         password: "",
         status: "1",
-        role_id: "3",
+        role_id: 0,
       },
+      cur: 1,
+      role: [],
       paramsRules: {
         username: [
           { required: true, message: "请输入用户名", trigger: "blur" },
@@ -78,18 +78,32 @@ export default {
   mounted() {},
   async created() {
     this.params.id = this.$route.params.id;
-    this.username = getCookie("username");
+    await this.list();
     await this.detail();
   },
   methods: {
+    //查询
+    async list() {
+      try {
+        let res = await list(this.cur);
+        if (res.code === 200) {
+          console.log("222--->", res);
+          this.role = res.data.list;
+        }
+      } catch (error) {
+        console.log(error);
+      }
+    },
+
     // 文章详情
     async detail() {
       try {
         let res = await detail(this.params.id);
         if (res.code === 200) {
           let params = res.data;
+          console.log("11111--->", params);
+          params.role_id = parseInt(params.role_id);
           params.status = params.status.toString();
-          params.updatedAt = new Date(params.createdAt);
           this.params = params;
         }
       } catch (error) {
@@ -100,22 +114,16 @@ export default {
     //更新
     async update() {
       try {
+        delete this.params.name;
+        delete this.params.value;
         let res = await update(this.params);
         if (res.code == 200) {
-          if (this.params.username == this.username) {
-            this.$message({
-              message: "密码更新成功,请重新登录^_^",
-              type: "success",
-            });
-            setCookie("token", "");
-            this.$router.push({ name: "login-in" });
-          } else {
-            this.$message({
-              message: "更新成功^_^",
-              type: "success",
-            });
-            this.$router.go(-1);
-          }
+          this.$message({
+            message: "更新成功,请重新登录^_^",
+            type: "success",
+          });
+          setCookie("token", "");
+          this.$router.push({ name: "login-in" });
         }
       } catch (error) {
         console.log(error);

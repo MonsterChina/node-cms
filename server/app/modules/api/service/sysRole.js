@@ -76,7 +76,7 @@ class SysRoleService {
     try {
       const data = await knex(SysRoleService.model)
         .where("id", "=", id)
-        .select();
+        .select(['name','value','status']);
       return data[0];
     } catch (err) {
       console.error(err)

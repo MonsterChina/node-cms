@@ -15,18 +15,12 @@
         <el-input v-model="params.password"></el-input>
       </el-form-item>
 
-      <el-form-item label="发布时间">
-        <el-date-picker
-          v-model="params.createdAt"
-          type="datetime"
-          placeholder="选择日期时间"
-        ></el-date-picker>
-      </el-form-item>
-
       <el-form-item label="角色">
-        <el-radio v-model="params.role_id" label="1">超级管理员</el-radio>
-        <el-radio v-model="params.role_id" label="2">普通管理员</el-radio>
-        <el-radio v-model="params.role_id" label="3">编辑</el-radio>
+        <el-radio-group v-model="params.role_id">
+          <el-radio :label="item.id" v-for="item in role" :key="item.id">
+            {{ item.name }}</el-radio
+          >
+        </el-radio-group>
       </el-form-item>
 
       <el-form-item label="是否显示">
@@ -43,6 +37,9 @@
 
 <script>
 import { create } from "@/api/sys_user.js";
+
+import { list } from "@/api/sys_role.js";
+
 export default {
   name: "sysUser-add",
   data: () => {
@@ -51,8 +48,10 @@ export default {
         username: "",
         password: "",
         status: "1",
-        role_id: "3",
+        role_id: 0,
       },
+      cur: 1,
+      role: [],
       paramsRules: {
         username: [
           { required: true, message: "请输入用户名", trigger: "blur" },
@@ -76,9 +75,24 @@ export default {
     };
   },
   computed: {},
-  mounted() {},
+  async mounted() {
+    await this.list();
+  },
   async created() {},
   methods: {
+    //查询
+    async list() {
+      try {
+        let res = await list(this.cur);
+        if (res.code === 200) {
+          console.log("222--->", res);
+          this.role = res.data.list;
+        }
+      } catch (error) {
+        console.log(error);
+      }
+    },
+
     //新增
     async create() {
       try {

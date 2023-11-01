@@ -1,4 +1,3 @@
-"use strict";
 const dayjs = require("dayjs");
 const svgCaptcha = require("svg-captcha");
 const SysUserService = require("../service/sysUser.js");
@@ -90,7 +89,7 @@ class SysUserController {
       const pageSize = 10;
       const data = await SysUserService.search(key, cur, pageSize);
       data.list.forEach((ele) => {
-        ele.createdAt = dayjs(ele.createdAt).format("YYYY-MM-DD HH:MM");
+        ele.createdAt = dayjs(ele.createdAt).format("YYYY-MM-DD HH:mm");
       });
       res.json({ ...success, data: data });
     } catch (err) {
@@ -105,7 +104,7 @@ class SysUserController {
       const pageSize = 10;
       let data = await SysUserService.list(cur, pageSize);
       data.list.forEach((ele) => {
-        ele.createdAt = dayjs(ele.createdAt).format("YYYY-MM-DD HH:MM");
+        ele.createdAt = dayjs(ele.createdAt).format("YYYY-MM-DD HH:mm");
       });
       res.json({ ...success, data: data });
     } catch (err) {

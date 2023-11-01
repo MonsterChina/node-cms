@@ -128,7 +128,7 @@ class CollectController {
       const pageSize = 10;
       const data = await CollectService.search(key, cur, pageSize);
       data.list.forEach((ele) => {
-        ele.createdAt = dayjs(ele.createdAt).format("YYYY-MM-DD HH:MM");
+        ele.createdAt = dayjs(ele.createdAt).format("YYYY-MM-DD HH:mm");
       });
       res.json({ ...success, data: data });
     } catch (err) {
@@ -143,7 +143,7 @@ class CollectController {
       const pageSize = 10;
       let data = await CollectService.list(cur, pageSize);
       data.list.forEach((ele) => {
-        ele.createdAt = dayjs(ele.createdAt).format("YYYY-MM-DD HH:MM");
+        ele.createdAt = dayjs(ele.createdAt).format("YYYY-MM-DD HH:mm");
       });
       res.json({ ...success, data: data });
     } catch (err) {

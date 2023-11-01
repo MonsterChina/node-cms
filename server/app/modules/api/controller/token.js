@@ -1,4 +1,4 @@
-'use strict';
+
 const {config, helper: {setToken,getToken,success}} = require('../../config.js');
 
 const {token:{KEY,TIME}} = config;

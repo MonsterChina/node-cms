@@ -1,4 +1,3 @@
-"use strict";
 module.exports = () => {
   return async (req, res, next) => {
     const userAgent = req.headers["user-agent"];

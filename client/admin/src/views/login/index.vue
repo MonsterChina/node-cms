@@ -99,6 +99,7 @@ import { userStore } from "@/stores/user";
 import { login, captcha } from "@/api/index";
 import { setCookie, getCookie } from "@/utils/tool.js";
 import IconLogo from "@/components/icons/IconLogo.vue";
+import { create } from "@/api/login_log.js";
 export default defineComponent({
   components: { IconLogo },
   data() {
@@ -123,6 +124,10 @@ export default defineComponent({
       } catch (error) {
         console.log(error);
       }
+    },
+
+    async loginLog(id) {
+      await create(id);
     },
 
     async login() {
@@ -154,6 +159,8 @@ export default defineComponent({
               });
               return false;
             }
+
+            this.loginLog(res.data.id);
             // eslint-disable-next-line no-undef
             ElNotification({
               title: "提示",

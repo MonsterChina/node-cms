@@ -1,4 +1,3 @@
-"use strict";
 
 const path = require("path");
 const {knex, helper: { delImg,filterImgFromStr} } = require('../../config.js');

@@ -1,4 +1,3 @@
-"use strict";
 const knex = require("../../../config/config.knex.js");
 
 class HomeService  {

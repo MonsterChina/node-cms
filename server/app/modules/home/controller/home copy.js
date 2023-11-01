@@ -1,4 +1,4 @@
-'use strict';
+
 const dayjs = require('dayjs');
 const { template } = require('../../../config/index.js');
 const HomeService = require(`../../../service/web/default/home.js`);

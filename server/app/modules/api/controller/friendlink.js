@@ -1,4 +1,4 @@
-'use strict';
+
 const dayjs = require('dayjs');
 const path = require('path');
 
@@ -73,7 +73,7 @@ class FriendlinkController  {
       const pageSize = req.query.pageSize || 10;
       const data = await FriendlinkService.search(key, cur, pageSize);
       data.forEach(ele => {
-        ele.createdAt = dayjs(ele.createdAt).format('YYYY-MM-DD HH:MM');
+        ele.createdAt = dayjs(ele.createdAt).format('YYYY-MM-DD HH:mm');
       });
       res.json({ ...success, data: data });
     } catch (err) {
@@ -88,7 +88,7 @@ class FriendlinkController  {
       const pageSize = 10;
       const data = await FriendlinkService.list(cur, pageSize);
       data.list.forEach(ele => {
-        ele.createdAt = dayjs(ele.createdAt).format('YYYY-MM-DD HH:MM');
+        ele.createdAt = dayjs(ele.createdAt).format('YYYY-MM-DD HH:mm');
       });
       res.json({ ...success, data: data });
     } catch (err) {

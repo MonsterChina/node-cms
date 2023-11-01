@@ -1,4 +1,4 @@
-'use strict';
+
 
 const {helper: {success}} = require('../../config.js');
 const path = require('path');

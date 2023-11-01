@@ -31,8 +31,7 @@
 		root["pdfjs-dist/build/pdf.worker"] = root.pdfjsWorker = factory();
 })(globalThis, () => {
 return /******/ (() => { // webpackBootstrap
-/******/ 	"use strict";
-/******/ 	var __webpack_modules__ = ([
+/******/ 	/******/ 	var __webpack_modules__ = ([
 /* 0 */,
 /* 1 */
 /***/ ((__unused_webpack_module, exports, __w_pdfjs_require__) => {

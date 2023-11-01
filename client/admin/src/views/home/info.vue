@@ -206,7 +206,6 @@ export default {
         if (res.code === 200) {
           this.data = res.data;
           this.loading = false;
-          this.articleNum();
         } else {
           this.$message({
             message: res.msg,

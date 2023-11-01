@@ -1,4 +1,3 @@
-"use strict";
 module.exports = () => {
   return async (req, res, next) => {
     const token = req.cookies.token || req.headers.auth;

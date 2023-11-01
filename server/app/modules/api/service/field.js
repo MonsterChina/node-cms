@@ -1,4 +1,4 @@
-'use strict';
+
 const BaseService = require('./base');
 const path = require('path');
 const {knex} = require('../../config.js');

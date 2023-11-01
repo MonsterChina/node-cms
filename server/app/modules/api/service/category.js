@@ -1,4 +1,3 @@
-"use strict";
 const BaseService = require("./base");
 const {knex} = require('../../config.js');
 class CategoryService  {

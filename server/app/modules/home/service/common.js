@@ -1,4 +1,3 @@
-"use strict";
 
 const { knex } = require('../../config.js');
 
@@ -57,6 +56,7 @@ class CommonService {
         .select(columns)
         .from("article AS a")
         .leftJoin("category AS c", "a.cid", "c.id")
+        .where("a.status", 0)
         .orderBy("a.createdAt", "DESC")
         .limit(len)
         .offset(start);
@@ -102,6 +102,7 @@ class CommonService {
         .from("article AS a")
         .leftJoin("category AS c", "a.cid", "c.id")
         .whereIn("a.cid", ids)
+        .where("a.status", 0)
         .orderBy("createdAt", "DESC")
         .limit(len);
 
@@ -129,6 +130,7 @@ class CommonService {
         .select("a.cid", "t.id", "t.name", "t.path")
         .rightJoin("tag AS t", "t.id", "=", "a.tag_id")
         .where("a.id", aid)
+        .where("a.status", 0) 
         .limit(10)
         .offset(0);
       // 执行查询
@@ -190,12 +192,14 @@ class CommonService {
           'c.path'
         )
         .from('article AS a')
-        .leftJoin('category AS c', 'a.cid', 'c.id');
+        .leftJoin('category AS c', 'a.cid', 'c.id')
+        .where("a.status", 0);
 
       if (id) {
         const ids = await knex('category')
           .select('id')
           .where('pid', id)
+          
           .pluck('id');
 
         ids.push(id);
@@ -234,7 +238,8 @@ class CommonService {
         )
         .from('article AS a')
         .leftJoin('category AS c', 'a.cid', 'c.id')
-        .where('a.img', '!=', '');
+        .where('a.img', '!=', '')
+        .where("a.status", 0);
 
       if (id) {
         const ids = await knex('category')
@@ -285,6 +290,7 @@ class CommonService {
       const total = await knex('article')
         .count('id as count')
         .whereIn('cid', ids)
+        .where("status", 0)
         .first();
 
       const count = total.count || 1;
@@ -307,6 +313,7 @@ class CommonService {
         .from('article AS a')
         .leftJoin('category AS c', 'a.cid', 'c.id')
         .whereIn('a.cid', ids)
+        .where("a.status", 0)
         .orderBy('a.createdAt', 'DESC')
         .offset(start)
         .limit(pageSize);
@@ -368,6 +375,7 @@ class CommonService {
             .whereRaw('FIND_IN_SET(t.id, a.tag_id) > 0')
             .andWhere('t.path', path);
         })
+        .where("a.status", 0)
         .orderBy('a.createdAt', 'DESC')
         .offset(start)
         .limit(pageSize);

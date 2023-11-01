@@ -1,4 +1,3 @@
-"use strict";
 const BaseService = require("./base");
 const qiniu = require('qiniu');
 class QiniuService  {

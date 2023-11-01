@@ -55,11 +55,13 @@
         <template #default="scope">
           <a
             class="block"
+            v-if="scope.row.status === 0"
             :href="`/article-${scope.row.id}.html`"
             target="_blank"
           >
             {{ scope.row.title }}
           </a>
+          <span v-else>{{ scope.row.title }}</span>
         </template>
       </el-table-column>
       <!-- <el-table-column prop="attr" label="属性">

@@ -1,4 +1,4 @@
-'use strict';
+
 const dayjs = require('dayjs');
 const {helper: {success}} = require('../../config.js');
 const FragService = require('../service/frag.js');
@@ -80,7 +80,7 @@ class FragController  {
       const pageSize = 10;
       const data = await FragService.search(key, cur, pageSize);
       data.list.forEach(ele => {
-        ele.createdAt = dayjs(ele.createdAt).format('YYYY-MM-DD HH:MM');
+        ele.createdAt = dayjs(ele.createdAt).format('YYYY-MM-DD HH:mm');
       });
       res.json({ ...success, data: data });
     } catch (err) {
@@ -95,7 +95,7 @@ class FragController  {
       const pageSize = 10;
       const data = await FragService.list(cur, pageSize);
       data.list.forEach(ele => {
-        ele.createdAt = dayjs(ele.createdAt).format('YYYY-MM-DD HH:MM');
+        ele.createdAt = dayjs(ele.createdAt).format('YYYY-MM-DD HH:mm');
       });
       res.json({ ...success, data: data });
     } catch (err) {

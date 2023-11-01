@@ -1,4 +1,3 @@
-"use strict";
 const {config, helper: {success,fail}} = require('../../config.js');
 const QiniuService = require("../service/qiniu.js");
 const fs = require("fs");

@@ -49,7 +49,7 @@ var AliyunSmsUtil = {
       SignatureMethod: that.config.SignatureMethod, //签名方式，目前支持HMAC-SHA1
       SignatureVersion: that.config.SignatureVersion, //签名算法版本，目前版本是1.0
       SignatureNonce: "" + Math.random(), //唯一随机数，用于防止网络重放攻击。用户在不同请求间要使用不同的随机数值
-      Timestamp: new Date().toISOString(), //日期格式按照ISO8601标准表示，并需要使用UTC时间。格式为YYYY-MM-DDThh:mm:ssZ
+      Timestamp: new Date().toISOString(), //日期格式按照ISO8601标准表示，并需要使用UTC时间。格式为YYYY-MM-DDTHH:mm:ssZ
       RecNum: data.phone, //接受短信的手机号
       ParamString: '{"code":"' + data.code + '","product":"买短信找淡定哥"}', //验证码模板里的变量
     };

@@ -6,6 +6,7 @@ const SysAppController = require('./controller/sysApp.js');
 const SysUserController = require('./controller/sysUser.js');
 const SysRoleController = require('./controller/sysRole.js');
 const SysMenuController = require('./controller/menu.js');
+const LoginLogController = require('./controller/loginLog.js');
 
 const CategoryController = require('./controller/category.js');
 const ArticleController = require('./controller/article.js');
@@ -153,5 +154,9 @@ router.get('/sysRole/detail',auth(), SysRoleController.detail);
 router.get('/sysMenu/find', auth(), SysMenuController.find);
 router.post('/sysMenu/update', auth(), SysMenuController.update);
 
+//登录日志
+router.post('/loginLog/create', auth(), LoginLogController.create);
+router.get('/loginLog/delete', auth(), LoginLogController.delete);
+router.get('/loginLog/list', auth(),LoginLogController.list);
 
 module.exports = router;

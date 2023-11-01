@@ -1,4 +1,4 @@
-'use strict';
+
 const CategoryService = require('../service/category.js');
 
 const {helper: {success} } = require('../../config.js');

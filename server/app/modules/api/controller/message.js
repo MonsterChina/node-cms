@@ -1,4 +1,4 @@
-'use strict';
+
 const dayjs = require('dayjs');
 const path = require('path');
 const {helper: {success} } = require('../../config.js');
@@ -78,7 +78,7 @@ class MessageController  {
       const pageSize = req.query.pageSize || 10;
       const data = await MessageService.search(key, cur, pageSize);
       data.list.forEach(ele => {
-        ele.createdAt = dayjs(ele.createdAt).format('YYYY-MM-DD HH:MM');
+        ele.createdAt = dayjs(ele.createdAt).format('YYYY-MM-DD HH:mm');
       });
       res.json({ ...success, data: data });
     } catch (err) {
@@ -93,7 +93,7 @@ class MessageController  {
       const pageSize = 10;
       const data = await MessageService.list(cur, pageSize);
       data.list.forEach(ele => {
-        ele.createdAt = dayjs(ele.createdAt).format('YYYY-MM-DD HH:MM');
+        ele.createdAt = dayjs(ele.createdAt).format('YYYY-MM-DD HH:mm');
       });
       res.json({ ...success, data: data });
     } catch (err) {

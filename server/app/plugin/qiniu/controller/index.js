@@ -1,4 +1,3 @@
-"use strict";
 const { success } = require("../../extend/api.js");
 
 class OpenController {

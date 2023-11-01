@@ -1,4 +1,4 @@
-'use strict';
+
 const BaseService = require('./base');
 const path = require('path');
 const {knex, helper: {convertArrayToObject}} = require('../../config.js');

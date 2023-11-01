@@ -1,4 +1,4 @@
-'use strict';
+
 const dayjs = require('dayjs');
 const ArticleService = require('../service/article.js');
 const {helper: {success,filterBody}} = require('../../config.js');

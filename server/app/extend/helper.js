@@ -1,4 +1,3 @@
-"use strict";
 
 const jwt = require("jsonwebtoken");
 const fs = require("fs");
@@ -386,4 +385,24 @@ exports.getHtmlFilesSync = (folderPath)=>{
     }
   });
   return htmlFiles;
+}
+
+/**
+ * @description 获取用户登录ip
+ * @param {*} req 
+ * @returns 返回ip地址
+ */
+exports.getIp = (req)=>{
+  let ip = req.headers['x-forwarded-for'] || req.connection.remoteAddress;
+  // 如果'x-forwarded-for'不是IP，则可能为代理服务器列表
+  if (typeof ip === 'string' && ip.indexOf(',') >= 0) {
+    ip = ip.split(',')[0];
+  }
+  // 如果以上两种方式都无法获取IP，则使用remoteAddress
+  if (!ip) ip = req.connection.remoteAddress;
+
+  if(ip == '::1'){
+    ip = '127.0.0.1';
+  }
+  return ip;
 }

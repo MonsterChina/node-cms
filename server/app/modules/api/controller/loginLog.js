@@ -34,8 +34,7 @@ class LoginLogController {
   // 列表
   static async list(req, res, next) {
     try {
-      const cur = req.query.cur;
-      const pageSize = 10;
+      const {pageSize,cur} = req.query;
       let data = await LoginLogService.list(cur, pageSize);
       data.list.forEach((ele) => {
         ele.createdAt = dayjs(ele.createdAt).format("YYYY-MM-DD HH:mm:ss");

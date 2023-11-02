@@ -16,7 +16,7 @@ export let tinymceSet = {
   custom_images_upload_header: { "X-Token": "xxxx" },
   // 上传 api 额外的参数。图片默认 file
   custom_images_upload_param: {},
-  height: 400, // editor 高度
+  height: 550, // editor 高度
   toolbar:
     "undo redo| code codesample | fullscreen | blocks alignleft aligncenter alignright alignjustify | link unlink | numlist bullist | image media table | fontsize forecolor backcolor | bold italic underline strikethrough | indent outdent | superscript subscript | removeformat |",
   toolbar_mode: "sliding",

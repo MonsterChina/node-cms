@@ -557,7 +557,7 @@ export default {
   },
 };
 </script>
-<style lang="less">
+<style lang="less" scoped>
 :deep(.tiny-textarea) {
   height: 436px;
 }
@@ -573,5 +573,12 @@ export default {
 
 .w-300 {
   width: 300px !important;
+}
+
+:deep(.el-drawer) {
+  width: 280px !important;
+}
+:deep(.el-drawer__body) {
+  padding: 0;
 }
 </style>

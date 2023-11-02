@@ -142,7 +142,6 @@ export default {
       dirname: "",
       loading: true,
       chartData: {},
-      //您可以通过修改 config-ucharts.js 文件中下标为 ['ring'] 的节点来配置全局默认参数，如都是默认参数，此处可以不传 opts 。实际应用过程中 opts 只需传入与全局默认参数中不一致的【某一个属性】即可实现同类型的图表显示不同的样式，达到页面简洁的需求。
       opts: {
         rotate: false,
         rotateLock: false,
@@ -153,9 +152,6 @@ export default {
           "#3491FA",
           "#165DFF",
           "#722ED1",
-          "#F53F3F",
-          "#FF7D00",
-          "#F7BA1E",
         ],
         padding: [5, 5, 5, 5],
         dataLabel: true,
@@ -166,7 +162,7 @@ export default {
           lineHeight: 25,
         },
         title: {
-          name: "禅悦CMS",
+          name: "禅悦cms",
           fontSize: 15,
           color: "#666666",
         },
@@ -185,10 +181,10 @@ export default {
             border: true,
             borderWidth: 3,
             borderColor: "#FFFFFF",
-            linearType: "custom",
           },
         },
       },
+      //您可以通过修改 config-ucharts.js 文件中下标为 ['ring'] 的节点来配置全局默认参数，如都是默认参数，此处可以不传 opts 。实际应用过程中 opts 只需传入与全局默认参数中不一致的【某一个属性】即可实现同类型的图表显示不同的样式，达到页面简洁的需求。
     };
   },
   computed: {},

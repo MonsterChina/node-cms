@@ -596,41 +596,6 @@ html {
     border-top: 1px solid #bbb;
     margin: 16px 0
 }
-
-.article-cont code {
-    word-break: break-word;
-    overflow-x: auto;
-    background-color: #f5f5f4;
-    color: #ee2746;
-    display: inline-block;
-    border-radius: 2px;
-    font-size: 16px;
-    padding: 1px 2px
-}
-
-.article-cont code,
-.article-cont pre {
-    font-family: -apple-system, -apple-system-body, BlinkMacSystemFont, Segoe UI, Helvetica, Arial, PingFang SC, 思源黑体 CN, 思源黑体, JetBrains Mono, Fira Code, Menlo, Ubuntu Mono, Consolas, sans-serif
-}
-
-.article-cont pre {
-    overflow: auto;
-    position: relative;
-    line-height: 1.75
-}
-
-.article-cont pre>code {
-    margin: 12px 0 !important;
-    border-radius: 3px;
-    font-size: 15px;
-    padding: 16px 12px;
-    word-break: normal;
-    display: block;
-    overflow-x: auto;
-    color: #333;
-    background: #f7f7f7
-}
-
 .article-cont a {
     text-decoration: none;
     color: #198cff;

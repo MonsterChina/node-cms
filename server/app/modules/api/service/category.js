@@ -45,7 +45,7 @@ class CategoryService  {
   // 查全部栏目
   static async find() {
     try {
-      const result = await BaseService.all(CategoryService.model);
+      const result = await BaseService.all(CategoryService.model).orderBy("sort", "asc" );
       return result;
     } catch (err) {
       console.error(err)
@@ -85,8 +85,9 @@ class CategoryService  {
       const result = key
         ? await knex(CategoryService.model)
         .whereRaw("name COLLATE utf8mb4_general_ci LIKE ?", [`%${key}%`])
-        .orderBy("id", "desc", "sort")
-        : await knex(CategoryService.model).orderBy("id", "asc", "sort");
+        .orderBy("sort", "asc" )
+        : await knex(CategoryService.model)
+        .orderBy("sort", "asc");
       return result;
     } catch (err) {
       console.error(err)

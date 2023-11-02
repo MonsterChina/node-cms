@@ -1,7 +1,7 @@
 <template>
   <h1 class="logo">
     <IconLogo class="icon mr-10"></IconLogo>
-    <span v-show="!flag">禅悦cms</span>
+    <span class="f-20" v-show="!flag">禅悦cms</span>
   </h1>
 </template>
 
@@ -33,18 +33,16 @@ export default defineComponent({
 
 <style scoped>
 .icon {
-  width: 28px;
-  height: 28px;
+  width: 30px;
+  height: 30px;
   border-radius: 50%;
-  background-color: #f9f9f9;
-  padding: 3px;
+  /* background-color: #f9f9f9;
+  padding: 3px; */
 }
 .logo {
-  background-image: linear-gradient(300deg, #778cca, #65de83);
-  padding: 10px;
-  color: #fff;
+  padding: 9px;
   font-size: 20px;
-  font-weight: lighter;
+  font-weight: 100;
   text-overflow: ellipsis;
   white-space: nowrap;
   overflow: hidden;
@@ -52,5 +50,7 @@ export default defineComponent({
   display: flex;
   justify-content: center;
   align-items: center;
+  box-shadow: 0 1px 10px 0 rgba(0, 0, 0, 0.06);
+  margin-bottom: 10px;
 }
 </style>

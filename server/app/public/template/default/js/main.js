@@ -145,3 +145,15 @@ document.querySelector('.ico-open').addEventListener('click', function () {
 document.querySelector('.m-mask').addEventListener('click', function () {
     this.classList.add("none")
 })
+
+
+
+;(// 获取所有的 <pre> 元素并添加 line-numbers 类
+document.querySelectorAll("pre").forEach(function (preElement) {
+    preElement.classList.add("line-numbers");
+
+    // 设置复制提示属性
+    preElement.dataset.prismjsCopy = "复制代码";
+    preElement.dataset.prismjsCopyError = "按Ctrl+C复制";
+    preElement.dataset.prismjsCopySuccess = "代码已复制！";
+}))();

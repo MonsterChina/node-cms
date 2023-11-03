@@ -109,7 +109,7 @@ server 部署代码
 ## 👴项目交流
 
  欢迎💝
- 各位大佬加入微信群交流学习，🧒 👧 👱  🧔 👴
+ 加入官网微信群交流使用，🧒 👧 👱  🧔 👴
  联系微信: `yanyutao2014` 🍇 🍋 🍌
 
 ![交流微信群](https://gitee.com/yanyutao0402/chanyue-cms/raw/master/server/app/public/template/default/img/wechat-group.jpg)

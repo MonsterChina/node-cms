@@ -1,6 +1,6 @@
 # <center>禅悦内容管理系统（`chanyue-cms`）</center>
 
-禅悦CMS是一款基于Express和MySQL的高质量实用型CMS管理系统。它具备多种类型网站开发功能，高度可扩展、模块化且插件化，适用于企业级程序开发。
+禅悦CMS是一款基于Express和MySQL研发的高质量实用型CMS管理系统。它具备多种类型网站开发，易扩展、基于模块化和插件化开发模式，适用于商用企业级程序开发。
 
 ## 🌈系统特色
 
@@ -109,7 +109,7 @@ server 部署代码
 ## 👴项目交流
 
  欢迎💝
- 加入官网微信群交流使用，🧒 👧 👱  🧔 👴
+ 加入微信群交流使用，🧒 👧 👱  🧔 👴
  联系微信: `yanyutao2014` 🍇 🍋 🍌
 
 ![交流微信群](https://gitee.com/yanyutao0402/chanyue-cms/raw/master/server/app/public/template/default/img/wechat-group.jpg)

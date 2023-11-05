@@ -63,7 +63,6 @@ export const asyncRoutes = [
       },
     ],
   },
-
   {
     path: "/content",
     name: "content",
@@ -115,7 +114,6 @@ export const asyncRoutes = [
           role: ["admin", "super", "editor"],
         },
       },
-
       {
         path: "/article/add",
         name: "article-add",
@@ -132,6 +130,36 @@ export const asyncRoutes = [
         component: "@/views/article/edit.vue",
         meta: {
           title: "文章管理-更新",
+          isShow: false,
+          role: ["admin", "super", "editor"],
+        },
+      },
+      {
+        path: "/slide",
+        name: "slide-index",
+        component: "@/views/slide/index.vue",
+        meta: {
+          title: "轮播管理",
+          isShow: true,
+          role: ["admin", "super", "editor"],
+        },
+      },
+      {
+        path: "/slide/add",
+        name: "slide-add",
+        component: "@/views/slide/add.vue",
+        meta: {
+          title: "轮播管理-新增",
+          isShow: false,
+          role: ["admin", "super", "editor"],
+        },
+      },
+      {
+        path: "/slide/edit/:id",
+        name: "slide-edit",
+        component: "@/views/slide/edit.vue",
+        meta: {
+          title: "轮播管理-更新",
           isShow: false,
           role: ["admin", "super", "editor"],
         },
@@ -199,7 +227,6 @@ export const asyncRoutes = [
       },
     ],
   },
-
   {
     path: "/gather",
     name: "gather",
@@ -243,7 +270,6 @@ export const asyncRoutes = [
       },
     ],
   },
-
   {
     path: "/extend",
     name: "extend",
@@ -314,7 +340,6 @@ export const asyncRoutes = [
           role: ["super"],
         },
       },
-
       {
         path: "/friendlink",
         name: "friendlink-index",
@@ -345,7 +370,6 @@ export const asyncRoutes = [
           role: ["admin", "super", "editor"],
         },
       },
-
       {
         path: "/message",
         name: "message-index",
@@ -378,7 +402,6 @@ export const asyncRoutes = [
       },
     ],
   },
-
   {
     path: "/sys",
     name: "sys",
@@ -420,7 +443,6 @@ export const asyncRoutes = [
           role: ["admin", "super"],
         },
       },
-
       {
         path: "/role",
         name: "role-index",
@@ -457,6 +479,16 @@ export const asyncRoutes = [
         component: "@/views/menu/index.vue",
         meta: {
           title: "菜单管理",
+          isShow: true,
+          role: ["admin", "super"],
+        },
+      },
+      {
+        path: "/loginlog",
+        name: "loginLog-index",
+        component: "@/views/loginlog/index.vue",
+        meta: {
+          title: "登录日志",
           isShow: true,
           role: ["admin", "super"],
         },

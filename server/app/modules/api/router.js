@@ -17,6 +17,7 @@ const FragController = require('./controller/frag.js');
 const TagController = require('./controller/tag.js');
 const FriendlinkController = require('./controller/friendlink.js');
 const MessageController = require('./controller/message.js');
+const SlideController = require('./controller/slide.js');
 const QiniuController = require('./controller/qiniu.js');
 
 const config = require('../../config/index.js');
@@ -128,6 +129,15 @@ router.get('/message/detail', MessageController.detail);
 router.post('/message/create', auth(), MessageController.create);
 router.get('/message/delete', auth(), MessageController.delete);
 router.post('/message/update', auth(), MessageController.update);
+
+
+// 轮播管理
+router.get('/slide/list', SlideController.list);
+router.get('/slide/search', SlideController.search);
+router.get('/slide/detail', SlideController.detail);
+router.post('/slide/create', auth(), SlideController.create);
+router.get('/slide/delete', auth(), SlideController.delete);
+router.post('/slide/update', auth(), SlideController.update);
 
 //采集
 router.post('/collect/getPages', CollectController.getPages);

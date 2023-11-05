@@ -1,0 +1,1 @@
+System.register(["./index-legacy.js"],(function(t,e){"use strict";var a,r;return{setters:[t=>{a=t.h,r=t.A}],execute:function(){t("u",(t=>(console.log("data",t),a({url:`${r.BASE_API}/api/upload`,method:"post",headers:{"Content-type":"multipart/form-data"},data:t}))))}}}));

@@ -9,8 +9,6 @@ og:site_name 页面所在网站名
 og:videosrc 视频或者Flash地址
 og:audiosrc 音频地址
 
-
-
 index.html 首页
 list.html 列表页
 article.html 内容页
@@ -20,10 +18,4 @@ pdf.html pdf预览
 page.html 单页
 message.html 留言
 
-
-未来功能
-1.tts 文本转语音
-2.pdf 在线预览
-3.oss上传到七牛云
-4.合成 tmagic-editor拖拽生成专题页面
-
+合成 tmagic-editor拖拽生成专题页面

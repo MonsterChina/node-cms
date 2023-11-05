@@ -27,17 +27,16 @@
       ref="multipleTable"
       :data="tableData"
       tooltip-effect="dark"
-      row-key="id"
+      row-key="name"
       size="small"
       :tree-props="{ children: 'children', hasChildren: 'hasChildren' }"
       @selection-change="handleSelectionChange"
       v-loading="loading"
     >
       <el-table-column type="selection"></el-table-column>
+      <el-table-column prop="name" label="栏目名称"></el-table-column>
 
-      <el-table-column prop="id" label="编号"></el-table-column>
-
-      <el-table-column prop="name" label="名称"></el-table-column>
+      <el-table-column prop="id" align="center" label="编号"></el-table-column>
 
       <el-table-column prop="type" label="类型">
         <template #default="scope">
@@ -46,7 +45,7 @@
         </template>
       </el-table-column>
 
-      <el-table-column prop="sort" label="排序">
+      <el-table-column prop="sort" align="center" label="排序">
         <template #default="scope">{{ scope.row.sort }}</template>
       </el-table-column>
 

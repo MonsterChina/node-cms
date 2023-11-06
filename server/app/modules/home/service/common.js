@@ -1,8 +1,7 @@
-
-const { knex } = require('../../config.js');
+const { knex } = require("../../config.js");
 
 class CommonService {
-  constructor() { }
+  constructor() {}
 
   // 网站栏目
   static async category() {
@@ -25,8 +24,8 @@ class CommonService {
       ]);
       return res;
     } catch (err) {
-      console.error(err)
-      throw new Error(err)
+      console.error(err);
+      throw new Error(err);
     }
   }
 
@@ -68,8 +67,8 @@ class CommonService {
       const result = await query;
       return result;
     } catch (err) {
-      console.error(err)
-      throw new Error(err)
+      console.error(err);
+      throw new Error(err);
     }
   }
 
@@ -115,7 +114,7 @@ class CommonService {
       return result;
     } catch (err) {
       console.error(`cid->${cid} attr-> ${attr} len->${len}`, err);
-      throw new Error(err)
+      throw new Error(err);
     }
   }
 
@@ -130,7 +129,7 @@ class CommonService {
         .select("a.cid", "t.id", "t.name", "t.path")
         .rightJoin("tag AS t", "t.id", "=", "a.tag_id")
         .where("a.id", aid)
-        .where("a.status", 0) 
+        .where("a.status", 0)
         .limit(10)
         .offset(0);
       // 执行查询
@@ -138,7 +137,7 @@ class CommonService {
       return result;
     } catch (err) {
       console.error(`aid->${aid}`, err);
-      throw new Error(err)
+      throw new Error(err);
     }
   }
 
@@ -165,131 +164,126 @@ class CommonService {
       return result;
     } catch (err) {
       console.error(err);
-      throw new Error(err)
+      throw new Error(err);
     }
   }
-
 
   /**
    * @description 浏览pv排行(全局|指定栏目)
    * @param {Number|String} id 栏目id
    * @param {Number} len 默认10条
-   * @returns 
+   * @returns
    */
   static async getArticlePvList(len = 10, id = "") {
     try {
-
       let query = knex
         .select(
-          'a.id',
-          'a.title',
-          'a.short_title',
-          'a.img',
-          'a.createdAt',
-          'a.description',
-          'c.pinyin',
-          'c.name',
-          'c.path'
+          "a.id",
+          "a.title",
+          "a.short_title",
+          "a.img",
+          "a.createdAt",
+          "a.description",
+          "c.pinyin",
+          "c.name",
+          "c.path"
         )
-        .from('article AS a')
-        .leftJoin('category AS c', 'a.cid', 'c.id')
+        .from("article AS a")
+        .leftJoin("category AS c", "a.cid", "c.id")
         .where("a.status", 0);
 
       if (id) {
-        const ids = await knex('category')
-          .select('id')
-          .where('pid', id)
-          
-          .pluck('id');
+        const ids = await knex("category")
+          .select("id")
+          .where("pid", id)
+
+          .pluck("id");
 
         ids.push(id);
-        query.whereIn('cid', ids);
+        query.whereIn("cid", ids);
       }
 
-      query.orderBy('pv', 'DESC').limit(len);
+      query.orderBy("pv", "DESC").limit(len);
       let result = await query;
       return result;
     } catch (err) {
       console.error(`id->${id} len->${len}`, err);
-      throw new Error(err)
+      throw new Error(err);
     }
   }
 
   /**
-  * @description 最新图文(全局|指定栏目)
-  * @param {Number|String} id 栏目id
-  * @param {Number} len 默认10条
-  * @param {*} attr 1头条 2推荐 3轮播 4热门
-  * @returns 
-  */
-  static async getNewImgList(len = 10, id = "", attr = '') {
+   * @description 最新图文(全局|指定栏目)
+   * @param {Number|String} id 栏目id
+   * @param {Number} len 默认10条
+   * @param {*} attr 1头条 2推荐 3轮播 4热门
+   * @returns
+   */
+  static async getNewImgList(len = 10, id = "", attr = "") {
     try {
       let query = knex
         .select(
-          'a.id',
-          'a.title',
-          'a.short_title',
-          'a.img',
-          'a.createdAt',
-          'a.description',
-          'c.pinyin',
-          'c.name',
-          'c.path'
+          "a.id",
+          "a.title",
+          "a.short_title",
+          "a.img",
+          "a.createdAt",
+          "a.description",
+          "c.pinyin",
+          "c.name",
+          "c.path"
         )
-        .from('article AS a')
-        .leftJoin('category AS c', 'a.cid', 'c.id')
-        .where('a.img', '!=', '')
+        .from("article AS a")
+        .leftJoin("category AS c", "a.cid", "c.id")
+        .where("a.img", "!=", "")
         .where("a.status", 0);
 
       if (id) {
-        const ids = await knex('category')
-          .select('id')
-          .where('pid', id)
-          .pluck('id');
+        const ids = await knex("category")
+          .select("id")
+          .where("pid", id)
+          .pluck("id");
 
         ids.push(id);
-        query.whereIn('a.cid', ids);
+        query.whereIn("a.cid", ids);
       }
 
       if (attr) {
         query.where("a.attr", "LIKE", `%${attr}%`);
       }
-      query.orderBy('a.createdAt', 'DESC').limit(len);
+      query.orderBy("a.createdAt", "DESC").limit(len);
 
       let result = await query;
       return result;
     } catch (err) {
       console.error(`id->${id} len->${len}`, err);
-      throw new Error(err)
+      throw new Error(err);
     }
   }
 
-
   /**
-  * @description 文章列表
-  * @param {Number} id 栏目id
-  * @param {Number|String} current 当前页面
-  * @param {Number} pageSize 默认10条
-  * @returns {Array} 
-  */
+   * @description 文章列表
+   * @param {Number} id 栏目id
+   * @param {Number|String} current 当前页面
+   * @param {Number} pageSize 默认10条
+   * @returns {Array}
+   */
   static async list(id, current = 1, pageSize = 10) {
     try {
       const start = (current - 1) * pageSize;
 
       // 获取所有id
       let ids = [id];
-      const res = await knex('category')
-        .select('id')
-        .where('pid', id);
+      const res = await knex("category").select("id").where("pid", id);
 
       res.forEach((item) => {
         ids.push(item.id);
       });
 
       // 查询个数
-      const total = await knex('article')
-        .count('id as count')
-        .whereIn('cid', ids)
+      const total = await knex("article")
+        .count("id as count")
+        .whereIn("cid", ids)
         .where("status", 0)
         .first();
 
@@ -298,23 +292,23 @@ class CommonService {
       // 查询文章列表
       const result = await knex
         .select(
-          'a.id',
-          'a.title',
-          'a.short_title',
-          'a.img',
-          'a.description',
-          'a.createdAt',
-          'a.author',
-          'a.pv',
-          'c.pinyin',
-          'c.name',
-          'c.path'
+          "a.id",
+          "a.title",
+          "a.short_title",
+          "a.img",
+          "a.description",
+          "a.createdAt",
+          "a.author",
+          "a.pv",
+          "c.pinyin",
+          "c.name",
+          "c.path"
         )
-        .from('article AS a')
-        .leftJoin('category AS c', 'a.cid', 'c.id')
-        .whereIn('a.cid', ids)
+        .from("article AS a")
+        .leftJoin("category AS c", "a.cid", "c.id")
+        .whereIn("a.cid", ids)
         .where("a.status", 0)
-        .orderBy('a.createdAt', 'DESC')
+        .orderBy("a.createdAt", "DESC")
         .offset(start)
         .limit(pageSize);
 
@@ -326,57 +320,56 @@ class CommonService {
       };
     } catch (err) {
       console.error(`id->${id} current->${current} pageSize->${pageSize}`, err);
-      throw new Error(err)
+      throw new Error(err);
     }
   }
-
 
   /**
    * @description tag搜索
    * @param {Number} tag tagpath
    * @param {Number|String} current 当前页面
    * @param {Number} pageSize 默认10条
-   * @returns {Array} 
+   * @returns {Array}
    */
   static async tags(path, current = 1, pageSize = 10) {
     try {
       const start = (current - 1) * pageSize;
 
       // 查询个数
-      const total = await knex('article as a')
-        .join('category as c', 'a.cid', 'c.id')
+      const total = await knex("article as a")
+        .join("category as c", "a.cid", "c.id")
         .whereExists(function () {
           this.select(1)
-            .from('tag as t')
-            .whereRaw('FIND_IN_SET(t.id, a.tag_id) > 0')
-            .andWhere('t.path', path);
+            .from("tag as t")
+            .whereRaw("FIND_IN_SET(t.id, a.tag_id) > 0")
+            .andWhere("t.path", path);
         })
-        .count('* as total');
+        .count("* as total");
 
       // 查询文章列表
-      const result = await knex('article as a')
+      const result = await knex("article as a")
         .select(
-          'a.id',
-          'a.title',
-          'a.short_title',
-          'a.img',
-          'a.description',
-          'a.createdAt',
-          'a.author',
-          'a.pv',
-          'c.pinyin',
-          'c.name',
-          'c.path',
+          "a.id",
+          "a.title",
+          "a.short_title",
+          "a.img",
+          "a.description",
+          "a.createdAt",
+          "a.author",
+          "a.pv",
+          "c.pinyin",
+          "c.name",
+          "c.path"
         )
-        .join('category as c', 'a.cid', 'c.id')
+        .join("category as c", "a.cid", "c.id")
         .whereExists(function () {
           this.select(1)
-            .from('tag as t')
-            .whereRaw('FIND_IN_SET(t.id, a.tag_id) > 0')
-            .andWhere('t.path', path);
+            .from("tag as t")
+            .whereRaw("FIND_IN_SET(t.id, a.tag_id) > 0")
+            .andWhere("t.path", path);
         })
         .where("a.status", 0)
-        .orderBy('a.createdAt', 'DESC')
+        .orderBy("a.createdAt", "DESC")
         .offset(start)
         .limit(pageSize);
 
@@ -389,30 +382,53 @@ class CommonService {
         list: result,
       };
     } catch (err) {
-      console.error(`id->${path} current->${current} pageSize->${pageSize}`, err);
-      throw new Error(err)
+      console.error(
+        `id->${path} current->${current} pageSize->${pageSize}`,
+        err
+      );
+      throw new Error(err);
     }
   }
 
-
   /**
    * @description 通过文章id获取tags
-   * @param {*} articleId 
-   * @returns {Array} 返回数组 
+   * @param {*} articleId
+   * @returns {Array} 返回数组
    */
   static async fetchTagsByArticleId(articleId) {
     try {
-      const tags = await knex('tag')
-        .select('tag.id', 'tag.path', 'tag.name')
-        .join('article', knex.raw(`article.tag_id LIKE CONCAT('%', tag.id, '%')`))
-        .where('article.id', articleId)
+      const tags = await knex("tag")
+        .select("tag.id", "tag.path", "tag.name")
+        .join(
+          "article",
+          knex.raw(`article.tag_id LIKE CONCAT('%', tag.id, '%')`)
+        )
+        .where("article.id", articleId)
         .limit(10);
       return tags;
     } catch (err) {
       console.error(err);
-      throw new Error(err)
+      throw new Error(err);
     }
-  };
+  }
+
+  // banner轮播图
+  static async bannerSlide(cur = 1, pageSize = 10) {
+    try {
+     
+      const offset = parseInt((cur - 1) * pageSize);
+      const list = await knex
+        .select(['id','title','img_url','link_url'])
+        .from('slide')
+        .limit(pageSize)
+        .offset(offset)
+        .orderBy("id", "desc");
+      return list;
+    } catch (err) {
+      console.error(err);
+      throw new Error(err);
+    }
+  }
 }
 
 module.exports = CommonService;

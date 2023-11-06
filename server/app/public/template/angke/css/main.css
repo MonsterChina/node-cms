@@ -300,9 +300,9 @@ html {
 .m-jsfw{
     height: 455px;
 }
-.m-jsfw-bg{
+/* .m-jsfw-bg{
     background: url('../img/jsfw-bg.jpg');
-}
+} */
 .m-btn-more{
     width: 235px;
 	height: 56px;

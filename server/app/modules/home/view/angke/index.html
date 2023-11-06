@@ -16,47 +16,46 @@
     {{include './common/header.html'}}
 
     <!-- 轮播图 -->
+    {{ if bannerSlide?.length>0}}
     <section class="row justify-between gap-10  mb-20">
         <div class="swiper mySwiper">
             <div class="swiper-wrapper">
+                {{each bannerSlide}}
                 <div class="swiper-slide">
-                    <img src="{{base_url}}/img/banner.jpg" title="小跑青年" alt="小跑青年">
+                    <img src="{{$value.img_url}}" title="{{$value.title}}" alt="{{$value.title}}">
                 </div>
-                <div class="swiper-slide">
-                    <img src="{{base_url}}/img/banner.jpg" title="小跑青年" alt="小跑青年">
-                </div>
+                {{/each}}
             </div>
             <div class="swiper-pagination"></div>
             <!-- <div class="swiper-button-next"></div>
             <div class="swiper-button-prev"></div> -->
         </div>
     </section>
+    {{ /if }}
 
      <!-- 解决方案 -->
     <section class="pb-20 row">
         <article class="main w-1200 center mt-10 ">
-            <h3 class="m-title bold">解决方案</h3>
-            <p class="m-description mb-23">万物互联时代，智慧化技术服务，<br />
-                打造集成化解决方案</p>
+            {{@ frag['home-jjfa-title'].content}}
             <div class="row m-jjfa gap-10">
                 <div class="pr-5">
                     <div class="pos-r m-xiaoyuan">
-                        <img src="{{base_url}}/img/01.jpg" alt="">
+                        {{@ frag['home-zhxybg'].content}}
                         <h4 class="m-h4"><a href="">智慧校园 ></a></h4>
                     </div>
                     <div class="row mt-5 ">
                         <div class="col-12 m-yuanqu pos-r pr-5 overflow-h">
-                            <img src="{{base_url}}/img/02.jpg"  alt="">
+                            {{@ frag['home-zhyqbg'].content}}
                             <h4 class="m-h4"><a href="">智慧园区 ></a></h4>
                         </div>
                         <div class="col-12 m-yanglao pos-r overflow-h">
-                            <img class="w-p100" src="{{base_url}}/img/03.jpg" alt="">
+                            {{@ frag['home-zhylbg'].content}}
                             <h4 class="m-h4"><a href="">智慧养老 ></a></h4>
                         </div>
                     </div>
                 </div>
-                <div class="pos-r flex-1 m-gongchang">
-                    <img src="{{base_url}}/img/04.jpg" alt="">
+                <div class="pos-r flex-1 m-gongchang overflow-h">
+                    {{@ frag['home-zhgcbg'].content}}
                     <h4 class="m-h4"><a href="">智慧工厂 ></a></h4>
                 </div>
             </div>
@@ -65,14 +64,9 @@
 
     <!-- 技术服务 -->
     <section class="pb-20 row m-jsfw ">
-        <article class="main w-1200 center overflow-h pl-226 pt-120 m-jsfw-bg">
-            <h3 class="m-title bold">技术服务</h3>
-            <p class="m-description mb-23 c-464646">"全国30多个省市地区设置技术服务人员，<br/>
-                一对一提供项目方案，我们的技术服务团队<br/>
-                拥有丰富的行业经验和专业技能，<br/>
-                能够迅速响应客户需求，<br/>
-                为客户提供高效、专业的技术支持。"</p>
-           <div class="m-btn-more text-c"><a class="c-fff block" href="">了解更多></a></div>
+        <article class="main w-1200 center overflow-h pl-226 pt-120 m-jsfw-bg pos-r">
+            {{@ frag['home-jsfwbg'].content}}
+            {{@ frag['home-jsfwnr'].content}}
         </article>
     </section>
 
@@ -266,6 +260,8 @@
     <div class="mb-20 mt-20 pd-20 bg-f2f2f2 ignore">
         <h1>接口页面--全局数据：</h1>
         <p class="mb-20">site-> {{site}} </p>
+        <p class="mb-20">bannerSlide-> {{bannerSlide}} </p>
+        
         <p class="mb-20">111-->{{site.json.siteSubtitle}}</p>
         <p class="mb-20">nav-> {{nav}} </p>
         <p class="mb-20">category-> {{category}}</p>

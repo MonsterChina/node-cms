@@ -16,6 +16,6 @@ config.mysql = {
 
 //sql debug
 config.debug = true;
-
+config.env = "dev";
 
 module.exports = config;

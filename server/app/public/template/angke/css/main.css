@@ -2,6 +2,7 @@
 
 a {
     color: #262626;
+    cursor: pointer;
 }
 
 
@@ -19,6 +20,9 @@ html {
 
 .w-1200{
     width: 1200px;
+}
+.w-800{
+    width: 800px;
 }
 .pl-226{
     padding-left: 226px;
@@ -54,7 +58,12 @@ html {
 .border-dashed {
     border-bottom: 1px dashed #dedede;
 }
-
+.it,.it a{
+   color: rgba(0, 0, 0, 0);
+}
+.frag p{
+    display: inline-block;
+}
 .thumb-120 {
     min-width: 120px;
     max-width: 160px;

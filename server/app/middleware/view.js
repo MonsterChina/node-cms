@@ -1,7 +1,7 @@
 const path = require("path");
 module.exports = (app) => {
   const {
-    config: { appRoot, views },
+    config: { appRoot, views,env },
   } = app.locals;
   //默认home view
   const home = path.join(appRoot, `modules/home/view`);
@@ -9,8 +9,8 @@ module.exports = (app) => {
   const all = [...views, home];
   
   app.set("view options", {
-    debug: process.env.NODE_ENV != "prd",
-    cache: process.env.NODE_ENV == "prd",
+    debug: env != "prd",
+    cache: env == "prd",
     minimize: true,
   });
   app.set("view engine", "html");

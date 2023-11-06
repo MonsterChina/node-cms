@@ -8,11 +8,10 @@
 
 a {
     color: #262626;
+	cursor:pointer;
 }
 
-[v-clock] {
-    display: none;
-}
+
 
 a:hover {
     color: #003eb3;
@@ -96,7 +95,9 @@ ul>li:last-child {
 .c-bfbfbf {
     color: #bfbfbf;
 }
-
+.frag p{
+    display: inline-block;
+}
 html {
     scroll-behavior: smooth;
 }

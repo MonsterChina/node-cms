@@ -3,82 +3,17 @@
 
 <head>
     <meta charset="utf-8">
-    <meta name="description" content="">
-    <meta name="keywords" content="cms,cms,chanyue," />
-    <meta property="og:title" content="昂科" />
-    <meta property="og:description" content="" />
-    <title>昂科</title>
-    <!-- <meta name="viewport" content="width=device-width, initial-scale=1" /> -->
-    <meta property="og:type" content="article" />
-    <meta property="og:image" content="{{base_url}}/img/logo.png" />
-    <meta property="og:url" content="http://www.chanyue.top" />
-    <meta name="author" content="昂科" />
-    <link rel="shortcut icon" href="{{base_url}}/img/favicon.png" type="image/x-icon" />
-    <link rel="stylesheet" href="{{base_url}}/css/saduo@1.1.1.css" />
-    <link rel="stylesheet" href="{{base_url}}/css/swiper.min.css" />
-    <link rel="stylesheet" href="{{base_url}}/css/main.css" />
+    <meta name="description" content="{{site.description}}">
+    <meta name="keywords" content="{{site.keywords}}" />
+    <meta property="og:title" content="{{site.keywords}}" />
+    <meta property="og:description" content="{{site.description}}" />
+    <title>{{site.title}}-{{site.name}}</title>
+    {{include './common/meta.html'}}
 </head>
 
 <body>
     <!-- 头部 -->
-    <header class="row header-wrap justify-center pos-r">
-        <div class="header row align-c justify-between pt-5 pb-5">
-            <h1 class="logo" title="昂科">
-                昂科
-            </h1>
-
-            <nav class="nav">
-                <ul class="row">
-                    <li class="nav-item"><a href="/" title="首页">首页 </a></li>
-                    <li class="nav-item">
-                        <a href="/fedev/index.html" title="前端开发">技术服务 </a>
-                        <ul class="sub-nav">
-                            <li class="sub-nav-item">
-                                <a href="/qianduankaifa/JavaScript/index.html" title="JavaScript">智慧校园
-                                </a>
-                            </li>
-                            <li class="sub-nav-item">
-                                <a href="/qianduankaifa/vue/index.html" title="vue">智慧工厂
-                                </a>
-                            </li>
-                            <li class="sub-nav-item">
-                                <a href="/fedev/css3/index.html" title="css3">智慧养老
-                                </a>
-                            </li>
-                            <li class="sub-nav-item">
-                                <a href="/fedev/css3/index.html" title="css3">智慧园区
-                                </a>
-                            </li>
-                        </ul>
-                    </li>
-                    <li class="nav-item">
-                        <a href="/nodejs/index.html" title="node开发">解决方案</a>
-                    </li>
-                    <li class="nav-item">
-                        <a href="/qianduanku/index.html" title="前端库">新闻资讯</a>
-                    </li>
-                    <li class="nav-item">
-                        <a href="/SEO/index.html" title="SEO">商务合作</a>
-                    </li>
-                    <li class="nav-item">
-                        <a href="/chanyue/page.html" title="禅悦cms">关于昂翊
-                        </a>
-                    </li>
-                </ul>
-            </nav>
-
-
-            <div>
-                <a class="lang ignore" href="javascript:translate.changeLanguage('chinese_simplified');">CN</a>
-                |
-                <a class="lang ignore" href="javascript:translate.changeLanguage('chinese_simplified');">EN</a>
-            </div>
-
-            <div class="tel">
-                咨询热线：185 2178 6596
-            </div>
-        </div>
-    </header>
+    {{include './common/header.html'}}
 
     <!-- 轮播图 -->
     <section class="row justify-between gap-10  mb-20">
@@ -326,34 +261,26 @@
 
 
     <!-- footer -->
-    <footer class="pd-20 m-top-shadow">
-        <div class="footer w-1200 center pd-20">
-            <div class="row justify-around">
-                <div class="col-6">
-                    <h4 class="f-15 pb-10">技术服务</h4>
-                    <p class="f-13 pt-3 pb-3"><a class="c-595959">智慧校园</a></p>
-                    <p class="f-13 pt-3 pb-3"><a class="c-595959">智慧工厂</a></p>
-                    <p class="f-13 pt-3 pb-3"><a class="c-595959">智慧养老</a></p>
-                    <p class="f-13 pt-3 pb-3"><a class="c-595959">智慧园区</a></p>
-                </div>
-                <div class="col-6">
-                    <h4 class="f-15 pb-10">行业新闻</h4>
-                    <p class="f-13 pt-3 pb-3"><a class="c-595959">精彩活动</a></p>
-                    <p class="f-13 pt-3 pb-3"><a class="c-595959">企业资讯</a></p>
-                    <p class="f-13 pt-3 pb-3"><a class="c-595959">行业资讯</a></p>
-                </div>
-                <div class="col-6">
-                    <h4 class="f-15  pb-10">关于</h4>
-                    <p class="f-13 pt-3 pb-3"><a class="c-595959">关于昂翊</a></p>
-                    <p class="f-13 pt-3 pb-3"><a class="c-595959">新闻资讯</a></p>
-                    <p class="f-13 pt-3 pb-3"><a class="c-595959">商务合作</a></p>
-                </div>
-            </div>
-            <p class="mt-30 text-c f-14">copyright © 上海昂翊信息科技有限公司</p>
-            <p class="f-13 text-c c-bfbfbf">电话：185 2178 6596</p>
-            <p class="f-13 text-c c-bfbfbf">地址：上海市xxxx</p>
-        </div>
-    </footer>
+    {{include './common/footer.html'}}
+
+    <div class="mb-20 mt-20 pd-20 bg-f2f2f2 ignore">
+        <h1>接口页面--全局数据：</h1>
+        <p class="mb-20">site-> {{site}} </p>
+        <p class="mb-20">111-->{{site.json.siteSubtitle}}</p>
+        <p class="mb-20">nav-> {{nav}} </p>
+        <p class="mb-20">category-> {{category}}</p>
+        <p class="mb-20">friendlink-> {{friendlink}}</p>
+        <p class="mb-20">base_url-> {{base_url}}</p>
+        <p class="mb-20">frag--->{{frag}}</p>
+        <p class="mb-20">tag--->{{tag}}</p>
+        <p class="mb-20">slide--->{{slide}}</p>
+        <p class="mb-20">topnews--->{{topnews}}</p>
+        <p class="mb-20">article--->{{article}}</p>
+        <p class="mb-20">imgs--->{{imgs}}</p>
+        <p class="mb-20">recommendImgs--->{{recommendImgs}}</p>
+        <p class="mb-20">console.log('{{ site.id }}')</p>
+    </div>
+
 
     <!-- 返回顶部 -->
     <span class="backtop none">

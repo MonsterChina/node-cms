@@ -39,23 +39,28 @@
                         
                     <div class="w-520 h-290 bg-fff pd-20">
                         {{ if topnews}}
-                        <div class="row justify-between">
-                            <h2 class="f-16 ellips-2 c-1a1a1a">{{topnews.top.title}}</h2>
-                            <p class="f-14  ellips-3  mb-10 mt-10">
-                                {{topnews.top.description}}<a class="c-003a8c"
-                                    href="{{topnews.top.path}}/article-{{topnews.top.id}}.html"
-                                    title="{{topnews.top.title}}">详情</a>
-                            </p>
+                            {{if topnews.top}}
+                            <div class="row justify-between">
+                                <h2 class="f-16 ellips-2 c-1a1a1a">{{topnews.top.title}}</h2>
+                                <p class="f-14  ellips-3  mb-10 mt-10">
+                                    {{topnews.top.description}}<a class="c-003a8c"
+                                        href="{{topnews.top.path}}/article-{{topnews.top.id}}.html"
+                                        title="{{topnews.top.title}}">详情</a>
+                                </p>
+                            </div>
+                            {{/if}}
+                            {{if topnews.news}}
+                            <ul class="w-460-list">
+                                {{each topnews.news}}
+                                <li class="f-14 pt-4 pb-4 row justify-between">
+                                    <a href="{{$value.path}}/article-{{$value.id}}.html"
+                                        title="{{$value.title}}">{{$value.title}}</a>
+                                    <time class="c-999">{{$value.createdAt}}</time>
+                                </li>
+                                {{/each}}
+                            </ul>
+                            {{/if}}
                         </div>
-                        <ul class="w-460-list">
-                            {{each topnews.news}}
-                            <li class="f-14 pt-4 pb-4 row justify-between">
-                                <a href="{{$value.path}}/article-{{$value.id}}.html"
-                                    title="{{$value.title}}">{{$value.title}}</a>
-                                <time class="c-999">{{$value.createdAt}}</time>
-                            </li>
-                            {{/each}}
-                        </ul>
                         {{/if}}
                     </div>
                    

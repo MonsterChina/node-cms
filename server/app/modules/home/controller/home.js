@@ -8,13 +8,25 @@ class HomeController {
   // 首页
   static async index(req, res, next) {
     try {
-      const {config:{template},helper} = req.app.locals;
+      const {config:{template}, helper: {  formatDay }} = req.app.locals;
+     
       let result = {};
+      // 精彩活动
+      let activity = await CommonService.getArticleListByCid(15,4);
+      activity = formatDay(activity,true,"YYYY-MM-DD");
+      // 企业资讯
+      let enterprise = await CommonService.getArticleListByCid(16,4);
+      enterprise = formatDay(enterprise,true,"YYYY-MM-DD");
+       // 行业资讯
+       let industry = await CommonService.getArticleListByCid(17,4);
+       industry = formatDay(industry,true,"YYYY-MM-DD");
       if (!("slide" in res.locals)) {
         result = await HomeService.home();
         res.locals = { ...res.locals, ...result };
       }
-      res.render(`${template}/index.html`, result);
+      
+
+      res.render(`${template}/index.html`, {...result,activity,enterprise,industry});
     } catch (error) {
       console.error(error);
       next(error);

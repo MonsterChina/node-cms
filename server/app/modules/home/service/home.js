@@ -7,7 +7,7 @@ class HomeService {
   static async home() {
     try {
       //banner轮播图
-      let bannerSlide =await CommonService.bannerSlide();
+      let bannerSlide = await CommonService.bannerSlide();
 
       //文章轮播图
       let slide = await CommonService.getArticleList(0, 5, 3);

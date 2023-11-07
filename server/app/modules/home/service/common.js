@@ -125,15 +125,14 @@ class CommonService {
    */
   static async getTagsFromArticleByAid(aid) {
     try {
-      let queryBuilder = await knex("article AS a")
-        .select("a.cid", "t.id", "t.name", "t.path")
-        .rightJoin("tag AS t", "t.id", "=", "a.tag_id")
-        .where("a.id", aid)
-        .where("a.status", 0)
-        .limit(10)
-        .offset(0);
       // 执行查询
-      const result = await queryBuilder;
+      const result = await knex("article AS a")
+      .select("a.cid", "t.id", "t.name", "t.path")
+      .rightJoin("tag AS t", "t.id", "=", "a.tag_id")
+      .where("a.id", aid)
+      .where("a.status", 0)
+      .limit(10)
+      .offset(0);;
       return result;
     } catch (err) {
       console.error(`aid->${aid}`, err);

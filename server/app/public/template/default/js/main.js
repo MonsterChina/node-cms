@@ -156,4 +156,15 @@ document.querySelectorAll("pre").forEach(function (preElement) {
     preElement.dataset.prismjsCopy = "复制代码";
     preElement.dataset.prismjsCopyError = "按Ctrl+C复制";
     preElement.dataset.prismjsCopySuccess = "代码已复制！";
-}))();
+}));
+
+
+//显示api
+;(
+   function(){
+    if(location.search.includes('debug') && location.search.includes('true')){
+        document.querySelector('.api').classList.remove("api")
+    }
+   }()
+);
+

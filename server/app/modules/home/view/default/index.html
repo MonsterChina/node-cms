@@ -61,7 +61,6 @@
                    
                 </section>
                 <section class="row justify-between gap-10">
-
                     {{each article}}
                     <div class="w-460 bg-fff pd-20">
                         <h3 class="m-title f-16 row justify-between border-dashed mb-10">{{$value.category.name}}<span
@@ -101,26 +100,25 @@
                         {{/if}}
                     </div>
                     {{/each}}
-
-                    {{if imgs.length>0}}
-                    <!-- 书籍/图片/视频 pdf -->
-                    <section class="mt-10">
-                        <h3 class="m-title title-dashed f-16 row justify-between">最新图文<span class="more">new</span></h3>
-                        <div class="row gap-2">
-                            {{each imgs}}
-                            <figure class="books-item  f-14  pd-16 bg-fff">
-                                <a class="m-img" href="{{$value.path}}/article-{{$value.id}}.html" title="{{$value.title}}">
-                                    <img src="{{$value.img}}" alt="{{$value.title}}" /></a>
-                                <figcaption class="mt-6 mb-6">
-                                    <a href="{{$value.path}}/article-{{$value.id}}.html"
-                                        title="{{$value.title}}">{{$value.title}}</a>
-                                </figcaption>
-                            </figure>
-                            {{/each}}
-                        </div>
-                    </section>
-                    {{/if}}
                 </section>
+                {{if imgs.length>0}}
+                <!-- 书籍/图片/视频 pdf -->
+                <section class="mt-10">
+                    <h3 class="m-title title-dashed f-16 row justify-between">最新图文<span class="more">new</span></h3>
+                    <div class="row gap-2">
+                        {{each imgs}}
+                        <figure class="books-item  f-14  pd-16 bg-fff">
+                            <a class="m-img" href="{{$value.path}}/article-{{$value.id}}.html" title="{{$value.title}}">
+                                <img src="{{$value.img}}" alt="{{$value.title}}" /></a>
+                            <figcaption class="mt-6 mb-6">
+                                <a href="{{$value.path}}/article-{{$value.id}}.html"
+                                    title="{{$value.title}}">{{$value.title}}</a>
+                            </figcaption>
+                        </figure>
+                        {{/each}}
+                    </div>
+                </section>
+                {{/if}}
             </article>
 
             <aside class="flex-1">
@@ -191,15 +189,18 @@
     <!-- 移动端导航 -->
     {{include './common/wap-nav.html'}}
 
+
     <div class="api mb-20 mt-20 pd-20 bg-f2f2f2">
         <h1>接口页面--全局数据：</h1>
+        <p class="mb-20">config-> {{config}} </p>
+        <p class="mb-20">frag-> {{frag}} </p>
+        <p class="mb-20">bannerSlide->  {{bannerSlide}}</p>
         <p class="mb-20">site-> {{site}} </p>
         <p class="mb-20">111-->{{site.json.siteSubtitle}}</p>
         <p class="mb-20">nav-> {{nav}} </p>
         <p class="mb-20">category-> {{category}}</p>
         <p class="mb-20">friendlink-> {{friendlink}}</p>
         <p class="mb-20">base_url-> {{base_url}}</p>
-        <p class="mb-20">frag--->{{frag}}</p>
         <p class="mb-20">tag--->{{tag}}</p>
         <p class="mb-20">slide--->{{slide}}</p>
         <p class="mb-20">topnews--->{{topnews}}</p>

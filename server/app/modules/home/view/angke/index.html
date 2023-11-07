@@ -64,7 +64,7 @@
 
     <!-- 技术服务 -->
     <section class="pb-20 row m-jsfw ">
-        <article class="main w-1200 center overflow-h pl-226 pt-120 m-jsfw-bg pos-r">
+        <article class="main w-1200 center overflow-h pl-226 pt-80 m-jsfw-bg pos-r">
             {{@ frag['home-jsfwbg'].content}}
             {{@ frag['home-jsfwnr'].content}}
         </article>
@@ -74,8 +74,7 @@
     <!-- 行业新闻 -->
     <section class="pb-20 row">
         <article class="main w-1200 center">
-            <h3 class="m-title text-c">行业新闻</h3>
-            <p class="m-description text-c mb-20">关注昂翊，了解更多咨询</p>
+            {{@ frag['home-news-title'].content}} 
             <div class="m-tab">                                 
               <div class="m-tab-th justify-center row f-14 mb-30">
                 <span class="active mr-10 ml-10">精彩活动</span>|
@@ -256,7 +255,7 @@
 
     <!-- footer -->
     {{include './common/footer.html'}}
-
+     
     <div class="mb-20 mt-20 pd-20 bg-f2f2f2 ignore">
         <h1>接口页面--全局数据：</h1>
         <p class="mb-20">site-> {{site}} </p>
@@ -301,8 +300,8 @@
         //translate.setUseVersion2(); //设置使用v2.x 版本
         // translate.listener.start();
         // translate.setAutoDiscriminateLocalLanguage();
-        translate.ignore.class.push('ignore');	// 如果不设置默认只有 ignore 这一个
-        translate.execute(); //执行翻译初
+        // translate.ignore.class.push('ignore');	// 如果不设置默认只有 ignore 这一个
+        // translate.execute(); //执行翻译初
     </script>
 
 </body>

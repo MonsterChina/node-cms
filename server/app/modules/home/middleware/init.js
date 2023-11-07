@@ -1,4 +1,3 @@
-
 const CommonService = require(`../service/common.js`);
 const SiteService = require("../../api/service/site.js");
 const FragService = require("../../api/service/frag.js");
@@ -8,8 +7,11 @@ const FriendlinkService = require("../../api/service/friendlink.js");
 module.exports = () => {
   return async (req, res, next) => {
     try {
-      const { helper, config: { template } } = req.app.locals;
-      if ("site" in req.app.locals) {
+      const {
+        helper,
+        config: { template, env },
+      } = req.app.locals;
+      if ("site" in req.app.locals && env == "prd") {
         await next();
         return;
       }
@@ -38,11 +40,11 @@ module.exports = () => {
         friendlink,
         base_url,
         frag,
-        tag
+        tag,
       };
       await next();
     } catch (error) {
-      next(error)
+      next(error);
     }
   };
 };

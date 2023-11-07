@@ -118,19 +118,19 @@ html {
 .logo {
     height: 42px;
     background: url(../img/logo.svg) left center no-repeat;
-    background-size: 34px 34px;
+    background-size: 24px 24px;
     font-family: "chanyue";
     font-weight: lighter;
-    padding-left: 39px;
+    padding-left: 30px;
     line-height: 42px;
 }
 
 .theme {
-    /* background: -webkit-linear-gradient(45deg, #00a0e9, #10d39d, #00a0e9, #10d39d, #00a0e9);
+    background: -webkit-linear-gradient(45deg, #00a0e9, #10d39d, #00a0e9, #10d39d, #00a0e9);
     color: transparent;
     -webkit-background-clip: text;
     -webkit-animation: ran 18s linear infinite;
-    animation: ran 18s linear infinite; */
+    animation: ran 18s linear infinite;
 }
 
 .header-wrap .nav {
@@ -275,6 +275,10 @@ html {
     color: #fff;
     font-family: 'chanyue';
     background: -webkit-linear-gradient(45deg, #00a0e9, #10d39d, #00a0e9, #10d39d, #00a0e9);
+    color: transparent;
+    -webkit-background-clip: text;
+    -webkit-animation: ran 18s linear infinite;
+    animation: ran 18s linear infinite;
 }
 
 .chanyue-s {
@@ -284,11 +288,39 @@ html {
     line-height: 1.2;
     color: #fff;
     font-family: 'chanyue';
-   
+    background: -webkit-linear-gradient(45deg, #00a0e9, #10d39d, #00a0e9, #10d39d, #00a0e9);
+    color: transparent;
+    -webkit-background-clip: text;
+    -webkit-animation: ran 18s linear infinite;
+    animation: ran 18s linear infinite;
 }
 
 .error-500 {
     min-height: calc(100vh - 155px);
+}
+
+@-webkit-keyframes ran {
+
+    0%,
+    to {
+        backgroud-position: 0 0
+    }
+
+    50% {
+        background-position: 1000px 0
+    }
+}
+
+@keyframes ran {
+
+    0%,
+    to {
+        backgroud-position: 0 0
+    }
+
+    50% {
+        background-position: 1000px 0
+    }
 }
 
 

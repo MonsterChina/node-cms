@@ -15,5 +15,6 @@ config.mysql = {
 
 //sql debug
 config.debug = false;
+config.env = "prd";
 
 module.exports = config;

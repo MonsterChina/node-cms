@@ -25,7 +25,7 @@ module.exports = async function (app) {
   //配置模板引擎
   view(app);
 
-  //使用静态资源
+  //使用静态资源 ,{ maxAge: 0 }
   app.use("/public", express.static(path.join(appRoot, "public")));
 
   //路由

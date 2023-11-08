@@ -42,3 +42,5 @@ package-lock.json
 /server/app/view/web/qigong
 
 
+/server/app/modules/home/view/angke
+/server/app/public/template/angke

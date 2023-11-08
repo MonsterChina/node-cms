@@ -11,6 +11,8 @@ module.exports = () => {
         helper,
         config: { template, dataCache },
       } = req.app.locals;
+
+      console.log('111111111111111111',dataCache)
       if ("site" in req.app.locals && dataCache == "1") {
         await next();
         return;

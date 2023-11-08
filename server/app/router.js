@@ -18,11 +18,8 @@ router.use("/open", open);
 
 //机器人抓取
 router.get("/robots.txt", function (req, res, next) {
-  let stream = fs.createReadStream(
-    path.join(__dirname, "../public/robots.txt"),
-    { flags: "r" }
-  );
-  stream.pipe(res);
+  res.type('text/plain');
+  res.sendFile(path.join(__dirname, "/public/robots.txt"));
 });
 
 //404处理

@@ -9,9 +9,9 @@ module.exports = () => {
     try {
       const {
         helper,
-        config: { template, env },
+        config: { template, dataCache },
       } = req.app.locals;
-      if ("site" in req.app.locals && env == "prd") {
+      if ("site" in req.app.locals && dataCache == "1") {
         await next();
         return;
       }
@@ -21,7 +21,6 @@ module.exports = () => {
       // 分类
       const category = await CommonService.category();
       //导航
-
       const nav = helper.tree(category);
       // 友情链接
       let friendlink = await FriendlinkService.list();

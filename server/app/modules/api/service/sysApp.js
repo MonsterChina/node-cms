@@ -15,7 +15,7 @@ class SysAppService  {
 
   static async config() {
     try {
-      let res =  await knex.select(["template", "uploadWay"])
+      let res =  await knex.select(["template", "uploadWay","maxAge","dataCache"])
       .from(SysAppService.model)
       .limit(1);
       return res[0];

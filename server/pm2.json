@@ -17,7 +17,6 @@
             "max_memory_restart": "100M",
             "autorestart": true,
             "env": {
-                "EGG_SERVER_ENV": "prd",
                 "NODE_ENV": "prd"
             },
             "instances": 1

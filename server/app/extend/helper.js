@@ -189,9 +189,9 @@ exports.convertArrayToObject = (array, key) => {
   }
   const result = {};
   for (const item of array) {
-    const { [key]: mark, ...rest } = item;
+    const { [key]: mark, content } = item;
     if (mark) {
-      result[mark] = { ...rest };
+      result[mark] = content;
     }
   }
   return result;
@@ -233,7 +233,7 @@ exports.filterFields = (data, fields) => {
  * @param {Array} data 数组
  * @param {Boolean} time 是否开启具体时间
  * @param {String} format YYYY-MM-DD HH:mm:ss
- * @returns 返回处理过的数组 fromNow().replace(" ", "") 返回多少分钟
+ * @returns 返回处理过的数组
  */
 exports.formatDay = (data, time = false, format = "YYYY-MM-DD HH:mm:ss") => {
   data.forEach((item) => {

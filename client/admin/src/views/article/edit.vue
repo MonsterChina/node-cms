@@ -537,7 +537,7 @@ export default {
 
         //判断是否有缩略图
 
-        params.content = filterAndReplaceImgSrc(params.content);
+        // params.content = filterAndReplaceImgSrc(params.content);
 
         if (!params.img) {
           params.img = getImgUrlFromStr(params.content)[0];

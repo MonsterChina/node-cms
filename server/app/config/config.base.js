@@ -5,7 +5,7 @@ const config = {};
 config.version = "v2.0.1";
 config.appName = "禅悦cms";
 config.port = '81';
-config.versionTime = "2023-11-5";
+config.versionTime = "2023-11-9";
 config.author = "明空";
 
 config.appRoot = path.join(__dirname, "../");

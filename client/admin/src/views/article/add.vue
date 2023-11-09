@@ -507,7 +507,7 @@ export default {
         params.attr = params.attr.toString();
         params.tag_id = params.tag_id.toString();
 
-        params.content = filterAndReplaceImgSrc(params.content);
+        // params.content = filterAndReplaceImgSrc(params.content);
 
         //判断是否有缩略图
         if (!params.img) {

@@ -507,14 +507,12 @@ export default {
         params.attr = params.attr.toString();
         params.tag_id = params.tag_id.toString();
 
-        // params.content = filterAndReplaceImgSrc(params.content);
-
         //判断是否有缩略图
-        if (!params.img) {
+        if (!params.img && this.autoImg) {
           params.img = getImgUrlFromStr(params.content)[0];
         }
-        //提取255字符作为文章描述
-        if (!params.description) {
+
+        if (!params.description && this.autoDes) {
           params.description = filterHtml(params.content).substr(0, 255);
         }
         //处理模型字段信息

@@ -170,41 +170,37 @@ export default {
     };
   },
   computed: {},
-  created() {
-    let { cur = 1, cid = 0, keywords = "" } = this.$route.query;
+  created() {},
 
-    this.cur = +cur;
+  mounted() {
+    let { cur = 1, cid = 0, keywords = "" } = this.$route.query;
+    this.cur = parseInt(cur);
+    this.cid = parseInt(cid);
     this.params = {
-      categorySelected: +cid,
+      categorySelected: this.cid,
       keywords: keywords,
     };
-
     this.queryCategory();
     this.search();
   },
 
-  watch: {
-    $route(to, from) {
-      console.log(to);
-      if (to.name == "article-index") {
-        let { cur, cid, keywords } = to.query;
-        this.cur = +cur;
-        this.cid = +cid;
-        this.params.keywords = keywords;
-        this.search();
-      }
-    },
-  },
   methods: {
     //清空搜索
     clearSearch(str) {
+      //清空表单
       if (str) {
         this.$refs.form.resetFields();
       }
+      //清空路由
       this.$router.replace({
         name: "article-index",
         query: { cur: 1, cid: 0, keywords: "" },
       });
+      //清空参数
+      this.cur = 1;
+      this.params.keywords = "";
+      this.cid = 0;
+      this.search();
     },
 
     doSearch() {

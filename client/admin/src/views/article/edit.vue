@@ -536,14 +536,11 @@ export default {
         params.tag_id = params.tag_id.toString();
 
         //判断是否有缩略图
-
-        // params.content = filterAndReplaceImgSrc(params.content);
-
-        if (!params.img) {
+        if (!params.img && this.autoImg) {
           params.img = getImgUrlFromStr(params.content)[0];
         }
 
-        if (!params.description) {
+        if (!params.description && this.autoDes) {
           params.description = filterHtml(params.content).substr(0, 255);
         }
 

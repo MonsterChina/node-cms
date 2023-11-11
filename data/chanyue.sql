@@ -273,25 +273,27 @@ insert  into `login_log`(`id`,`uid`,`ip`,`createdAt`) values
 (17,1,'127.0.0.1','2023-11-07 09:35:47'),
 (18,1,'127.0.0.1','2023-11-08 11:22:11');
 
-/*Table structure for table `message` */
-
+-- ----------------------------
+-- Table structure for message
+-- ----------------------------
 DROP TABLE IF EXISTS `message`;
-
-CREATE TABLE `message` (
+CREATE TABLE `message`  (
   `id` int(11) NOT NULL AUTO_INCREMENT,
-  `name` varchar(100) DEFAULT NULL COMMENT '姓名',
-  `tel` varchar(50) DEFAULT NULL COMMENT '电话',
-  `wx` varchar(50) DEFAULT NULL COMMENT '微信号',
-  `content` varchar(255) DEFAULT NULL COMMENT '留言内容',
-  `createdAt` datetime DEFAULT CURRENT_TIMESTAMP COMMENT '创建时间',
-  `updatedAt` datetime DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP COMMENT '更新时间',
+  `name` varchar(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NULL DEFAULT NULL COMMENT '姓名',
+  `tel` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NULL DEFAULT NULL COMMENT '电话',
+  `company` varchar(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NULL DEFAULT NULL COMMENT '公司名称',
+  `content` varchar(500) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NULL DEFAULT NULL COMMENT '留言内容',
+  `createdAt` datetime NULL DEFAULT CURRENT_TIMESTAMP COMMENT '创建时间',
+  `updatedAt` datetime NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP COMMENT '更新时间',
   PRIMARY KEY (`id`) USING BTREE
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4 ROW_FORMAT=DYNAMIC COMMENT='留言';
+) ENGINE = InnoDB AUTO_INCREMENT = 7 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_general_ci COMMENT = '留言' ROW_FORMAT = DYNAMIC;
 
-/*Data for the table `message` */
+-- ----------------------------
+-- Records of message
+-- ----------------------------
 
-insert  into `message`(`id`,`name`,`tel`,`wx`,`content`,`createdAt`,`updatedAt`) values 
-(1,'禅悦内容管理系统好用吗','13366826071','yanyutao2014','仰天大笑出门去，我辈岂是蓬蒿人！','2023-07-22 23:03:28',NULL);
+insert  into `message`(`id`,`name`,`tel`,`company`,`content`) values 
+(1,'闫宇韬','13366826071','天山派','仰天大笑出门去，我辈岂是蓬蒿人！');
 
 /*Table structure for table `model` */
 

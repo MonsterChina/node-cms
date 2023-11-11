@@ -94,8 +94,8 @@ server 部署代码
 * 案例二 [世界气功网](http://www.shijieqigong.com/) `http://www.shijieqigong.com/`
 * 案例三 [世界大健康运动联盟](http://www.worldhealthgames.com/) `http://www.worldhealthgames.com/`
 * 案例四 [北京辉达环保科技有限公司](http://www.huidaep.com/) `http://www.huidaep.com/`
-* 演示站 [前端小栈• 禅悦](http://chanyue.zhanhongzhu.top/)
-* 演示站 [前端小栈• 禅悦](https://www.nuodefangchan.com/)
+* 演示站1 [前端小栈• 禅悦](https://www.nuodefangchan.com/)
+* 演示站2 [前端小栈• 禅悦](http://chanyue.zhanhongzhu.top/)
 
 ## 👵开发文档
 

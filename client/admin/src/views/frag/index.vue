@@ -43,18 +43,20 @@
       <el-table-column fixed="right" width="92" label="操作">
         <template #default="scope">
           <el-button :icon="Edit" circle @click="toEdit(scope.row)"></el-button>
-          <el-popconfirm
-            width="220"
-            @confirm="handleDel(scope.row)"
-            confirm-button-text="确定"
-            cancel-button-text="取消"
-            icon-color="#626AEF"
-            title="确定删除吗？如果在使用，删掉会模板会报错"
-          >
-            <template #reference>
-              <el-button :icon="Delete" circle></el-button>
-            </template>
-          </el-popconfirm>
+          <div v-permission="'super'">
+            <el-popconfirm
+              width="220"
+              @confirm="handleDel(scope.row)"
+              confirm-button-text="确定"
+              cancel-button-text="取消"
+              icon-color="#626AEF"
+              title="确定删除吗？如果在使用，删掉会模板会报错"
+            >
+              <template #reference>
+                <el-button :icon="Delete" circle></el-button>
+              </template>
+            </el-popconfirm>
+          </div>
         </template>
       </el-table-column>
     </el-table>

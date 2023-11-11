@@ -289,6 +289,11 @@ export default {
       }
     },
 
+    handleClick(e) {
+      let url = location.origin + `/article-${e.id}.html`;
+      window.open(url);
+    },
+
     //删除文章
     async handleDel(e) {
       let id = e.id;

@@ -187,6 +187,17 @@ export default {
       }
     },
 
+    //跳转到首页
+    handleClick(e) {
+      let url;
+      if (e.type == "0") {
+        url = location.origin + e.path + "/index.html";
+      } else {
+        url = location.origin + e.path + "/page.html";
+      }
+      window.open(url);
+    },
+
     delSome() {},
 
     //删除栏目  还需要判断是否当前栏目下面有文章？

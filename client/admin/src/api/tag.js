@@ -11,7 +11,7 @@ export let search = (cur, keyword = "", pageSize = 10) => {
 //文章列表
 export let list = (cur) => {
   return http({
-    url: `${API.BASE_API}/api/tag/list?cur=${cur}&pageSize=10`,
+    url: `${API.BASE_API}/api/tag/list?cur=${cur}&pageSize=20`,
     method: "get",
   });
 };

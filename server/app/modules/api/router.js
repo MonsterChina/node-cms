@@ -126,7 +126,7 @@ router.post('/friendlink/update', auth(), FriendlinkController.update);
 router.get('/message/list', MessageController.list);
 router.get('/message/search', MessageController.search);
 router.get('/message/detail', MessageController.detail);
-router.post('/message/create', auth(), MessageController.create);
+router.post('/message/create',  MessageController.create);
 router.get('/message/delete', auth(), MessageController.delete);
 router.post('/message/update', auth(), MessageController.update);
 

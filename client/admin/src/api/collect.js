@@ -78,7 +78,7 @@ export let search = (key) => {
 //文章列表
 export let list = (cur) => {
   return http({
-    url: `${API.BASE_API}/api/collect/list?cur=${cur}&pageSize=10`,
+    url: `${API.BASE_API}/api/collect/list?cur=${cur}&pageSize=20`,
     method: "get",
   });
 };

@@ -2,11 +2,11 @@
   <div class="mr-10 ml-10 mb-20 pd-20 content-wrap">
     <el-form ref="params" :model="params" label-width="84px" class="mt-20">
       <el-form-item
-        label="留言标题"
+        label="姓名"
         :rules="[
           {
             required: true,
-            message: '请输入标题',
+            message: '请输入姓名',
             trigger: 'blur',
           },
         ]"
@@ -19,8 +19,8 @@
         <el-input v-model="params.tel"></el-input>
       </el-form-item>
 
-      <el-form-item label="微信">
-        <el-input v-model="params.wx"></el-input>
+      <el-form-item label="公司名称">
+        <el-input v-model="params.company"></el-input>
       </el-form-item>
 
       <el-form-item
@@ -43,15 +43,6 @@
         </el-input>
       </el-form-item>
 
-      <el-form-item label="发布时间">
-        <el-date-picker
-          v-model="params.createdAt"
-          type="datetime"
-          placeholder="选择日期时间"
-        >
-        </el-date-picker>
-      </el-form-item>
-
       <el-form-item>
         <el-button type="primary" @click="submit('params')">保存</el-button>
       </el-form-item>
@@ -69,9 +60,8 @@ export default {
       params: {
         name: "",
         tel: "",
-        wx: "",
+        company: "",
         content: "",
-        createdAt: new Date(),
       },
 
       paramsRules: {

@@ -1,6 +1,6 @@
 <template>
   <div class="mr-10 ml-10 mb-20 pd-20 content-wrap">
-    <el-form ref="params" :model="params" label-width="84px" class="mt-20">
+    <!-- <el-form ref="params" :model="params" label-width="84px" class="mt-20">
       <el-form-item
         label="留言标题"
         :rules="[
@@ -56,6 +56,35 @@
         <el-button type="primary" @click="submit('params')">保存</el-button>
       </el-form-item>
     </el-form>
+     -->
+    <h3 class="mb-25 mt-10"># 留言内容</h3>
+
+    <div class="pd-10">
+      <p class="f-14 mb-15">
+        <span class="bold f-13 w-90 text-r">联系姓名：</span>{{ params.name }}
+      </p>
+      <p class="f-14 mb-15">
+        <span class="bold f-13 w-90 text-r">联系电话：</span>{{ params.tel }}
+      </p>
+      <p class="f-14 mb-15">
+        <span class="bold f-13 w-90 text-r">公司单位：</span
+        >{{ params.company }}
+      </p>
+
+      <p class="f-14 mb-15">
+        <span class="bold f-13 w-90 text-r">留言内容：</span
+        >{{ params.content }}
+      </p>
+
+      <p class="f-14 mb-15">
+        <span class="bold f-13 w-90 text-r">留言时间：</span
+        >{{ params.createdAt }}
+      </p>
+
+      <el-button class="ml-25 mt-35" type="primary" @click="goBack"
+        >返回</el-button
+      >
+    </div>
   </div>
 </template>
 
@@ -73,7 +102,8 @@ export default {
         tel: "",
         wx: "",
         content: "",
-        createdAt: new Date(),
+        company: "",
+        createdAt: "",
       },
 
       paramsRules: {
@@ -103,7 +133,6 @@ export default {
         let res = await detail(this.params.id);
         if (res.code === 200) {
           this.params = res.data;
-          this.params.createdAt = new Date(this.params.createdAt);
         } else {
           this.$message({
             message: res.msg,
@@ -144,6 +173,10 @@ export default {
       }
     },
 
+    goBack() {
+      this.$router.go(-1);
+    },
+
     submit(formName) {
       this.$refs[formName].validate((valid) => {
         if (valid) {
@@ -157,4 +190,9 @@ export default {
   },
 };
 </script>
-<style></style>
+<style scoped>
+.w-90 {
+  width: 90px;
+  display: inline-block;
+}
+</style>

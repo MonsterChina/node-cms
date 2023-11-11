@@ -4,7 +4,7 @@ import API from "../config/index.js";
 //文章列表
 export let list = (cur) => {
   return http({
-    url: `${API.BASE_API}/api/sysRole/list?cur=${cur}&pageSize=10`,
+    url: `${API.BASE_API}/api/sysRole/list?cur=${cur}&pageSize=20`,
     method: "get",
   });
 };

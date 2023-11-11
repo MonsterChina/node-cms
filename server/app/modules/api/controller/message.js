@@ -12,7 +12,6 @@ class MessageController  {
   static async create(req, res, next) {
     try {
       const body = req.body;
-      body.createdAt = dayjs(body.createdAt).format('YYYY-MM-DD HH:mm:ss');
       const data = await MessageService.create(body);
       res.json({ ...success, data: data })
     } catch (err) {
@@ -36,7 +35,6 @@ class MessageController  {
   static async update(req, res, next) {
     try {
       const body = req.body;
-      body.createdAt = dayjs(body.createdAt).format('YYYY-MM-DD HH:mm:ss');
       const data = await MessageService.update(body);
       res.json({ ...success, data: data });
     } catch (err) {
@@ -50,6 +48,7 @@ class MessageController  {
     try {
       const id = req.query.id;
       const data = await MessageService.find(id);
+      data.createdAt = dayjs(data.createdAt).format('YYYY-MM-DD HH:mm:ss');
       res.json({ ...success, data: data });
     } catch (err) {
       next(err);
@@ -62,6 +61,7 @@ class MessageController  {
     try {
       const id = req.query.id;
       const data = await MessageService.detail(id);
+      data.createdAt = dayjs(data.createdAt).format('YYYY-MM-DD HH:mm:ss');
       res.json({ ...success, data: data });
     } catch (err) {
       next(err);
@@ -73,9 +73,8 @@ class MessageController  {
   // 搜索
   static async search(req, res, next) {
     try {
-      const cur = req.query.cur;
-      const key = req.query.keyword;
-      const pageSize = req.query.pageSize || 10;
+
+      const {cur,keyword,pageSize=20} = req.query;
       const data = await MessageService.search(key, cur, pageSize);
       data.list.forEach(ele => {
         ele.createdAt = dayjs(ele.createdAt).format('YYYY-MM-DD HH:mm');
@@ -89,8 +88,7 @@ class MessageController  {
   // 列表
   static async list(req, res, next) {
     try {
-      const cur = req.query.cur;
-      const pageSize = 10;
+      const {cur,pageSize=20} = req.query;
       const data = await MessageService.list(cur, pageSize);
       data.list.forEach(ele => {
         ele.createdAt = dayjs(ele.createdAt).format('YYYY-MM-DD HH:mm');

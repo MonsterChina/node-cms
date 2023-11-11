@@ -84,7 +84,7 @@
 
                 <!-- 最新 -->
                 <section class="notices pd-20 mb-20 bg-fff">
-                    <h3 class="m-title border-dashed f-16 row justify-between">nodejs最新文章<span class="more">more</span>
+                    <h3 class="m-title border-dashed f-16 row justify-between">{{navSub.name}}最新文章<span class="more">more</span>
                     </h3>
                     <ul class="mt-10">
                         {{each news}}
@@ -100,7 +100,7 @@
 
                 <!-- 图文 热门 -->
                 <section class="notices pd-20 mb-20 bg-fff">
-                    <h3 class="m-title border-dashed f-16 row justify-between">推荐图文</h3>
+                    <h3 class="m-title border-dashed f-16 row justify-between">{{navSub.name}}推荐图文</h3>
                     {{each imgs}}
                     <figure class="row justify-between mt-10 ">
                         {{if $value.img}}

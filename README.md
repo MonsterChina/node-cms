@@ -95,6 +95,7 @@ server 部署代码
 * 案例三 [世界大健康运动联盟](http://www.worldhealthgames.com/) `http://www.worldhealthgames.com/`
 * 案例四 [北京辉达环保科技有限公司](http://www.huidaep.com/) `http://www.huidaep.com/`
 * 演示站 [前端小栈• 禅悦](http://chanyue.zhanhongzhu.top/)
+* 演示站 [前端小栈• 禅悦](https://www.nuodefangchan.com/)
 
 ## 👵开发文档
 

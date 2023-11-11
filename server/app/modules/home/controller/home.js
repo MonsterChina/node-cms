@@ -1,4 +1,3 @@
-
 const dayjs = require("dayjs");
 const HomeService = require(`../service/home.js`);
 const CommonService = require("../service/common.js");
@@ -8,25 +7,32 @@ class HomeController {
   // 首页
   static async index(req, res, next) {
     try {
-      const {config:{template}, helper: {  formatDay }} = req.app.locals;
-     
+      const {
+        config: { template },
+        helper: { formatDay },
+      } = req.app.locals;
       let result = {};
       // 精彩活动
-      let activity = await CommonService.getArticleListByCid(15,4);
-      activity = formatDay(activity,true,"YYYY-MM-DD");
+      let activity = await CommonService.getArticleListByCid(15, 4);
+      activity = formatDay(activity, true, "YYYY-MM-DD");
       // 企业资讯
-      let enterprise = await CommonService.getArticleListByCid(16,4);
-      enterprise = formatDay(enterprise,true,"YYYY-MM-DD");
-       // 行业资讯
-       let industry = await CommonService.getArticleListByCid(17,4);
-       industry = formatDay(industry,true,"YYYY-MM-DD");
+      let enterprise = await CommonService.getArticleListByCid(16, 4);
+      enterprise = formatDay(enterprise, true, "YYYY-MM-DD");
+      // 行业资讯
+      let industry = await CommonService.getArticleListByCid(17, 4);
+      industry = formatDay(industry, true, "YYYY-MM-DD");
+
       if (!("slide" in res.locals)) {
         result = await HomeService.home();
         res.locals = { ...res.locals, ...result };
       }
-      
 
-      res.render(`${template}/index.html`, {...result,activity,enterprise,industry});
+      res.render(`${template}/index.html`, {
+        ...result,
+        activity,
+        enterprise,
+        industry,
+      });
     } catch (error) {
       console.error(error);
       next(error);
@@ -36,7 +42,10 @@ class HomeController {
   // 列表页
   static async list(req, res, next) {
     try {
-      const {config:{template},helper} = req.app.locals;
+      const {
+        config: { template },
+        helper,
+      } = req.app.locals;
       const { cate, current, cid } = req.params;
       const currentPage = parseInt(current) || 1;
       const pageSize = 10;
@@ -45,7 +54,6 @@ class HomeController {
       let navSub = helper.getChildrenId(cate || cid, category);
       // const navSubField = ["id", "name", "path"];
       // navSub.cate.children = filterFields(navSub.cate.children, navSubField);
-      console.log('navSub-->',navSub.cate.list_view)
       //获取栏目id
       const id = cid || navSub.cate.id || "";
       if (!id) {
@@ -67,7 +75,7 @@ class HomeController {
       let pageHtml = helper.pages(currentPage, count, pageSize, href);
 
       //获取模板
-      let view = navSub.cate.list_view || 'list.html';
+      let view = navSub.cate.list_view || "list.html";
       await res.render(`${template}/${view}`, {
         position,
         navSub,
@@ -83,9 +91,12 @@ class HomeController {
   // 详情页
   static async article(req, res, next) {
     try {
-      const {config:{template},helper} = req.app.locals;
+      const {
+        config: { template },
+        helper,
+      } = req.app.locals;
       const { id } = req.params;
-      const { category} = req.app.locals; 
+      const { category } = req.app.locals;
       if (!id) {
         res.redirect("/404.html");
         return;
@@ -99,7 +110,6 @@ class HomeController {
       }
 
       article.tags = await CommonService.fetchTagsByArticleId(id);
-      let pdf = article.tags.filter((item) => item.name == "pdf");
 
       // 栏目id
       const cid = article.cid || "";
@@ -129,11 +139,9 @@ class HomeController {
       //热门 推荐 图文
       const data = await HomeService.article(cid);
 
-      //模板配置 pdf文件必须选择pdf标签
-    
       //获取模板
-      let view = navSub.cate.article_view || (pdf.length > 0 ?'article-pdf.html':'article.html');
-       
+      let view = navSub.cate.article_view;
+
       await res.render(`${template}/${view}`, {
         ...data,
         article,
@@ -151,7 +159,10 @@ class HomeController {
   // 单页
   static async page(req, res, next) {
     try {
-      const {config:{template},helper} = req.app.locals;
+      const {
+        config: { template },
+        helper,
+      } = req.app.locals;
       const { cate, id } = req.params;
       const { category } = req.app.locals;
 
@@ -176,7 +187,7 @@ class HomeController {
       //文章id查找栏目id
       if (id) {
         // 文章列表
-         article = await ArticleService.detail(id);
+        article = await ArticleService.detail(id);
         // 栏目id
         cid = article.cid || "";
       }
@@ -194,7 +205,6 @@ class HomeController {
         article = await ArticleService.detail(data.list[0].id);
       }
 
-
       //没找到文章 去404
       if (Object.keys(article).length > 0) {
         article.createdAt = dayjs(article.createdAt).format(
@@ -208,14 +218,9 @@ class HomeController {
         // 增加数量
         await ArticleService.count(article.id);
       }
-      //页面模板配置
-      const config = {
-        chanyue: `${template}/chanyue.html`,
-        default: `${template}/page.html`,
-      };
 
       //获取模板
-      let view = navSub.cate.article_view || 'page.html';
+      let view = navSub.cate.article_view || "page.html";
       await res.render(`${template}/${view}`, {
         data: data.list,
         navSub,
@@ -231,7 +236,10 @@ class HomeController {
   // 搜索页
   static async search(req, res, next) {
     try {
-      const {config:{template},helper} = req.app.locals;
+      const {
+        config: { template },
+        helper,
+      } = req.app.locals;
       const { keywords, id } = req.params;
       const page = id || 1;
       const pageSize = 10;
@@ -258,7 +266,10 @@ class HomeController {
   // tag
   static async tag(req, res, next) {
     try {
-      const {config:{template},helper} = req.app.locals;
+      const {
+        config: { template },
+        helper,
+      } = req.app.locals;
       const { path, id } = req.params;
       const page = id || 1;
       const pageSize = 10;

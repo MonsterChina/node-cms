@@ -6,7 +6,6 @@
     <title>{{site.name}}-{{site.title}}</title>
     <meta name="viewport" content="width=device-width, initial-scale=1"/>
     {{include './common/meta.html'}}
-    <link rel="stylesheet" href="./css/outline.min.css"/>
 </head>
 
 
@@ -33,10 +32,11 @@
                 </section>
 
                 <!-- 广告 -->
+                {{if frag.ad}}
                 <section class="ad mb-20 bg-fff">
-                    {{frag.ad.name}}
-                    {{@ frag.ad.content}}
+                    {{@ frag.ad}}
                 </section>
+                {{/if}}
 
                 <!-- 单页栏目 -->
                 <section class="notices pos-s pd-20 mb-20 bg-fff" style="top:80px;z-index: 2;">

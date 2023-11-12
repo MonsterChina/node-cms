@@ -17,5 +17,3 @@ search.html 搜索页
 pdf.html pdf预览
 page.html 单页
 message.html 留言
-
-合成 tmagic-editor拖拽生成专题页面

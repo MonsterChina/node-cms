@@ -3,7 +3,11 @@
 
 <head>
     <meta charset="utf-8">
-    <title>{{site.name}}-{{site.title}}</title>
+    <meta name="description" content="{{navSub.cate.seo_description}}">
+    <meta name="keywords" content="{{navSub.cate.seo_keywords}}" />
+    <meta property="og:title" content="{{navSub.cate.seo_title}}" />
+    <meta property="og:description" content="{{site.description}}" />
+    <title>{{navSub.cate.seo_title}}-{{site.name}}</title>
     {{include './common/meta.html'}}
 
 <body class="bg-f8f8f8">
@@ -131,10 +135,11 @@
                 </section>
 
                 <!-- 广告 -->
+                {{if frag.ad}}
                 <section class="ad mb-20 bg-fff">
-                    {{frag.ad.name}}
-                    {{@ frag.ad.content}}
+                    {{@ frag.ad}}
                 </section>
+                {{/if}}
 
                 <!-- tag标签 -->
                 <section class="notices pd-20 mb-20 bg-fff">
@@ -156,7 +161,7 @@
     <!-- 移动端导航 -->
     {{include './common/wap-nav.html'}}
 
-    <div class="api mb-20 mt-20 pd-20 bg-f2f2f2">
+    <div class="api ignore mb-20 mt-20 pd-20 bg-f2f2f2">
         <h1>接口页面--全局数据：</h1>
         <p class="mb-20">site-> {{site}} </p>
         <p class="mb-20">111-->{{site.json.siteSubtitle}}</p>

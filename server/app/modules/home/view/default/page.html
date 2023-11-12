@@ -3,8 +3,11 @@
 
 <head>
     <meta charset="utf-8">
-    <title>{{site.name}}-{{site.title}}</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1"/>
+    <meta name="description" content="{{navSub.cate.seo_description}}">
+    <meta name="keywords" content="{{navSub.cate.seo_keywords}}" />
+    <meta property="og:title" content="{{navSub.cate.seo_title}}" />
+    <meta property="og:description" content="{{site.description}}" />
+    <title>{{article.title}}-{{site.name}}</title>
     {{include './common/meta.html'}}
 </head>
 
@@ -103,7 +106,7 @@
  {{include './common/wap-nav.html'}}
 
 
-<div class="api mb-20 mt-20 pd-20 bg-f2f2f2">
+<div class="api ignore mb-20 mt-20 pd-20 bg-f2f2f2">
     <h1>接口页面--全局数据：</h1>
     <p class="mb-20">site-> {{site}} </p>
     <p class="mb-20">111-->{{site.json.siteSubtitle}}</p>

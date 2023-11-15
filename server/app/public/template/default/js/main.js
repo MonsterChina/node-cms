@@ -168,3 +168,32 @@ document.querySelectorAll("pre").forEach(function (preElement) {
    }()
 );
 
+
+// 导航加active 高亮
+;(function () {
+    function buildUrlsFromArray(fileName = "index.html") {
+      let url = location.pathname.split("/");
+      let filterUrl = url.filter((item) => item != "" && !item.endsWith(".html"));
+      const urls = [];
+      for (let i = 0; i < filterUrl.length; i++) {
+        let finalPath = "/" + filterUrl.slice(0, i + 1).join("/");
+        urls.push(finalPath + "/" + fileName);
+      }
+      return urls;
+    }
+  
+    function setActiveNav(paths) {
+      paths.forEach(function (path) {
+        var element = document.querySelector('a[href="' + path + '"]');
+        if (element) {
+          element.parentNode.classList.add("active");
+        }
+      });
+    }
+  
+    var url =
+      location.pathname == "/"
+        ? [...buildUrlsFromArray(), ...buildUrlsFromArray("page.html"), "/"]
+        : [...buildUrlsFromArray(), ...buildUrlsFromArray("page.html")];
+    setActiveNav(url);
+  })();

@@ -40,10 +40,10 @@
       <el-table-column prop="createdAt" label="发布时间">
         <template #default="scope">{{ scope.row.createdAt }}</template>
       </el-table-column>
-      <el-table-column fixed="right" width="92" label="操作">
+      <el-table-column fixed="right" width="120" label="操作">
         <template #default="scope">
           <el-button :icon="Edit" circle @click="toEdit(scope.row)"></el-button>
-          <div v-permission="'super'">
+          <div class="inline-b ml-5" v-permission="'super'">
             <el-popconfirm
               width="220"
               @confirm="handleDel(scope.row)"

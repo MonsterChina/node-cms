@@ -3,9 +3,6 @@ const dayjs = require("dayjs");
 const fs = require("fs");
 const path = require("path");
 const { template } = require("../config/index.js");
-const { mkdirsSync,filterContainChinese } = require("./helper.js");
-
-
 
 const storage = multer.diskStorage({
   //配置上传的目录
@@ -31,11 +28,11 @@ const storage = multer.diskStorage({
   },
   //修改上传后的文件名
   filename:  (req, file, cb) =>{
-    console.log('111111',file)
+    console.log('111111',file.originalname)
     //1、获取后缀名
     let extname = path.extname(file.originalname);
-    //2、根据时间戳生成文件名,过滤中文
-    cb(null, Date.now() + `_origin-${filterContainChinese(file.originalname)}`);
+    //2、根据时间戳生成文件名
+    cb(null, Date.now() + `_${file.originalname}` + extname);
   },
 });
 

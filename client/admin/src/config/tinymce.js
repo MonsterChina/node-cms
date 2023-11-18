@@ -10,7 +10,7 @@ export let tinymceSet = {
 
   branding: false, //是否禁用“Powered by TinyMCE”
   menubar: true, //顶部菜单栏显示
-  image_dimensions: false, //去除宽高属性
+  // image_dimensions: false, //去除宽高属性
   body_class: "article-content ",
   object_resizing: true, //是否允许调整图像大小.
 

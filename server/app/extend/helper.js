@@ -355,14 +355,6 @@ exports.cleanHTML = (htmlStr)=>{
 }
 
 
-exports.filterContainChinese = (str)=>{
-   // 提取数字、拼音、短横线和下划线
-   var result = str.match(/[0-9]+|[a-zA-Z]+|-|_/g);
-   // 拼接提取到的结果
-   var extracted = result.join('');
-   return extracted;
-}
-
 /**
  * @description 获取模板文件
  * @param {*} folderPath 

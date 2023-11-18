@@ -55,7 +55,7 @@
             ></el-input>
           </el-form-item>
 
-          <el-form-item prop="json" label="万能配置">
+          <el-form-item prop="json" label="其他配置">
             <el-input
               type="textarea"
               prop="textarea"

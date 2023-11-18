@@ -137,7 +137,7 @@
                       :key="index"
                       :src="item"
                       @click="selectCover(item)"
-                      fit="fit"
+                      fit="cover"
                     />
                   </div>
                 </el-drawer>

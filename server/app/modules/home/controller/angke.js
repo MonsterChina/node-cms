@@ -33,7 +33,6 @@ class HomeController {
       let navSub = helper.getChildrenId(cate || cid, category);
       // const navSubField = ["id", "name", "path"];
       // navSub.cate.children = filterFields(navSub.cate.children, navSubField);
-      console.log('navSub-->',navSub.cate.list_view)
       //获取栏目id
       const id = cid || navSub.cate.id || "";
       if (!id) {

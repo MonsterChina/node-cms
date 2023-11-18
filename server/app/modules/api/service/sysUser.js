@@ -87,8 +87,6 @@ class SysUserService {
       .select('u.username', 'u.role_id','u.status', 'u.id','r.name', 'r.value')
       .leftJoin('sys_role as r', 'u.role_id', 'r.id')
       .where('u.id', id)
-
-      console.log('--------->',data)
       return data[0];
     } catch (err) {
       throw new Error(err)

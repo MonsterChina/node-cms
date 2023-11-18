@@ -32,7 +32,6 @@ class CollectController {
       const data = await CollectService.common(taskUrl, charset);
       const $ = cheerio.load(data.toString(), { decodeEntities: false });
       const title = $(`${titleTag}`).text().trim();
-      console.log(`---------->${title}`)
       //动态清理节点
       eval(removeCode);
       $(`${articleTag}`).find('*')

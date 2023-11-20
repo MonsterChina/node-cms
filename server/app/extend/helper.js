@@ -209,14 +209,16 @@ const relativeTime = require("dayjs/plugin/relativeTime");
 dayjs.extend(relativeTime); // 相对时间
 dayjs.locale("zh-cn"); // 使用本地化语言
 
-exports.filterFields = (data, fields) => {
+exports.filterFields = (data, fields,isTime=true) => {
   if (!Array.isArray(data) || data.length === 0) {
     return [];
   }
-
   return data.map((item) => {
-    // item.createdAt = dayjs(item.createdAt).format('YYYY-MM-DD');
-    item.createdAt = dayjs(item.createdAt).fromNow().replace(" ", "");
+    if(isTime){
+      item.createdAt = dayjs(item.createdAt).format('MM-DD')
+    }else{
+      item.createdAt = dayjs(item.createdAt).fromNow().replace(" ", "");
+    }
     // item.createdAt = dayjs(item.createdAt).format('YYYY-MM-DD HH:mm:ss');
     const filteredItem = {};
     for (const field of fields) {
@@ -235,7 +237,7 @@ exports.filterFields = (data, fields) => {
  * @param {String} format YYYY-MM-DD HH:mm:ss
  * @returns 返回处理过的数组
  */
-exports.formatDay = (data, time = false, format = "YYYY-MM-DD HH:mm:ss") => {
+exports.formatDay = (data, time = true, format = "MM-DD") => {
   data.forEach((item) => {
     if (item.createdAt) {
       item.createdAt = time

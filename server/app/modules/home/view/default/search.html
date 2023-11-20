@@ -40,7 +40,8 @@
                                 <div class="flex-1">
                                     <h3 class="f-18 ellips-2 bold mt-4 c-141414">
                                         <a href="{{$value.path}}/article-{{$value.id}}.html"
-                                            title="{{$value.title}}">{{$value.title}}</a>
+                                            title="{{$value.title}}">{{@ $value.titles}}</a>
+
                                     </h3>
                                     <p class="f-12 c-bfbfbf mb-8">
                                         <i class="ico-20 ico-time pos-r t-4"></i> {{$value.createdAt}}
@@ -94,8 +95,8 @@
 
                 <!-- 广告 -->
                 <section class="ad mb-20 bg-fff">
-                    {{frag.ad.name}}
-                    {{@ frag.ad.content}}
+                 
+                    {{@ frag.ad || ''}}
                 </section>
 
 
@@ -126,6 +127,7 @@
         <p class="mb-20">list------>{{data}}</p>
     </div>
     {{include './common/js.html'}}
+    
     <!-- <script>
       function toPage(){
         let mumber = decodeURIComponent( location.pathname).match(/\d+/);

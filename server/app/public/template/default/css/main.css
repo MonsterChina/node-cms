@@ -96,7 +96,9 @@ ul>li:last-child {
 .c-bfbfbf {
     color: #bfbfbf;
 }
-
+.c-red{
+    color:#f50
+}
 html {
     scroll-behavior: smooth;
 }

@@ -250,6 +250,7 @@ class HomeController {
       let href = "/search/" + keywords;
       let pageHtml = helper.pages(page, count, pageSize, href);
       data.list.forEach((ele) => {
+        ele.titles = ele.title.replace(new RegExp(keywords, "gi"), `<span class='c-red'>${keywords}</span>`);
         ele.updatedAt = dayjs(ele.updatedAt).format("YYYY-MM-DD HH:mm:ss");
       });
       await res.render(`${template}/search.html`, {

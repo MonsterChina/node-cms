@@ -57,12 +57,15 @@ class HomeService {
       //推荐（10条）
       let recommend = await CommonService.getArticleList(0, 10, 2);
 
+      //热门（10条访问量）
+      let hot = await CommonService.getArticlePvList(10);
+
       //推荐带图片
       let recommendImgs = await CommonService.getNewImgList(10, '', 2);
       const recommendImgsField = ["id", "title", "path", "img", "description"];
       recommendImgs = filterFields(recommendImgs, recommendImgsField);
 
-      return { bannerSlide,slide, topnews, article, imgs, recommend, recommendImgs };
+      return { bannerSlide,slide, topnews, article, imgs, recommend, recommendImgs,hot };
     } catch (err) {
       console.error(err);
       throw new Error(err)
@@ -71,7 +74,7 @@ class HomeService {
 
 
   // 列表页
-  static async list(id, currentPage = 1, pageSize = 10) {
+  static async list(id, currentPage = 1, pageSize = 20) {
     try {
       // 文章列表
       const data = await CommonService.list(id, currentPage, pageSize);

@@ -81,8 +81,8 @@ class ArticleController {
   // 搜索
   static async search(req, res, next) {
     try {
-      const {cur,key,cid=0,pageSize=20} = req.query
-      const data = await ArticleService.search(key, cur, pageSize, +cid);
+      const {cur,keyword,cid=0,pageSize=20} = req.query
+      const data = await ArticleService.search(keyword, cur, pageSize, +cid);
       data.list.forEach(ele => {
         ele.updatedAt = dayjs(ele.updatedAt).format('YYYY-MM-DD HH:mm:ss');
       });

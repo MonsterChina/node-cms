@@ -36,8 +36,6 @@ class SysUserController {
     try {
       const body = req.body;
       body.password = md5(body.password + config.secret.key);
-      body.createdAt = dayjs(body.createdAt).format("YYYY-MM-DD HH:mm:ss");
-      body.updatedAt = dayjs(body.updatedAt).format("YYYY-MM-DD HH:mm:ss");
       const data = await SysUserService.create(body);
       res.json({ ...success, data: data });
     } catch (err) {
@@ -61,8 +59,6 @@ class SysUserController {
     try {
       const body = req.body;
       body.password = md5(body.password + config.secret.key);
-      body.createdAt = dayjs(body.createdAt).format("YYYY-MM-DD HH:mm:ss");
-      body.updatedAt = dayjs(body.updatedAt).format("YYYY-MM-DD HH:mm:ss");
       const data = await SysUserService.update(body);
       res.json({ ...success, data: data });
     } catch (err) {

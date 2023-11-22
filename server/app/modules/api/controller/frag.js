@@ -32,7 +32,6 @@ class FragController  {
   static async update(req, res, next) {
     try {
       const body = req.body;
-      body.createdAt = dayjs(body.createdAt).format('YYYY-MM-DD HH:mm:ss');
       const data = await FragService.update(body);
       res.json({ ...success, data: data });
     } catch (err) {

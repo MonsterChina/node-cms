@@ -11,7 +11,7 @@
  Target Server Version : 50726 (5.7.26)
  File Encoding         : 65001
 
- Date: 25/11/2023 13:02:30
+ Date: 25/11/2023 20:49:12
 */
 
 SET NAMES utf8mb4;
@@ -77,7 +77,7 @@ INSERT INTO `article_map_tag` VALUES (100, 51, 0);
 DROP TABLE IF EXISTS `category`;
 CREATE TABLE `category`  (
   `id` tinyint(2) NOT NULL AUTO_INCREMENT COMMENT '栏目id',
-  `pid` tinyint(2) NOT NULL DEFAULT 1 COMMENT '父级栏目',
+  `pid` tinyint(2) NOT NULL DEFAULT 0 COMMENT '父级栏目',
   `seo_title` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NULL DEFAULT NULL COMMENT 'seo标题',
   `seo_keywords` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NULL DEFAULT NULL COMMENT 'seo关键字',
   `seo_description` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NULL DEFAULT NULL COMMENT 'seo描述',
@@ -239,7 +239,7 @@ CREATE TABLE `login_log`  (
   `createdAt` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP COMMENT '登录时间',
   PRIMARY KEY (`id`) USING BTREE,
   INDEX `uid`(`uid`, `createdAt`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 21 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_general_ci ROW_FORMAT = DYNAMIC;
+) ENGINE = InnoDB AUTO_INCREMENT = 23 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_general_ci ROW_FORMAT = DYNAMIC;
 
 -- ----------------------------
 -- Records of login_log
@@ -264,6 +264,8 @@ INSERT INTO `login_log` VALUES (17, 1, '127.0.0.1', '2023-11-07 09:35:47');
 INSERT INTO `login_log` VALUES (18, 1, '127.0.0.1', '2023-11-08 11:22:11');
 INSERT INTO `login_log` VALUES (19, 1, '127.0.0.1', '2023-11-25 12:59:36');
 INSERT INTO `login_log` VALUES (20, 2, '127.0.0.1', '2023-11-25 13:00:00');
+INSERT INTO `login_log` VALUES (21, 1, '127.0.0.1', '2023-11-25 13:05:01');
+INSERT INTO `login_log` VALUES (22, 1, '127.0.0.1', '2023-11-25 18:04:58');
 
 -- ----------------------------
 -- Table structure for message
@@ -278,7 +280,7 @@ CREATE TABLE `message`  (
   `createdAt` datetime NULL DEFAULT CURRENT_TIMESTAMP COMMENT '创建时间',
   `updatedAt` datetime NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP COMMENT '更新时间',
   PRIMARY KEY (`id`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 7 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_general_ci COMMENT = '留言' ROW_FORMAT = DYNAMIC;
+) ENGINE = InnoDB AUTO_INCREMENT = 2 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_general_ci COMMENT = '留言' ROW_FORMAT = DYNAMIC;
 
 -- ----------------------------
 -- Records of message
@@ -344,7 +346,7 @@ CREATE TABLE `slide`  (
   `createdAt` datetime NULL DEFAULT CURRENT_TIMESTAMP COMMENT '创建时间',
   `updatedAt` datetime NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP COMMENT '更新时间',
   PRIMARY KEY (`id`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 3 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_unicode_ci ROW_FORMAT = DYNAMIC;
+) ENGINE = InnoDB AUTO_INCREMENT = 2 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_unicode_ci ROW_FORMAT = DYNAMIC;
 
 -- ----------------------------
 -- Records of slide

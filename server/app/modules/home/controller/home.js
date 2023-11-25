@@ -18,19 +18,7 @@ class HomeController {
         res.locals = { ...res.locals, ...result };
       }
 
-      //新闻
-      let news = {}
-      let top = await CommonService.getArticleListByCid(2, 3, 2);
-      news.top = formatDay(top,true,'YYYY-MM-DD');
-      news.list = await CommonService.getArticleListByCid(2, 3);
-      //论坛
-      let forum = await CommonService.getArticleListByCid(3, 8);
-      //博览会
-      let fair = await CommonService.getArticleListByCid(5, 3);
-      //论文
-      let learning = await CommonService.getArticleListByCid(12, 8);
-
-      res.render(`${template}/index.html`,{...result,news,forum,fair,learning});
+      res.render(`${template}/index.html`,result);
     } catch (error) {
       console.error(error);
       next(error);
@@ -74,16 +62,11 @@ class HomeController {
 
       //获取模板
       let view = navSub.cate.list_view || "list.html";
-
-      //运动会
-      let sports = await CommonService.getArticleListByCid(4, 8);
-
       await res.render(`${template}/${view}`, {
         position,
         navSub,
         pageHtml,
         ...data,
-        sports
       });
     } catch (error) {
       console.error(error);
@@ -145,12 +128,8 @@ class HomeController {
       //获取模板
       let view = navSub.cate.article_view;
 
-      //运动会
-      let sports = await CommonService.getArticleListByCid(4, 8);
-
       await res.render(`${template}/${view}`, {
         ...data,
-        sports,
         article,
         navSub,
         position,
@@ -228,15 +207,11 @@ class HomeController {
 
       //获取模板
       let view = navSub.cate.article_view || "page.html";
-     
-      //运动会
-      let sports = await CommonService.getArticleListByCid(4, 8);
       await res.render(`${template}/${view}`, {
         data: data.list,
         navSub,
         position,
         article,
-        sports
       });
     } catch (error) {
       console.error(error);

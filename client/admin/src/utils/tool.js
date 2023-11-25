@@ -28,9 +28,11 @@ export let addLabelValue = (arr) => {
 export let tree = (arr, pid = 0, leval = 1) => {
   let tmp = [];
   arr.forEach((item, index) => {
-    if (item.pid == pid) {
+    if (item.pid == pid && item.pid != 0) {
       item.leval = leval;
       item.children = tree(arr, item.id, leval + 1);
+      tmp.push(item);
+    } else {
       tmp.push(item);
     }
   });
@@ -117,4 +119,29 @@ export let filterBody = (str) => {
   var result = /<body[^>]*>([\s\S]*)<\/body>/.exec(str);
   if (result && result.length === 2) return result[1];
   return str;
+};
+
+/*html加码*/
+export let htmlEncode = (str) => {
+  var s = "";
+  if (str.length == 0) return "";
+  s = str.replace(/&/g, "&amp;");
+  s = s.replace(/</g, "&lt;");
+  s = s.replace(/>/g, "&gt;");
+  s = s.replace(/ /g, "&nbsp;");
+  s = s.replace(/\'/g, "&#39;");
+  s = s.replace(/\"/g, "&quot;");
+  return s;
+};
+/*html解码*/
+export let htmlDecode = (str) => {
+  var s = "";
+  if (str.length == 0) return "";
+  s = str.replace(/&amp;/g, "&");
+  s = s.replace(/&lt;/g, "<");
+  s = s.replace(/&gt;/g, ">");
+  s = s.replace(/&nbsp;/g, " ");
+  s = s.replace(/&#39;/g, "'");
+  s = s.replace(/&quot;/g, '"');
+  return s;
 };

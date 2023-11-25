@@ -7,7 +7,6 @@ import API from "../config/index.js";
 // formData.append('fileName', file.name);
 
 export let upload = (data) => {
-  console.log("data", data);
   return http({
     url: `${API.BASE_API}/api/upload`,
     method: "post",

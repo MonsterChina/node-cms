@@ -135,7 +135,6 @@ export default {
 
     // 查看字段
     handleClick(e) {
-      console.log("e--->", e);
       const { id } = e;
       this.$router.push({ name: "field-index", query: { mid: id } });
     },

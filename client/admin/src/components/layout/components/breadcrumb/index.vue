@@ -27,7 +27,7 @@ const route = useRoute();
 const breadcrumbData = ref([]);
 const getBreadcrumbData = () => {
   // const list = route.matched.filter((item) => item.name !== "index");
-  // console.log("list--->", list);
+
   breadcrumbData.value = route.matched.filter(
     (item) => item.meta && item.meta.title,
   );

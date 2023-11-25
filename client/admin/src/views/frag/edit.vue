@@ -130,8 +130,6 @@ export default {
     //新增
     async update() {
       try {
-        console.log("this.params-->", this.params);
-        alert(1);
         let res = await update(this.params);
         if (res.code == 200) {
           this.$message({

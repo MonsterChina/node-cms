@@ -303,6 +303,7 @@ import { search } from "@/api/tag.js";
 import { upload } from "@/api/upload.js";
 import Vue3Tinymce from "@jsdawn/vue3-tinymce";
 import { tinymceSet } from "@/config/tinymce.js";
+import { htmlDecode } from "@/utils/tool.js";
 
 import {
   getImgUrlFromStr,
@@ -442,7 +443,6 @@ export default {
           let data = res.data;
           let ids = treeById(this.params.cid, data);
           this.categorySelected = ids;
-
           this.findField(this.params.cid);
           let end = addLabelValue(tree(data));
           this.cateList = addLabelValue(data);
@@ -480,6 +480,7 @@ export default {
         let res = await detail(this.params.id);
         if (res.code === 200) {
           let params = res.data;
+          params.content = htmlDecode(params.content);
           params.attr = params.attr ? params.attr.split(",") : [];
           params.sub_cid = params.sub_cid
             ? params.sub_cid.split(",").map((i) => Number(i))

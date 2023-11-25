@@ -87,7 +87,6 @@ export default {
       try {
         let res = await list(this.cur);
         if (res.code === 200) {
-          console.log("222--->", res);
           this.role = res.data.list;
         }
       } catch (error) {
@@ -101,7 +100,6 @@ export default {
         let res = await detail(this.params.id);
         if (res.code === 200) {
           let params = res.data;
-          console.log("11111--->", params);
           params.role_id = parseInt(params.role_id);
           params.status = params.status.toString();
           this.params = params;

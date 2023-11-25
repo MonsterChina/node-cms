@@ -51,7 +51,6 @@ export default {
         let res = await find();
         if (res.code == 200) {
           const { id, content } = res.data;
-          console.log("content---", JSON.parse(content));
           this.params = {
             id,
             content: content,

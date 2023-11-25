@@ -85,7 +85,6 @@ export default {
       try {
         let res = await list(this.cur);
         if (res.code === 200) {
-          console.log("222--->", res);
           this.role = res.data.list;
         }
       } catch (error) {

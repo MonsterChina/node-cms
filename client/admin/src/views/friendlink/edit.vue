@@ -68,7 +68,6 @@ export default {
         let res = await detail(this.params.id);
         if (res.code === 200) {
           this.params = res.data;
-          this.params.createdAt = new Date(this.params.createdAt);
         }
       } catch (error) {
         console.error(error);

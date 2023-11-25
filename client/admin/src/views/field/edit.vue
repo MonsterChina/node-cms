@@ -128,7 +128,6 @@ export default {
   computed: {},
   async mounted() {},
   async created() {
-    console.log("this.$route.query", this.$route.query);
     const { model_name, fid, mid, table_name } = this.$route.query;
     this.params.id = fid;
     this.params.model_id = mid;

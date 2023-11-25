@@ -135,7 +135,6 @@ export default defineComponent({
       this.$refs.loginForm.validate((valid) => {
         if (valid) {
           // 验证码验证逻辑
-          console.log();
           if (
             this.loginForm.captcha.toLowerCase() !==
             getCookie("captcha").toLowerCase()

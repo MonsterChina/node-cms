@@ -109,7 +109,6 @@ export default defineComponent({
       // }
     },
     switchCollapse(key, keyPath) {
-      console.log(key, keyPath);
       this.isCollapse = !this.isCollapse;
       if (document.body.clientWidth <= 920) {
         this.drawer = !this.drawer;

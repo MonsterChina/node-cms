@@ -225,7 +225,6 @@ export default {
     async hasArticle() {
       try {
         let res = await search(1, "", this.id);
-        console.log("has1111111", res);
         if (res.code == 200) {
           this.modelFlag = res.data.count > 0 ? true : false;
         }

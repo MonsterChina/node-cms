@@ -8,6 +8,7 @@ const storage = multer.diskStorage({
   //配置上传的目录
   destination: async function (req, file, cb){
     const {config:{template}} = req.app.locals;
+    console.log('--------->',template);
     // 生成格式化日期
     let date = dayjs(Date.now()).format("YYYY/MM/DD");
     // 获取目录路径

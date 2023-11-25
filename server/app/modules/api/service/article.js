@@ -298,7 +298,7 @@ class ArticleService  {
       const offset = parseInt((cur - 1) * pageSize);
       let sql_list = "";
       const listStart = `SELECT a.id,a.title,a.attr,a.tag_id,a.description,a.cid,a.pv,a.createdAt,a.status,c.name,c.path FROM ${this.model} a LEFT JOIN category c ON a.cid=c.id WHERE a.title LIKE  \'%${key}%\' `;
-      const listEnd = `ORDER BY a.createdAt desc LIMIT ${offset},${parseInt(
+      const listEnd = `ORDER BY a.id desc LIMIT ${offset},${parseInt(
         pageSize
       )}`;
       if (cid === 0) {
@@ -306,7 +306,6 @@ class ArticleService  {
       } else {
         sql_list = listStart + `AND c.id=? ` + listEnd;
       }
-
 
       const list = cid
         ? await knex.raw(sql_list, [cid])

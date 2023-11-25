@@ -107,6 +107,8 @@ class HomeController {
         "YYYY-MM-DD HH:mm:ss"
       );
 
+      article.content = helper.htmlDecode(article.content);
+
       // 当前栏目和当前栏目下所有子导航
       const navSub = helper.getChildrenId(cid, category);
 

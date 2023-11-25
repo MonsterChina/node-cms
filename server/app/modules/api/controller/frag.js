@@ -9,7 +9,6 @@ class FragController  {
  static async create(req, res, next) {
     try {
       const body = req.body;
-      body.createdAt = dayjs(body.createdAt).format('YYYY-MM-DD HH:mm:ss');
       const data = await FragService.create(body);
       res.json({ ...success, data: data });
     } catch (err) {

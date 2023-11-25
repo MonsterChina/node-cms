@@ -19,15 +19,6 @@
         <el-input v-model="params.sort"></el-input>
       </el-form-item>
 
-      <el-form-item label="发布时间">
-        <el-date-picker
-          v-model="params.createdAt"
-          type="datetime"
-          placeholder="选择日期时间"
-        >
-        </el-date-picker>
-      </el-form-item>
-
       <el-form-item>
         <el-button type="primary" @click="submit('params')">保存</el-button>
       </el-form-item>
@@ -46,7 +37,6 @@ export default {
         title: "",
         link: "",
         sort: 0,
-        createdAt: new Date(),
       },
 
       paramsRules: {

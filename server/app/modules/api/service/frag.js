@@ -73,7 +73,9 @@ class FragService  {
   // 查
   static async detail(id) {
     try {
-      const data = await knex(FragService.model).where('id', '=', id).select()
+      const data = await knex.select(['id', 'name', 'mark','content','type'])
+      .from(FragService.model)
+      .where('id', '=', id);
       return data[0];
     } catch (err) {
       console.error(err)

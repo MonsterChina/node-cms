@@ -61,7 +61,7 @@ class HomeService {
       let hot = await CommonService.getArticlePvList(10);
 
       //推荐带图片
-      let recommendImgs = await CommonService.getNewImgList(10, '', 2);
+      let recommendImgs = await CommonService.getNewImgList(5, '', 2);
       const recommendImgsField = ["id", "title", "path", "img", "description"];
       recommendImgs = filterFields(recommendImgs, recommendImgsField);
 
@@ -86,7 +86,7 @@ class HomeService {
       const hotField = ["id", "title", "path"];
       hot = filterFields(hot, hotField);
       // 本类图文
-      const imgs = await CommonService.getNewImgList(10, id);
+      const imgs = await CommonService.getNewImgList(5, id);
       return { data, recommend, hot, imgs };
     } catch (err) {
       console.error(err);
@@ -105,7 +105,7 @@ class HomeService {
       const hotField = ["id", "title", "path"];
       hot = filterFields(hot, hotField);
       // 本类图文
-      const imgs = await CommonService.getNewImgList(10, id);
+      const imgs = await CommonService.getNewImgList(5, id);
       return { news, hot, imgs };
     } catch (err) {
       console.error(err);

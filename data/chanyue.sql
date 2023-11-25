@@ -31,7 +31,7 @@ CREATE TABLE `admin` (
 /*Data for the table `admin` */
 
 insert  into `admin`(`id`,`username`,`password`,`createdAt`,`updatedAt`,`status`) values 
-(1,'chanyue','1d73632ebe6497078f6744bf79bd2861','2020-08-15 09:19:40','2020-08-15 09:19:40',1);
+(1,'yanyutao','1d73632ebe6497078f6744bf79bd2861','2020-08-15 09:19:40','2020-08-15 09:19:40',1);
 
 /*Table structure for table `article` */
 

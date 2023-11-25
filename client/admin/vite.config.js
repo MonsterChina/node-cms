@@ -25,7 +25,7 @@ export default ({ mode }) => {
         // additionalLegacyPolyfills: ["regenerator-runtime/runtime"], // 面向IE11时需要此插件
       }),
       copy({
-        targets: [{ src: "dist/*", dest: "../../server/app/public/member" }],
+        targets: [{ src: "dist/*", dest: "../../server/app/public/admin" }],
       }),
       VueSetupExtend(),
       AutoImport({

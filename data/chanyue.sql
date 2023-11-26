@@ -11,7 +11,7 @@
  Target Server Version : 50726 (5.7.26)
  File Encoding         : 65001
 
- Date: 25/11/2023 20:49:12
+ Date: 27/11/2023 00:02:00
 */
 
 SET NAMES utf8mb4;
@@ -239,7 +239,7 @@ CREATE TABLE `login_log`  (
   `createdAt` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP COMMENT '登录时间',
   PRIMARY KEY (`id`) USING BTREE,
   INDEX `uid`(`uid`, `createdAt`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 23 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_general_ci ROW_FORMAT = DYNAMIC;
+) ENGINE = InnoDB AUTO_INCREMENT = 24 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_general_ci ROW_FORMAT = DYNAMIC;
 
 -- ----------------------------
 -- Records of login_log
@@ -266,6 +266,7 @@ INSERT INTO `login_log` VALUES (19, 1, '127.0.0.1', '2023-11-25 12:59:36');
 INSERT INTO `login_log` VALUES (20, 2, '127.0.0.1', '2023-11-25 13:00:00');
 INSERT INTO `login_log` VALUES (21, 1, '127.0.0.1', '2023-11-25 13:05:01');
 INSERT INTO `login_log` VALUES (22, 1, '127.0.0.1', '2023-11-25 18:04:58');
+INSERT INTO `login_log` VALUES (23, 1, '127.0.0.1', '2023-11-26 11:56:25');
 
 -- ----------------------------
 -- Table structure for message
@@ -331,7 +332,7 @@ CREATE TABLE `site`  (
 -- ----------------------------
 -- Records of site
 -- ----------------------------
-INSERT INTO `site` VALUES (1, '前端小栈', 'www.angyi.com', '867528315@qq.com', NULL, NULL, '', '{\"siteSubtitle\":\"• 禅悦\"}', 'chanyue-cms禅悦内容管理系统', 'chanyue-cms|禅悦cms|nodejs|express|mysql', '禅悦CMS是一款基于Express和MySQL研发的高质量实用型CMS管理系统。它具备多种类型网站开发，易扩展、基于模块化和插件化开发模式，适用于商用企业级程序开发。', NULL, NULL, NULL, NULL, '2023-11-07 13:40:47');
+INSERT INTO `site` VALUES (1, '前端小栈', 'www.angyi.com', '867528315@qq.com', NULL, NULL, '', '禅悦', 'chanyue-cms禅悦内容管理系统', 'chanyue-cms|禅悦cms|nodejs|express|mysql', '禅悦CMS是一款基于Express和MySQL研发的高质量实用型CMS管理系统。它具备多种类型网站开发，易扩展、基于模块化和插件化开发模式，适用于商用企业级程序开发。', NULL, NULL, NULL, NULL, '2023-11-26 11:56:32');
 
 -- ----------------------------
 -- Table structure for slide

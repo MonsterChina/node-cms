@@ -58,7 +58,7 @@ class CategoryService  {
     try {
       const data = await knex(CategoryService.model)
         .where("id", "=", id)
-        .select();
+        .select(['id','pid','seo_title','seo_keywords','seo_description','name','pinyin','path','description','type','url','sort','target','status','mid','list_view','article_view']);
       return data[0];
     } catch (err) {
       console.error(err)

@@ -1,3 +1,4 @@
+const { helper: { filterFields, formatDay } } = require('../../config.js');
 const { knex } = require("../../config.js");
 
 class CommonService {
@@ -21,7 +22,7 @@ class CommonService {
         "seo_keywords",
         "seo_description",
         "type",
-      ]);
+      ]).orderBy("sort", "ASC");
       return res;
     } catch (err) {
       console.error(err);
@@ -141,11 +142,13 @@ class CommonService {
   }
 
   /**
+   * @param [1,2,3] 栏目id，指定栏目id进行返回
    * @description 返回所有的根栏目
    * @returns {Array}
    */
-  static async getAllParentCategory() {
+  static async getAllParentCategory(idArray=[]) {
     try {
+      console.log('idArray---->',idArray)
       const result = await knex("category")
         .select([
           "id",
@@ -159,13 +162,54 @@ class CommonService {
           "type",
         ])
         .where("pid", 0)
-        .where("type", 0);
+        .where("type", 0)
+        .where((builder) => (!idArray.length || builder.whereIn("id", idArray)))
+        .orderBy("sort", "ASC");
       return result;
     } catch (err) {
       console.error(err);
       throw new Error(err);
     }
   }
+
+  /**
+   * @description 获取所需多个栏目文章
+   * @param {Array} cids 栏目id
+   * @returns {Array}
+   */
+   static async getArticleListByCids(cids=[]){
+    try {
+        //主栏目-图-文
+        let cate = await CommonService.getAllParentCategory(cids);
+        const cateField = ["id", "name", "path", "pinyin"];
+        cate = filterFields(cate, cateField);
+        console.log('111111111111',cate)
+        let article = [];
+        for (let i = 0, item; i < cate.length; i++) {
+          let item = cate[i];
+          let tags = [];
+          // 推荐
+          let top = await CommonService.getArticleListByCid(item.id, 1, 2);
+          // 最新
+          let list = await CommonService.getArticleListByCid(item.id, 4);
+          list = formatDay(list);
+
+          // tag列表
+          for (let j = 0, sub; j < list.length; j++) {
+            sub = list[j];
+            let res = await CommonService.getTagsFromArticleByAid(sub.id);
+            tags.push(...res);
+          }
+          article.push({ top, list, tags, category: item })
+        }
+        
+        return article;
+
+    } catch (error) {
+      console.error(err);
+      throw new Error(err);
+    }
+   }
 
   /**
    * @description 浏览pv排行(全局|指定栏目)

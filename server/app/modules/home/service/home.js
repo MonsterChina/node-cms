@@ -27,27 +27,27 @@ class HomeService {
       let topnews = { top: top[0], news };
 
       //主栏目-图-文
-      let cate = await CommonService.getAllParentCategory();
-      const cateField = ["id", "name", "path", "pinyin"];
-      cate = filterFields(cate, cateField);
-      let article = [];
-      for (let i = 0, item; i < cate.length; i++) {
-        let item = cate[i];
-        let tags = [];
-        // 推荐
-        let top = await CommonService.getArticleListByCid(item.id, 1, 2);
-        // 最新
-        let list = await CommonService.getArticleListByCid(item.id, 4);
-        list = formatDay(list);
+      // let cate = await CommonService.getAllParentCategory();
+      // const cateField = ["id", "name", "path", "pinyin"];
+      // cate = filterFields(cate, cateField);
+      // let article = [];
+      // for (let i = 0, item; i < cate.length; i++) {
+      //   let item = cate[i];
+      //   let tags = [];
+      //   // 推荐
+      //   let top = await CommonService.getArticleListByCid(item.id, 1, 2);
+      //   // 最新
+      //   let list = await CommonService.getArticleListByCid(item.id, 4);
+      //   list = formatDay(list);
 
-        // tag列表
-        for (let j = 0, sub; j < list.length; j++) {
-          sub = list[j];
-          let res = await CommonService.getTagsFromArticleByAid(sub.id);
-          tags.push(...res);
-        }
-        article.push({ top, list, tags, category: item })
-      }
+      //   // tag列表
+      //   for (let j = 0, sub; j < list.length; j++) {
+      //     sub = list[j];
+      //     let res = await CommonService.getTagsFromArticleByAid(sub.id);
+      //     tags.push(...res);
+      //   }
+      //   article.push({ top, list, tags, category: item })
+      // }
 
       //图片列表(10条)
       let imgs = await CommonService.getNewImgList(8);
@@ -64,7 +64,7 @@ class HomeService {
       let recommendImgs = await CommonService.getNewImgList(5, '', 2);
       const recommendImgsField = ["id", "title", "path", "img", "description"];
       recommendImgs = filterFields(recommendImgs, recommendImgsField);
-      return { bannerSlide,slide, topnews, article, imgs, recommend, recommendImgs,hot };
+      return { bannerSlide,slide, topnews,  imgs, recommend, recommendImgs,hot };
     } catch (err) {
       console.error(err);
       throw new Error(err)

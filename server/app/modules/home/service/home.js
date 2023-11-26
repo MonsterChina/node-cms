@@ -64,7 +64,6 @@ class HomeService {
       let recommendImgs = await CommonService.getNewImgList(5, '', 2);
       const recommendImgsField = ["id", "title", "path", "img", "description"];
       recommendImgs = filterFields(recommendImgs, recommendImgsField);
-
       return { bannerSlide,slide, topnews, article, imgs, recommend, recommendImgs,hot };
     } catch (err) {
       console.error(err);

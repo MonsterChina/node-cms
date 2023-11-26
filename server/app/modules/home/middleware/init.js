@@ -18,7 +18,7 @@ module.exports = () => {
       }
       // 站点
       const site = await SiteService.find();
-      site.json = site.json ? JSON.parse(site.json) : {};
+      site.json = site.json || "";
       // 分类
       const category = await CommonService.category();
       //导航

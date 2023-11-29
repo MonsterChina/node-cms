@@ -47,7 +47,7 @@ class FieldService {
 
     } catch (err) {
       console.error(err)
-      throw new Error(err)
+      return err;
     }
 
   }
@@ -74,7 +74,7 @@ class FieldService {
       });
     } catch (err) {
       console.error(err)
-      throw new Error(err)
+      return err;
     }
   }
 
@@ -87,7 +87,7 @@ class FieldService {
       return result ? 'success' : 'fail';
     } catch (err) {
       console.error(err)
-      throw new Error(err)
+      return err;
     }
   }
 
@@ -99,7 +99,7 @@ class FieldService {
       return result[0];
     } catch (err) {
       console.error(err)
-      throw new Error(err)
+      return err;
     }
   }
 
@@ -140,7 +140,7 @@ class FieldService {
       return data[0];
     } catch (err) {
       console.error(err)
-      throw new Error(err)
+      return err;
     }
   }
 

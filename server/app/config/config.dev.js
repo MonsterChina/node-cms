@@ -10,12 +10,12 @@ config.mysql = {
   port: "3306",
   user: "root",
   password: "123456",
-  database: "hongkongdaily",
+  database: "chanyue",
 };
 
 
 //sql debug
-config.debug = true;
+config.debug = false;
 config.env = "dev";
 
 module.exports = config;

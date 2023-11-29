@@ -10,7 +10,7 @@ class FriendlinkService  {
       return result ? "success" : "fail";
     } catch (err) {
       console.error(err)
-      throw new Error(err)
+      return err;
     }
   }
 
@@ -23,7 +23,7 @@ class FriendlinkService  {
       return res ? "success" : "fail";
     } catch (err) {
       console.error(err)
-      throw new Error(err)
+      return err;
     }
   }
 
@@ -38,7 +38,7 @@ class FriendlinkService  {
       return result ? "success" : "fail";
     } catch (err) {
       console.error(err)
-      throw new Error(err)
+      return err;
     }
   }
 
@@ -65,7 +65,7 @@ class FriendlinkService  {
       };
     } catch (err) {
       console.error(err)
-      throw new Error(err)
+      return err;
     }
   }
 
@@ -78,7 +78,7 @@ class FriendlinkService  {
       return data[0];
     } catch (err) {
       console.error(err)
-      throw new Error(err)
+      return err;
     }
   }
 
@@ -114,7 +114,7 @@ class FriendlinkService  {
       };
     } catch (err) {
       console.error(err)
-      throw new Error(err)
+      return err;
     }
   }
 }

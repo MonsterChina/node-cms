@@ -13,7 +13,7 @@ class SysRoleService {
       return result ? "success" : "fail";
     } catch (err) {
       console.error(err)
-      throw new Error(err)
+      return err;
     }
   }
 
@@ -26,7 +26,7 @@ class SysRoleService {
       return result ? "success" : "fail";
     } catch (err) {
       console.error(err)
-      throw new Error(err)
+      return err;
     }
   }
 
@@ -41,7 +41,7 @@ class SysRoleService {
       return result ? "success" : "fail";
     } catch (err) {
       console.error(err)
-      throw new Error(err)
+      return err;
     }
   }
 
@@ -67,7 +67,7 @@ class SysRoleService {
       };
     } catch (err) {
       console.error(err)
-      throw new Error(err)
+      return err;
     }
   }
 
@@ -80,7 +80,7 @@ class SysRoleService {
       return data[0];
     } catch (err) {
       console.error(err)
-      throw new Error(err)
+      return err;
     }
   }
 

@@ -1,5 +1,8 @@
 const BaseService = require("./base");
-const {knex} = require('../../config.js');
+const {knex,helper: {success, fail }} = require('../../config.js');
+
+
+
 class SysAppService  {
   static model = "sys_app";
   
@@ -8,8 +11,8 @@ class SysAppService  {
       let res = await BaseService.all(SysAppService.model);
       return res[0];
     } catch (err) {
-      console.error(err)
-      throw new Error(err)
+      console.error(err) 
+      return err;
     }
   }
 
@@ -20,8 +23,8 @@ class SysAppService  {
       .limit(1);
       return res[0];
     } catch (err) {
-      console.error(err)
-      throw new Error(err)
+      console.error('1111---->',err)
+      return err;
     }
   }
 
@@ -40,7 +43,7 @@ class SysAppService  {
         return result ? "success" : "fail";
     } catch (err) {
       console.error(err)
-      throw new Error(err)
+      return err;
     }
   }
 }

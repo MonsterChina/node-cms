@@ -16,7 +16,7 @@ class SysUserService {
       return res[0];
     } catch (err) {
       console.error(err)
-      throw new Error(err)
+      return err;
     }
   }
 
@@ -27,7 +27,7 @@ class SysUserService {
       return result ? 'success' : 'fail';
     } catch (err) {
       console.error(err)
-      throw new Error(err)
+      return err;
     }
   }
 
@@ -38,7 +38,7 @@ class SysUserService {
       return result ? 'success' : 'fail';
     } catch (err) {
       console.error(err)
-      throw new Error(err)
+      return err;
     }
   }
 
@@ -51,7 +51,7 @@ class SysUserService {
       return result ? 'success' : 'fail';
     } catch (err) {
       console.error(err)
-      throw new Error(err)
+      return err;
     }
   }
 
@@ -76,7 +76,7 @@ class SysUserService {
       };
     } catch (err) {
       console.error(err);
-      throw new Error(err)
+      return err;
     }
   }
 
@@ -89,7 +89,7 @@ class SysUserService {
       .where('u.id', id)
       return data[0];
     } catch (err) {
-      throw new Error(err)
+      return err;
     }
   }
 
@@ -111,7 +111,7 @@ class SysUserService {
         list: list[0],
       };
     } catch (err) {
-      throw new Error(err)
+      return err;
     }
   }
 

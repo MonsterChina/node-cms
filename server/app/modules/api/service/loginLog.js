@@ -10,7 +10,7 @@ class LoginLogService {
       return result ? 'success' : 'fail';
     } catch (err) {
       console.error(err)
-      throw new Error(err)
+      return err;
     }
   }
 
@@ -25,7 +25,7 @@ class LoginLogService {
       return result ? 'success' : 'fail';
     } catch (err) {
       console.error(err)
-      throw new Error(err)
+      return err;
     }
   }
 
@@ -51,7 +51,7 @@ class LoginLogService {
       };
     } catch (err) {
       console.error(err);
-      throw new Error(err)
+      return err;
     }
   }
 }

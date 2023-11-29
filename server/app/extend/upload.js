@@ -7,8 +7,9 @@ const { template } = require("../config/index.js");
 const storage = multer.diskStorage({
   //配置上传的目录
   destination: async function (req, file, cb){
+   
     const {config:{template}} = req.app.locals;
-    console.log('--------->',template);
+   
     // 生成格式化日期
     let date = dayjs(Date.now()).format("YYYY/MM/DD");
     // 获取目录路径
@@ -38,8 +39,8 @@ const storage = multer.diskStorage({
 
 const upload = multer({ storage: storage });
 
-const uploads = multer({ dest: path.join(`app/public/uploads/${template}`) }); //本地服务文件夹
+//const uploads = multer({ dest: path.join(`app/public/uploads/${template}`) }); //本地服务文件夹
 module.exports = {
   upload,
-  uploads,
+  //uploads,
 };

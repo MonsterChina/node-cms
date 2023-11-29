@@ -20,7 +20,7 @@ class CollectService {
       })
       return charset == 1 ? data : iconv.decode(data, 'gb2312')
     } catch (err) {
-      throw new Error(err)
+      return err;
     }
   }
 
@@ -31,7 +31,7 @@ class CollectService {
       return result ? 'success' : 'fail';
     } catch (err) {
       console.error(err)
-      throw new Error(err)
+      return err;
     }
   }
 
@@ -42,7 +42,7 @@ class CollectService {
       return result ? 'success' : 'fail';
     } catch (err) {
       console.error(err)
-      throw new Error(err)
+      return err;
     }
   }
 
@@ -55,7 +55,7 @@ class CollectService {
       return result ? 'success' : 'fail';
     } catch (err) {
       console.error(err)
-      throw new Error(err)
+      return err;
     }
   }
 
@@ -89,7 +89,7 @@ class CollectService {
       };
     } catch (err) {
       console.error(err);
-      throw new Error(err)
+      return err;
     }
   }
 
@@ -104,7 +104,7 @@ class CollectService {
       'titleTag','articleTag','charset','clearRegCode','status','cid'])
       return data[0];
     } catch (err) {
-      throw new Error(err)
+      return err;
     }
   }
 
@@ -126,7 +126,7 @@ class CollectService {
         list: list[0],
       };
     } catch (err) {
-      throw new Error(err)
+      return err;
     }
   }
 

@@ -67,7 +67,7 @@ class HomeService {
       return { bannerSlide,slide, topnews,  imgs, recommend, recommendImgs,hot };
     } catch (err) {
       console.error(err);
-      throw new Error(err)
+      return err;
     }
   }
 
@@ -89,7 +89,7 @@ class HomeService {
       return { data, recommend, hot, imgs };
     } catch (err) {
       console.error(err);
-      throw new Error(err)
+      return err;
     }
   }
 
@@ -108,7 +108,7 @@ class HomeService {
       return { news, hot, imgs };
     } catch (err) {
       console.error(err);
-      throw new Error(err)
+      return err;
     }
   }
 
@@ -121,7 +121,7 @@ class HomeService {
       return data;
     } catch (err) {
       console.error(err);
-      throw new Error(err)
+      return err;
     }
   }
 
@@ -134,7 +134,7 @@ class HomeService {
       return data;
     } catch (err) {
       console.error(err);
-      throw new Error(err)
+      return err;
     }
   }
 }

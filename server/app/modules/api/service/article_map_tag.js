@@ -12,7 +12,7 @@ class ArticleMapTagService{
       return result ? "success" : "fail";
     } catch (err) {
       console.error(err)
-      throw new Error(err)
+      return err;
     }
   }
 
@@ -23,7 +23,7 @@ class ArticleMapTagService{
       return result ? "success" : "fail";
     } catch (err) {
       console.error(err)
-      throw new Error(err)
+      return err;
     }
   }
 
@@ -36,7 +36,7 @@ class ArticleMapTagService{
       return result ? "success" : "fail";
     } catch (err) {
       console.error(err)
-      throw new Error(err)
+      return err;
     }
   }
 
@@ -61,7 +61,7 @@ class ArticleMapTagService{
       };
     } catch (err) {
       console.error(err)
-      throw new Error(err)
+      return err;
     }
   }
 
@@ -72,7 +72,7 @@ class ArticleMapTagService{
       return data[0];
     } catch (err) {
       console.error(err)
-      throw new Error(err)
+      return err;
     }
   }
 
@@ -110,7 +110,7 @@ class ArticleMapTagService{
       };
     } catch (err) {
       console.error(err)
-      throw new Error(err)
+      return err;
     }
   }
 }

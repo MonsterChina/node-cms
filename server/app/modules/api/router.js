@@ -11,6 +11,7 @@ const LoginLogController = require('./controller/loginLog.js');
 const CategoryController = require('./controller/category.js');
 const ArticleController = require('./controller/article.js');
 const CollectController = require('./controller/collect.js')
+const GatherController = require('./controller/gather.js')
 const ModelController = require('./controller/model.js');
 const FieldController = require('./controller/field.js');
 const FragController = require('./controller/frag.js');
@@ -68,14 +69,14 @@ router.post('/article/update', auth(), ArticleController.update);
 //上传
 (async function() {
     let config = await SysAppService.config();
-    const {uploadWay} = config;
+    const {uploadWay='1'} = config;
     let uploadConfig = {
         '1': {
             type: upload.any(),
             method: ArticleController.upload,
         },
         '2': {
-            type: uploads.single("file"),
+            type: upload.any(),
             method: QiniuController.upload,
         },
     }[uploadWay];
@@ -139,7 +140,7 @@ router.post('/slide/create', auth(), SlideController.create);
 router.get('/slide/delete', auth(), SlideController.delete);
 router.post('/slide/update', auth(), SlideController.update);
 
-//采集
+//页面采集
 router.post('/collect/getPages', CollectController.getPages);
 router.post('/collect/getArticle', CollectController.getArticle);
 router.get('/collect/list', CollectController.list);
@@ -148,6 +149,15 @@ router.get('/collect/detail', CollectController.detail);
 router.post('/collect/create', auth(), CollectController.create);
 router.get('/collect/delete', auth(), CollectController.delete);
 router.post('/collect/update', auth(), CollectController.update);
+
+//接口采集
+router.get('/gather/getArticle', GatherController.getArticle);
+router.get('/gather/list', GatherController.list);
+router.get('/gather/search', GatherController.search);
+router.get('/gather/detail', GatherController.detail);
+router.post('/gather/create', auth(), GatherController.create);
+router.get('/gather/delete', auth(), GatherController.delete);
+router.post('/gather/update', auth(), GatherController.update);
 
 // 七牛云相关
 router.get('/qiniu/getUploadToken', QiniuController.getUploadToken);

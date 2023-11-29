@@ -75,7 +75,7 @@ class ArticleService  {
       });
     }catch (err) {
       console.error(err)
-      throw new Error(err)
+      return err;
     }
   }
 
@@ -142,7 +142,7 @@ class ArticleService  {
       });
     } catch (err) {
       console.error(err)
-      throw new Error(err)
+      return err;
     }
   }
 
@@ -188,7 +188,7 @@ class ArticleService  {
       });
     } catch (err) {
       console.error(err)
-      throw new Error(err)
+      return err;
     }
   }
 
@@ -239,7 +239,7 @@ class ArticleService  {
       };
     } catch (err) {
       console.error(err)
-      throw new Error(err)
+      return err;
     }
   }
 
@@ -274,7 +274,7 @@ class ArticleService  {
       return { ...data[0], field: field[0] || {} };
     } catch (err) {
       console.error(err)
-      throw new Error(err)
+      return err;
     }
   }
 
@@ -319,7 +319,7 @@ class ArticleService  {
       };
     } catch (err) {
       console.error(err)
-      throw new Error(err)
+      return err;
     }
   }
 
@@ -333,7 +333,7 @@ class ArticleService  {
       return result[0].affectedRows ? "success" : "fail";
     } catch (err) {
       console.error(err)
-      throw new Error(err)
+      return err;
     }
   }
 
@@ -347,7 +347,7 @@ class ArticleService  {
       return result[0][0];
     } catch (err) {
       console.error(err)
-      throw new Error(err)
+      return err;
     }
   }
 
@@ -361,7 +361,7 @@ class ArticleService  {
       return result[0][0];
     } catch (err) {
       console.error(err)
-      throw new Error(err)
+      return err;
     }
   }
 
@@ -381,7 +381,7 @@ class ArticleService  {
       };
     } catch (err) {
       console.error(err)
-      throw new Error(err)
+      return err;
     }
   }
 
@@ -442,7 +442,7 @@ class ArticleService  {
       };
     } catch (err) {
       console.error(err)
-      throw new Error(err)
+      return err;
     }
   }
 }

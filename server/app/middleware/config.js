@@ -7,6 +7,12 @@ const helper = require("../extend/helper.js");
 module.exports = async function (app) {
   try {
     let sysconfig = await SysAppService.find();
+    if(sysconfig.errno){
+      app.use((req,res,next)=>{
+        next(sysconfig)
+      })
+    }
+   
     //静态资源缓存
     sysconfig.maxAge = sysconfig.maxAge == "1" ? "1d" : 0;
     app.locals.config = { ...config, ...sysconfig };

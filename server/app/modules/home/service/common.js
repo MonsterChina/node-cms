@@ -26,7 +26,7 @@ class CommonService {
       return res;
     } catch (err) {
       console.error(err);
-      throw new Error(err);
+      return err;;
     }
   }
 
@@ -69,7 +69,7 @@ class CommonService {
       return result;
     } catch (err) {
       console.error(err);
-      throw new Error(err);
+      return err;;
     }
   }
 
@@ -115,7 +115,7 @@ class CommonService {
       return result;
     } catch (err) {
       console.error(`cid->${cid} attr-> ${attr} len->${len}`, err);
-      throw new Error(err);
+      return err;;
     }
   }
 
@@ -137,7 +137,7 @@ class CommonService {
       return result;
     } catch (err) {
       console.error(`aid->${aid}`, err);
-      throw new Error(err);
+      return err;;
     }
   }
 
@@ -148,7 +148,6 @@ class CommonService {
    */
   static async getAllParentCategory(idArray=[]) {
     try {
-      console.log('idArray---->',idArray)
       const result = await knex("category")
         .select([
           "id",
@@ -168,7 +167,7 @@ class CommonService {
       return result;
     } catch (err) {
       console.error(err);
-      throw new Error(err);
+      return err;;
     }
   }
 
@@ -207,7 +206,7 @@ class CommonService {
 
     } catch (error) {
       console.error(err);
-      throw new Error(err);
+      return err;;
     }
    }
 
@@ -251,7 +250,7 @@ class CommonService {
       return result;
     } catch (err) {
       console.error(`id->${id} len->${len}`, err);
-      throw new Error(err);
+      return err;;
     }
   }
 
@@ -300,7 +299,7 @@ class CommonService {
       return result;
     } catch (err) {
       console.error(`id->${id} len->${len}`, err);
-      throw new Error(err);
+      return err;;
     }
   }
 
@@ -363,7 +362,7 @@ class CommonService {
       };
     } catch (err) {
       console.error(`id->${id} current->${current} pageSize->${pageSize}`, err);
-      throw new Error(err);
+      return err;;
     }
   }
 
@@ -429,7 +428,7 @@ class CommonService {
         `id->${path} current->${current} pageSize->${pageSize}`,
         err
       );
-      throw new Error(err);
+      return err;;
     }
   }
 
@@ -451,7 +450,7 @@ class CommonService {
       return tags;
     } catch (err) {
       console.error(err);
-      throw new Error(err);
+      return err;;
     }
   }
 
@@ -469,7 +468,7 @@ class CommonService {
       return list;
     } catch (err) {
       console.error(err);
-      throw new Error(err);
+      return err;;
     }
   }
 }

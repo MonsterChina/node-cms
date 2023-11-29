@@ -10,7 +10,7 @@ class SiteService  {
       return res[0];
     } catch (err) {
       console.error(err)
-      throw new Error(err)
+      return err;
     }
   }
 
@@ -31,7 +31,7 @@ class SiteService  {
       }
     } catch (err) {
       console.error(err)
-      throw new Error(err)
+      return err;
     }
   }
 
@@ -51,7 +51,7 @@ class SiteService  {
       }
     } catch (err) {
       console.error(err)
-      throw new Error(err)
+      return err;
     }
   }
 }

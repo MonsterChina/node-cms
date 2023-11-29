@@ -10,7 +10,7 @@ class MenuService  {
       return res[0];
     } catch (err) {
       console.error(err)
-      throw new Error(err)
+      return err;
     }
   }
 
@@ -25,7 +25,7 @@ class MenuService  {
         return result ? "success" : "fail";
     } catch (err) {
       console.error(err)
-      throw new Error(err)
+      return err;
     }
   }
 

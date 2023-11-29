@@ -268,6 +268,36 @@ export const asyncRoutes = [
           role: ["super"],
         },
       },
+      {
+        path: "/gather",
+        name: "gather-index",
+        component: "@/views/gather/index.vue",
+        meta: {
+          title: "接口采集",
+          isShow: true,
+          role: ["super"],
+        },
+      },
+      {
+        path: "/gather/add",
+        name: "gather-add",
+        component: "@/views/gather/add.vue",
+        meta: {
+          title: "接口采集-新增",
+          isShow: false,
+          role: ["super"],
+        },
+      },
+      {
+        path: "/gather/edit/:id",
+        name: "gather-edit",
+        component: "@/views/gather/edit.vue",
+        meta: {
+          title: "接口采集-更新",
+          isShow: false,
+          role: ["super"],
+        },
+      },
     ],
   },
   {

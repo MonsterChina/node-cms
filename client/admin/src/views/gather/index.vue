@@ -145,7 +145,7 @@ export default {
 
     async toRun(params) {
       try {
-        let { targetUrl, title, content, cid } = params;
+        let { targetUrl, title, content, cid, status } = params;
         let res = await getArticle({
           targetUrl,
           title,

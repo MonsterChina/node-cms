@@ -156,7 +156,7 @@ export default {
           const { title, content } = res.data;
           this.params.attr = this.params.attr.toString();
           this.params.title = title;
-          this.params.content = content.toString();
+          this.params.content = content;
           this.params.cid = cid;
           this.params.status = status == 1 ? 1 : 0;
           this.create(this.params);

@@ -5,6 +5,7 @@ const {
 } = require("../../config.js");
 const GatherService = require("../service/gather.js");
 const cheerio = require('cheerio');
+
 class GatherController {
 
   static model = 'gather';
@@ -16,8 +17,42 @@ class GatherController {
         title,
         content} = req.query;
       const data = await GatherService.common(targetUrl);
+     
+
+      let titleArr = title.split('.');
+      let contentArr = content.split('.');
+
+      //最多支持4层
+      if (titleArr.length === 1) {
         data.title = data[title];
-        data.content = data[content]
+      }else if (titleArr.length === 2) {
+        data.title = data[titleArr[0]][titleArr[1]];
+      } else if (titleArr.length === 3) {
+          data.title = data[titleArr[0]][titleArr[1]][titleArr[2]];
+      } else if (titleArr.length === 4) {
+          data.title = data[titleArr[0]][titleArr[1]][titleArr[2]][titleArr[3]];
+      }
+
+   
+      //内容
+      if (contentArr.length === 1) {
+        data.content = data[content];
+      }else if (contentArr.length === 2) {
+        data.content = data[contentArr[0]][contentArr[1]];
+      } else if (contentArr.length === 3) {
+          data.content = data[contentArr[0]][contentArr[1]][contentArr[2]];
+      } else if (contentArr.length === 4) {
+          data.content = data[contentArr[0]][contentArr[1]][contentArr[2]][contentArr[3]];
+      }
+     //待优化 ？？？
+      if(Array.isArray(data.content)&& data.content.length >0){
+        let str = '';
+        data.content.forEach((item)=>{
+          str += '<p>'+Object.values(item)+'</p>'
+        })
+        data.content = str;
+      }
+     
       res.json({ ...success, data});
     } catch (error) {
       next(error)

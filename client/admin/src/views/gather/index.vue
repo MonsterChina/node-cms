@@ -159,9 +159,7 @@ export default {
           this.params.content = content.toString();
           this.params.cid = cid;
           this.params.status = status == 1 ? 1 : 0;
-          console.log("11111--->", this.params);
           this.create(this.params);
-
           this.$message({
             message: "内功获取成功^_^",
             type: "success",

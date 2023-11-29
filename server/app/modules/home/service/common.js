@@ -182,7 +182,6 @@ class CommonService {
         let cate = await CommonService.getAllParentCategory(cids);
         const cateField = ["id", "name", "path", "pinyin"];
         cate = filterFields(cate, cateField);
-        console.log('111111111111',cate)
         let article = [];
         for (let i = 0, item; i < cate.length; i++) {
           let item = cate[i];

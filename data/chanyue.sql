@@ -11,7 +11,7 @@
  Target Server Version : 50726 (5.7.26)
  File Encoding         : 65001
 
- Date: 29/11/2023 23:05:13
+ Date: 01/12/2023 00:16:13
 */
 
 SET NAMES utf8mb4;
@@ -236,20 +236,19 @@ CREATE TABLE `gather`  (
   `id` int(11) NOT NULL AUTO_INCREMENT COMMENT 'id',
   `taskName` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NULL DEFAULT NULL COMMENT '任务名称',
   `targetUrl` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NULL DEFAULT NULL COMMENT '采集地址',
-  `title` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NULL DEFAULT NULL COMMENT '标题字段',
-  `content` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NULL DEFAULT NULL COMMENT '内容字段',
+  `parseData` text CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NULL COMMENT '格式化数据函数',
   `cid` int(11) NULL DEFAULT NULL COMMENT '存储到栏目',
   `status` varchar(1) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NULL DEFAULT '1' COMMENT '发布状态 1 草稿 2 发布',
   `createdAt` datetime NULL DEFAULT CURRENT_TIMESTAMP COMMENT '创建时间',
   `updatedAt` datetime NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP COMMENT '更新时间',
   PRIMARY KEY (`id`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 4 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_unicode_ci COMMENT = '开源接口采集' ROW_FORMAT = DYNAMIC;
+) ENGINE = InnoDB AUTO_INCREMENT = 5 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_unicode_ci COMMENT = '开源接口采集' ROW_FORMAT = DYNAMIC;
 
 -- ----------------------------
 -- Records of gather
 -- ----------------------------
-INSERT INTO `gather` VALUES (2, '60秒读懂世界', 'https://api.qqsuu.cn/api/dm-60s?type=json', 'name', 'data', 1, '1', '2023-11-29 16:22:38', '2023-11-29 16:23:04');
-INSERT INTO `gather` VALUES (3, '60s1', 'https://api.qqsuu.cn/api/dm-60s?type=json', 'name', 'data', 1, '2', '2023-11-29 19:10:45', '2023-11-29 19:36:06');
+INSERT INTO `gather` VALUES (3, '60s1', 'https://api.qqsuu.cn/api/dm-60s?type=json', 'let obj = {\n	title:\'\',\n	content:\'\'\n}\nif(data.success){\n	obj.title = data.name;\n	let p = \'\';\n	data.data.forEach((item)=>{\n	  p += \'<p>\'+item +\'</p>\'\n	});\n	obj.content = p;\n}\nreturn obj;', 1, '2', '2023-11-29 19:10:45', '2023-12-01 00:07:22');
+INSERT INTO `gather` VALUES (4, '60秒看世界', 'http://www.wudada.online/Api/ScD', 'let obj = {\n  title:\'\',\n  content:\'\'\n}\nif(data.code == 200){\n  let data = data.data;\n  const {cdate,title,content} = data;\n  obj.title = title+cdate;\n  let p = \'\';\n  content.forEach((item)=>{\n    p += \'<p>\'+item.content +\'</p>\'\n  });\n  obj.content = p;\n}else{\nconst {msg} = data;\nobj.title = msg;\n}\nreturn obj;', 1, '1', '2023-12-01 00:03:35', '2023-12-01 00:11:08');
 
 -- ----------------------------
 -- Table structure for login_log

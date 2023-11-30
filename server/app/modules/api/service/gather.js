@@ -64,8 +64,7 @@ class GatherService {
       const list = await knex.select(['id', 
       'taskName',
       'targetUrl',
-      'content',
-      'title',
+      'parseData',
       'status','cid'])
         .from(GatherService.model)
         .limit(pageSize)
@@ -91,7 +90,7 @@ class GatherService {
       const data = await knex(GatherService.model)
       .where('id', '=', id)
       .select(['id', 'taskName', 'targetUrl', 
-      'title', 'content','status','cid'])
+      'parseData','status','cid'])
       return data[0];
     } catch (err) {
       return err;

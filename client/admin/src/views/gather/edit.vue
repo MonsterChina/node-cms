@@ -36,28 +36,8 @@
       </el-form-item>
 
       <el-form-item
-        label="标题字段"
-        prop="title"
-        :rules="[
-          {
-            required: true,
-            message: '请输入标题字段',
-            trigger: 'blur',
-          },
-        ]"
-      >
-        <div class="row w-p100">
-          <el-input
-            class="flex-1"
-            v-model="params.title"
-            placeholder="name"
-          ></el-input>
-        </div>
-      </el-form-item>
-
-      <el-form-item
         label="内容字段"
-        prop="content"
+        prop="parseData"
         :rules="[
           {
             required: true,
@@ -69,7 +49,9 @@
         <div class="row w-p100">
           <el-input
             class="flex-1"
-            v-model="params.content"
+            type="textarea"
+            :rows="13"
+            v-model="params.parseData"
             placeholder="例：.content h4 a"
           ></el-input>
           <el-button class="ml-5" type="primary" @click="getArticle">
@@ -78,7 +60,7 @@
         </div>
       </el-form-item>
 
-      <el-form-item class="show" label="文章结果">
+      <el-form-item class="show" label="测试结果">
         <p>标题：{{ article.title }}</p>
         <p>内容：</p>
         <div v-html="article.content"></div>
@@ -133,8 +115,7 @@ export default {
       params: {
         taskName: "",
         targetUrl: "",
-        title: "",
-        content: "",
+        parseData: "",
         status: "1", //是否限制
         cid: 1,
       },
@@ -171,16 +152,15 @@ export default {
 
     async getArticle() {
       try {
-        let { targetUrl, title, content } = this.params;
+        let { targetUrl, parseData } = this.params;
         let res = await getArticle({
           targetUrl,
-          title,
-          content,
+          parseData,
         });
         if (res.code == 200) {
           this.article = res.data;
           this.$message({
-            message: "内功获取成功^_^",
+            message: "恭喜你，获取数据成功^_^",
             type: "success",
           });
         }

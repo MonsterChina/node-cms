@@ -9,35 +9,47 @@ class FieldService {
   static async create(body) {
     try {
       // 新增字的同时需要新增表
-      const { model_id, field_cname, field_ename, field_type, field_values, field_default, field_sort } = body;
+      const { model_id, field_cname, field_ename, field_type, field_values, field_default, field_sort,field_length } = body;
       await knex.transaction(async trx => {
         // 查询模块名称
         let table_name = await knex.raw('SELECT table_name FROM model WHERE id=?', [model_id]).transacting(trx);;
         table_name = table_name[0][0].table_name;
-        const result = await knex(FieldService.model).insert({ model_id, field_cname, field_ename, field_type, field_values, field_default, field_sort }).transacting(trx);
+        const result = await knex(FieldService.model).insert({ model_id, field_cname, field_ename, field_type, field_values, field_default, field_sort,field_length }).transacting(trx);
 
         // result 返回是新增[id]
-
+        let len = field_length || 100
         let sql = '';
         if (result[0]) {
-          // 1单行文本（varchar）2.多行文本 text 3.下拉菜单 text 4.单选 text 5.多选 6.时间和日期
+          // 1单行文本（varchar）2.多行文本 text 3.下拉菜单 text 4.单选 text 5.多选 6.时间和日期 7.s数字 8.图片上传 9富文本
           if (field_type === '1') {
-            sql = 'varchar(100) not null default \'\'';
+            sql = `varchar(${len})  default \'\'`;
           }
           if (field_type === '2') {
-            sql = 'varchar(250) not null default \'\'';
+            sql = `varchar(${len})  default \'\'`;
           }
           if (field_type === '3') {
-            sql = 'varchar(100) not null default \'\'';
+            sql = `varchar(${len})  default \'\'`;
           }
           if (field_type === '4') {
-            sql = 'varchar(50) not null default \'\'';
+            sql = `varchar(${len})  default \'\''`;
           }
           if (field_type === '5') {
-            sql = 'varchar(50) not null default \'\'';
+            sql = `varchar(${len})  default \'\'`;
           }
           if (field_type === '6') {
-            sql = 'datetime default null';
+            sql = `datetime default null`;
+          }
+
+          if (field_type === '7') {
+            sql = `varchar(${len})  default \'\'`;
+          }
+
+          if (field_type === '8') {
+            sql = `varchar(${len})  default \'\'`;
+          }
+
+          if (field_type === '9') {
+            sql = `longtext`;
           }
         }
 

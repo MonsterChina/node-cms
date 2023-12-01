@@ -12,8 +12,6 @@ class FieldController  {
     try {
       const body = req.body;
       const has = await FieldService.findByName(body.field_cname, body.field_ename);
-
-     
       if (has.length > 0) {
         res.json({ ...fail, msg: '字段命名已重复' });
         return;

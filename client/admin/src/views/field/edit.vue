@@ -7,11 +7,11 @@
       label-width="100px"
       class="mt-20"
     >
-      <el-form-item label="中文名称" prop="field_cname">
+      <el-form-item label="字段备注" prop="field_cname">
         <el-input v-model="params.field_cname"></el-input>
       </el-form-item>
 
-      <el-form-item label="英文名称" prop="field_ename">
+      <el-form-item label="字段名称" prop="field_ename">
         <el-input v-model="params.field_ename" :disabled="disable"></el-input>
       </el-form-item>
 
@@ -32,7 +32,12 @@
       </el-form-item>
 
       <el-form-item label="字段选项">
-        <el-input v-model="params.field_values"></el-input>
+        <el-input
+          v-model="params.field_values"
+          :rows="2"
+          type="textarea"
+          placeholder="单选、多选、下拉框，请填写json格式。例如：[{label:'男',value:'1'},{label:'女',value:'2'}]  "
+        ></el-input>
       </el-form-item>
 
       <el-form-item label="默认值">
@@ -41,6 +46,10 @@
 
       <el-form-item label="排序">
         <el-input v-model="params.field_sort"></el-input>
+      </el-form-item>
+
+      <el-form-item label="字段长度">
+        <el-input v-model="params.field_length"></el-input>
       </el-form-item>
 
       <el-form-item>
@@ -67,6 +76,7 @@ export default {
         field_type: "",
         field_values: "",
         field_default: "",
+        field_length: "",
         field_sort: "0",
       },
 
@@ -98,6 +108,15 @@ export default {
         {
           value: "7",
           label: "数字 ",
+        },
+        {
+          value: "8",
+          label: "多图上传 ",
+        },
+
+        {
+          value: "9",
+          label: "富文本 ",
         },
       ],
       disable: true,

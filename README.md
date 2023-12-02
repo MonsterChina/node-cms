@@ -91,10 +91,11 @@ server 部署代码
 ### 🍅️案例
 
 * 案例一 [香港日报](http://www.hongkongdaily.net/) `http://www.hongkongdaily.net/`
-* 案例一 [七弈国象](https://doc.7yi.link/) `https://doc.7yi.link/`
-* 案例二 [世界气功网](http://www.shijieqigong.com/) `http://www.shijieqigong.com/`
+* 案例二 [国际健康健美长寿论坛](http://www.internationjms.cn/) `http://www.internationjms.cn/`
 * 案例三 [世界大健康运动联盟](http://www.worldhealthgames.com/) `http://www.worldhealthgames.com/`
-* 案例四 [北京辉达环保科技有限公司](http://www.huidaep.com/) `http://www.huidaep.com/`
+* 案例四 [世界气功网](http://www.shijieqigong.com/) `http://www.shijieqigong.com/`
+* 案例五 [七弈国象](https://doc.7yi.link/) `https://doc.7yi.link/`
+* 案例六 [北京辉达环保科技有限公司](http://www.huidaep.com/) `http://www.huidaep.com/`
 * 演示站1 [前端小栈• 禅悦](https://www.nuodefangchan.com/)
 * 演示站2 [前端小栈• 禅悦](http://chanyue.zhanhongzhu.top/)
 

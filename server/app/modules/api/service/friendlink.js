@@ -1,15 +1,15 @@
-const {knex} = require('../../config.js');
+const { knex } = require("../../config.js");
 const BaseService = require("./base");
-class FriendlinkService  {
+class FriendlinkService {
   static model = "friendlink";
-  
+
   // 新增
   static async create(body) {
     try {
       const result = await knex(FriendlinkService.model).insert(body);
       return result ? "success" : "fail";
     } catch (err) {
-      console.error(err)
+      console.error(err);
       return err;
     }
   }
@@ -22,7 +22,7 @@ class FriendlinkService  {
         .del();
       return res ? "success" : "fail";
     } catch (err) {
-      console.error(err)
+      console.error(err);
       return err;
     }
   }
@@ -37,7 +37,7 @@ class FriendlinkService  {
         .update(body);
       return result ? "success" : "fail";
     } catch (err) {
-      console.error(err)
+      console.error(err);
       return err;
     }
   }
@@ -64,7 +64,7 @@ class FriendlinkService  {
         list: list,
       };
     } catch (err) {
-      console.error(err)
+      console.error(err);
       return err;
     }
   }
@@ -72,12 +72,13 @@ class FriendlinkService  {
   // 查
   static async detail(id) {
     try {
-      const data = await knex(FriendlinkService.model)
-        .where("id", "=", id)
-        .select();
+      const data = await knex
+        .select(["id", "link", "sort", "title"])
+        .from(FriendlinkService.model)
+        .where("id", "=", id);
       return data[0];
     } catch (err) {
-      console.error(err)
+      console.error(err);
       return err;
     }
   }
@@ -113,7 +114,7 @@ class FriendlinkService  {
         list: list[0],
       };
     } catch (err) {
-      console.error(err)
+      console.error(err);
       return err;
     }
   }

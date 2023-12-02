@@ -52,18 +52,17 @@ class OpenController {
     }
   }
 
-
   static async pdf(req, res, next) {
     try {
       const pdfRemotePath = req.query.file || "";
-      const response = await axios.get(pdfRemotePath, { responseType: 'arraybuffer' });
+      const response = await axios.get(pdfRemotePath,{
+        responseType: 'stream',
+      });
       if (response.status !== 200) {
         next({ message: "Failed to fetch PDF file" });
       }
-      const buffer = Buffer.from(response.data);
-      const stream = Readable.from(buffer);
       res.setHeader("Content-Type", "application/pdf");
-      stream.pipe(res);
+      response.data.pipe(res);
     } catch (error) {
       next(error);
     }

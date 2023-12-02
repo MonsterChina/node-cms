@@ -44,3 +44,5 @@ package-lock.json
 
 /server/app/modules/home/view/angke
 /server/app/public/template/angke
+/server/app/modules/home/view/ribao
+/server/app/public/template/ribao

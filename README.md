@@ -90,6 +90,7 @@ server 部署代码
 
 ### 🍅️案例
 
+* 案例一 [香港日报](http://www.hongkongdaily.net/) `http://www.hongkongdaily.net/`
 * 案例一 [七弈国象](https://doc.7yi.link/) `https://doc.7yi.link/`
 * 案例二 [世界气功网](http://www.shijieqigong.com/) `http://www.shijieqigong.com/`
 * 案例三 [世界大健康运动联盟](http://www.worldhealthgames.com/) `http://www.worldhealthgames.com/`

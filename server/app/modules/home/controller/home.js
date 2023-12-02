@@ -17,9 +17,21 @@ class HomeController {
         result = await HomeService.home();
         res.locals = { ...res.locals, ...result };
       }
-      // 指定多栏目栏目获取文章列表 await CommonService.getArticleListByCids([59,1,29,]) 不传入默认所有栏目
-      let article = await CommonService.getArticleListByCids();
-      res.render(`${template}/index.html`,{...result,article});
+
+      // 指定多栏目栏目获取文章列表
+      let article = await CommonService.getArticleListByCids([59,1,29,2,3,6,9,13,30,61,12,8,36,11,23,28,18,15,16,62,31,37,35]);
+      // 公告
+      let notice = await CommonService.getArticleListByCid(38, 9);
+      // 电子报
+      let newsletter = await CommonService.getArticleListByCid(51, 9);
+      // 关中汉子
+      let guanzhong = await CommonService.getArticleListByCid(52, 9);
+      // 李春生文集
+      let lichunsheng = await CommonService.getArticleListByCid(55, 9);
+      // 国际健康健美长寿论坛
+      let luntan = await CommonService.getArticleListByCid(54, 9);
+
+      res.render(`${template}/index.html`,{...result,article,notice,newsletter,guanzhong,lichunsheng,luntan});
     } catch (error) {
       console.error(error);
       next(error);
@@ -58,9 +70,12 @@ class HomeController {
 
       //分页
       let { count } = data.data;
-      let href = position.slice(-1)[0].path + "/index";
-      let pageHtml = helper.pages(currentPage, count, pageSize, href);
-
+      let href='';
+      let pageHtml='';
+      if(position.length>0){
+        href = position.slice(-1)[0].path + "/index";
+        pageHtml = helper.pages(currentPage, count, pageSize, href);
+      }
       //获取模板
       let view = navSub.cate.list_view || "list.html";
       await res.render(`${template}/${view}`, {

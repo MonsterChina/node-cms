@@ -1,8 +1,10 @@
 const express = require('express');
 const router = express.Router();
 const init = require('./middleware/init.js');
+const adapter = require('./middleware/adapter.js');
 const HomeController = require(`./controller/home.js`);
 
+router.use(adapter());
 // 首页模板
 router.get('/', init(), HomeController.index);
 

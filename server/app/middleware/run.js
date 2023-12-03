@@ -1,6 +1,7 @@
 const express = require("express");
 const cookieParser = require("cookie-parser");
 const favicon = require("serve-favicon");
+const morgan = require("morgan");
 const path = require("path");
 
 const sysconfig = require("./config.js");
@@ -10,7 +11,10 @@ module.exports = async function (app) {
   //挂载配置
   await sysconfig(app);
 
-  const { appRoot, cookieKey, maxAge } = app.locals.config;
+  const { logger,appRoot, cookieKey, maxAge } = app.locals.config;
+  //日志
+  app.use(morgan(logger.level));
+
   // favicon 图标
   app.use(favicon(path.join(appRoot, "public/favicon.ico")));
 

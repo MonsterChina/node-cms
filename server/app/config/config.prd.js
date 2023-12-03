@@ -17,4 +17,10 @@ config.mysql = {
 config.debug = false;
 config.env = "prd";
 
+// 日志
+config.logger = {
+  level: 'tiny',
+};
+
+
 module.exports = config;

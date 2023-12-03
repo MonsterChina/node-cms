@@ -8,7 +8,7 @@ module.exports =()=>{
               }else{
                 res.redirect(`/list/${class_id}`);
               }
-                return;
+              return;
             }
             if(content_id){
                 res.redirect(`/article/${content_id}.html`);

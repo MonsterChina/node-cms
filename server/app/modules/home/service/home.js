@@ -20,7 +20,7 @@ class HomeService {
       top = filterFields(top, topField);
 
       //最新文章
-      let news = await CommonService.getArticleList(0, 4);
+      let news = await CommonService.getArticleList(0, 5);
       const newField = ["id", "title", "path", "createdAt"];
       news = filterFields(news, newField);
 

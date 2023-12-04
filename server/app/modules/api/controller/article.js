@@ -9,8 +9,8 @@ class ArticleController {
   static async create(req, res, next) {
     try {
       const body = req.body;
-      // body.defaultParams.createdAt = dayjs(body.defaultParams.createdAt).format('YYYY-MM-DD HH:mm:ss');
-      // body.defaultParams.updatedAt = dayjs(body.defaultParams.updatedAt).format('YYYY-MM-DD HH:mm:ss');
+      body.defaultParams.createdAt = dayjs(body.defaultParams.createdAt).format('YYYY-MM-DD HH:mm:ss');
+      body.defaultParams.updatedAt = dayjs(body.defaultParams.updatedAt).format('YYYY-MM-DD HH:mm:ss');
       body.defaultParams.content = filterBody(body.defaultParams.content);
       const data = await ArticleService.create(body);
       res.json({ ...success, data: data });
@@ -34,8 +34,8 @@ class ArticleController {
   static async update(req, res, next) {
     try {
       const body = req.body;
-      // body.createdAt = dayjs(body.createdAt).format('YYYY-MM-DD HH:mm:ss');
-      // body.updatedAt = dayjs(body.updatedAt).format('YYYY-MM-DD HH:mm:ss');
+      body.createdAt = dayjs(body.createdAt).format('YYYY-MM-DD HH:mm:ss');
+      body.updatedAt = dayjs(body.updatedAt).format('YYYY-MM-DD HH:mm:ss');
       body.content = filterBody(body.content);
       const data = await ArticleService.update(body);
       res.json({ ...success, data: data });
@@ -84,7 +84,7 @@ class ArticleController {
       const {cur,keyword,cid=0,pageSize=20} = req.query
       const data = await ArticleService.search(keyword, cur, pageSize, +cid);
       data.list.forEach(ele => {
-        ele.updatedAt = dayjs(ele.updatedAt).format('YYYY-MM-DD HH:mm:ss');
+        ele.createdAt = dayjs(ele.createdAt).format('YYYY-MM-DD HH:mm:ss');
       });
       res.json({ ...success, data: data });
     } catch (err) {

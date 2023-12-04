@@ -78,7 +78,7 @@
             <el-col :sm="24" :md="12">
               <el-form-item label="发布时间">
                 <el-date-picker
-                  v-model="params.updatedAt"
+                  v-model="params.createdAt"
                   type="datetime"
                   placeholder="选择日期时间"
                 ></el-date-picker>

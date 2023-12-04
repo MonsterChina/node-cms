@@ -73,7 +73,7 @@
       <el-table-column prop="name" label="栏目" width="80"></el-table-column>
       <!-- <el-table-column prop="pv" label="浏览次数"></el-table-column> -->
       <el-table-column
-        prop="updatedAt"
+        prop="createdAt"
         label="更新时间"
         width="160"
       ></el-table-column>

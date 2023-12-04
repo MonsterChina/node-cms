@@ -10,11 +10,16 @@ config.mysql = {
   port: "3306",
   user: "root",
   password: "123456",
-  database: "chanyue",
+  database: "hongkongdaily",
 };
 
 //sql debug
 config.debug = false;
 config.env = "dev";
+
+// 日志
+config.logger = {
+  level: 'dev',
+};
 
 module.exports = config;

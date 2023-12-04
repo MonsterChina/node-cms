@@ -228,7 +228,7 @@ export const asyncRoutes = [
     ],
   },
   {
-    path: "/gather",
+    path: "/glean",
     name: "gather",
     meta: {
       title: "采集功能",

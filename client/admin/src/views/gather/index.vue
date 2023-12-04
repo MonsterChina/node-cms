@@ -145,14 +145,13 @@ export default {
 
     async toRun(params) {
       try {
-        let { targetUrl, title, content, cid, status } = params;
+        let { targetUrl, title, parseData, cid, status } = params;
         let res = await getArticle({
           targetUrl,
           title,
-          content,
+          parseData,
         });
         if (res.code == 200) {
-          this.article = res.data;
           const { title, content } = res.data;
           this.params.attr = this.params.attr.toString();
           this.params.title = title;

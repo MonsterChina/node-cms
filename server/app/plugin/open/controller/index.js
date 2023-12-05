@@ -1,10 +1,9 @@
 const {
-  config,
-  knex,
-  helper: { success, fail, filterBody },
+  appRoot
 } = require("../../config.js");
-const { Readable } = require('stream');
 
+const fs = require('fs');
+const path = require('path');
 const axios = require('axios');
 class OpenController {
   //60秒读懂世界
@@ -54,15 +53,13 @@ class OpenController {
 
   static async pdf(req, res, next) {
     try {
-      const pdfRemotePath = req.query.file || "";
-      const response = await axios.get(pdfRemotePath,{
-        responseType: 'stream',
-      });
-      if (response.status !== 200) {
-        next({ message: "Failed to fetch PDF file" });
-      }
-      res.setHeader("Content-Type", "application/pdf");
-      response.data.pipe(res);
+      let file = req.query.file || '';
+
+      const filePath = path.join(__dirname, `../../../${file}`); 
+      const fileStream = fs.createReadStream(filePath);
+      res.setHeader('Content-Type', 'application/pdf');
+      res.setHeader('Content-Disposition', 'attachment; filename=your_pdf_file.pdf');
+      fileStream.pipe(res);
     } catch (error) {
       next(error);
     }

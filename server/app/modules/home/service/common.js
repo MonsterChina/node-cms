@@ -178,6 +178,19 @@ class CommonService {
    */
    static async getArticleListByCids(cids=[]){
     try {
+
+      //tag去重
+      function uniqueByPath(arr) {
+        const map = new Map();
+        return arr.filter((item) => {
+            if (!map.has(item.path)) {
+                map.set(item.path, item);
+                return true;
+            }
+            return false;
+        });
+      }
+
         //主栏目-图-文
         let cate = await CommonService.getAllParentCategory(cids);
         const cateField = ["id", "name", "path", "pinyin"];
@@ -198,6 +211,7 @@ class CommonService {
             let res = await CommonService.getTagsFromArticleByAid(sub.id);
             tags.push(...res);
           }
+          tags = uniqueByPath(tags);
           article.push({ top, list, tags, category: item })
         }
         
@@ -372,7 +386,7 @@ class CommonService {
    * @param {Number} pageSize 默认10条
    * @returns {Array}
    */
-  static async tags(path, current = 1, pageSize = 10) {
+  static async tags(name, current = 1, pageSize = 10) {
     try {
       const start = (current - 1) * pageSize;
 
@@ -383,7 +397,7 @@ class CommonService {
           this.select(1)
             .from("tag as t")
             .whereRaw("FIND_IN_SET(t.id, a.tag_id) > 0")
-            .andWhere("t.path", path);
+            .andWhere("t.name", name);
         })
         .count("* as total");
 
@@ -407,7 +421,7 @@ class CommonService {
           this.select(1)
             .from("tag as t")
             .whereRaw("FIND_IN_SET(t.id, a.tag_id) > 0")
-            .andWhere("t.path", path);
+            .andWhere("t.name", name);
         })
         .where("a.status", 0)
         .orderBy("a.createdAt", "DESC")

@@ -1,5 +1,4 @@
-const fs = require("fs");
-const path = require("path");
+
 const configBase = require("./config.base.js");
 
 const config = {...configBase};

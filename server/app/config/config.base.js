@@ -1,11 +1,10 @@
-const fs = require("fs");
 const path = require("path");
 
 const config = {};
 config.version = "v2.0.5";
 config.appName = "禅悦cms";
 config.port = '81';
-config.versionTime = "2023-12-01";
+config.versionTime = "2023-12-07";
 config.author = "明空";
 
 config.appRoot = path.join(__dirname, "../");

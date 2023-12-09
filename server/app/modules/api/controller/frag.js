@@ -73,8 +73,8 @@ class FragController  {
   // 搜索
   static async search(req, res, next) {
     try {
-      const {cur,key,pageSize= 20} = req.query
-      const data = await FragService.search(key, cur, pageSize);
+      const {cur,keywords,pageSize= 20} = req.query
+      const data = await FragService.search(keywords, cur, pageSize);
       data.list.forEach(ele => {
         ele.createdAt = dayjs(ele.createdAt).format('YYYY-MM-DD HH:mm');
       });

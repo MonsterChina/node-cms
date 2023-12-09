@@ -4,7 +4,7 @@ import API from "../config/index.js";
 //文章列表
 export let search = (cur, keyword = "") => {
   return http({
-    url: `${API.BASE_API}/api/frag/search?cur=${cur}&pageSize=20&keyword=${keyword}`,
+    url: `${API.BASE_API}/api/frag/search?cur=${cur}&keywords=${keyword}&pageSize=20`,
     method: "get",
   });
 };

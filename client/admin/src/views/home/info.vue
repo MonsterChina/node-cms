@@ -188,11 +188,12 @@ export default {
     };
   },
   computed: {},
-  created() {},
+  created() {
+    this.chart();
+  },
   mounted() {
     this.tongji();
     this.runEnv();
-    this.chart();
   },
 
   methods: {

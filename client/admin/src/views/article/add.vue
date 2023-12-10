@@ -35,8 +35,8 @@
                   },
                   {
                     min: 1,
-                    max: 50,
-                    message: '栏目不能超过50个字',
+                    max: 100,
+                    message: '标题不能超过100个字',
                     trigger: 'blur',
                   },
                 ]"

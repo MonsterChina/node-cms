@@ -52,7 +52,6 @@ class OpenController {
   }
 
   static async pdf(req, res, next) {
- 
     try {
       let file = req.query.file || '';
       const filePath = path.join(__dirname, `../../../${file}`); 

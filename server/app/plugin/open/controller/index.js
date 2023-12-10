@@ -52,15 +52,21 @@ class OpenController {
   }
 
   static async pdf(req, res, next) {
+ 
     try {
       let file = req.query.file || '';
-
       const filePath = path.join(__dirname, `../../../${file}`); 
       const fileStream = fs.createReadStream(filePath);
       res.setHeader('Content-Type', 'application/pdf');
-      res.setHeader('Content-Disposition', 'attachment; filename=your_pdf_file.pdf');
       fileStream.pipe(res);
+      fileStream.on('error', (err) => {
+        next(err);
+      });
+      fileStream.on('end', () => {
+        res.end();
+      });
     } catch (error) {
+       // 关闭文件流
       next(error);
     }
   }

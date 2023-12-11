@@ -96,6 +96,7 @@ server 部署代码
 * 案例四 [世界气功网](http://www.shijieqigong.com/) `http://www.shijieqigong.com/`
 * 案例五 [七弈国象](https://doc.7yi.link/) `https://doc.7yi.link/`
 * 案例六 [北京辉达环保科技有限公司](http://www.huidaep.com/) `http://www.huidaep.com/`
+* 案例七 [昂翊信息](http://www.angyi-iot.com/)
 * 演示站1 [前端小栈• 禅悦](https://www.nuodefangchan.com/)
 * 演示站2 [前端小栈• 禅悦](http://chanyue.zhanhongzhu.top/)
 

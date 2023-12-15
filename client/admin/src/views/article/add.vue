@@ -323,7 +323,6 @@ import { tinymceSet } from "@/config/tinymce.js";
 import {
   addLabelValue,
   getImgUrlFromStr,
-  filterAndReplaceImgSrc,
   filterHtml,
   tree,
 } from "@/utils/tool.js";
@@ -418,7 +417,7 @@ export default {
     async searchTag(keywords) {
       try {
         let res = await search(this.cur, keywords);
-        if (res.code === 200) {
+        if (res.code === 200 && res.data) {
           let arr = [];
           res.data.list.forEach((item) => {
             arr.push({
@@ -426,7 +425,6 @@ export default {
               value: item.id,
             });
           });
-
           this.taglist = arr;
         }
       } catch (error) {
@@ -545,6 +543,14 @@ export default {
     submit(formName) {
       this.$refs[formName].validate((valid) => {
         if (valid) {
+          if (this.params.cid == 0) {
+            this.$message({
+              message: "请选择栏目",
+              type: "success",
+            });
+            return;
+          }
+
           this.create();
         } else {
           console.log("error submit!!");

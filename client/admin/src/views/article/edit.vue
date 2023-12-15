@@ -566,6 +566,14 @@ export default {
     submit(formName) {
       this.$refs[formName].validate((valid) => {
         if (valid) {
+          if (this.params.cid == 0) {
+            this.$message({
+              message: "请选择栏目",
+              type: "success",
+            });
+            return;
+          }
+
           this.update();
         } else {
           console.log("error submit!!");

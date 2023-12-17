@@ -23,7 +23,7 @@
           scope.row.status == 1 ? "启用" : "禁用"
         }}</template>
       </el-table-column>
-      <el-table-column fixed="right" width="136" label="操作">
+      <el-table-column fixed="right" width="150" label="操作">
         <template #default="scope">
           <el-button
             :icon="View"

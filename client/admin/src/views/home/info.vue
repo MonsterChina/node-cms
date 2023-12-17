@@ -2,34 +2,41 @@
   <el-row :gutter="20">
     <el-col :xs="24" :sm="18" :md="18" :lg="18" :xl="18">
       <div class="bg-fff pd-20 radius-6 row justify-around mb-20">
-        <div class="row flex-col align-c">
-          <div class="tj-img">
-            <img src="@/assets/img/ico-article.svg" />
+        <router-link class="c-1d2129" to="/article">
+          <div class="row flex-col align-c">
+            <div class="tj-img">
+              <img src="@/assets/img/ico-article.svg" />
+            </div>
+            <p class="f-12 text-c mt-5">文章内容</p>
+            <p class="f-20 text-c">
+              {{ data.article }} <sub class="pos-r t-0 f-12">篇</sub>
+            </p>
           </div>
-          <p class="f-12 text-c mt-5">文章内容</p>
-          <p class="f-20 text-c">
-            {{ data.article }} <sub class="pos-r t-0 f-12">篇</sub>
-          </p>
-        </div>
-        <div class="row flex-col align-c">
-          <div class="tj-img">
-            <img src="@/assets/img/ico-will.svg" />
-          </div>
-          <p class="f-12 text-c mt-5">文章标签</p>
-          <p class="f-20 text-c">
-            {{ data.tag }} <sub class="pos-r t-0 f-12">个</sub>
-          </p>
-        </div>
+        </router-link>
 
-        <div>
-          <div class="tj-img">
-            <img src="@/assets/img/ico-message.svg" />
+        <router-link class="c-1d2129" to="/tag">
+          <div class="row flex-col align-c">
+            <div class="tj-img">
+              <img src="@/assets/img/ico-will.svg" />
+            </div>
+            <p class="f-12 text-c mt-5">文章标签</p>
+            <p class="f-20 text-c">
+              {{ data.tag }} <sub class="pos-r t-0 f-12">个</sub>
+            </p>
           </div>
-          <p class="f-12 text-c mt-5">留言信息</p>
-          <p class="f-20 text-c">
-            {{ data.message }} <sub class="pos-r t-0 f-12">条</sub>
-          </p>
-        </div>
+        </router-link>
+
+        <router-link class="c-1d2129" to="/message">
+          <div>
+            <div class="tj-img">
+              <img src="@/assets/img/ico-message.svg" />
+            </div>
+            <p class="f-12 text-c mt-5">留言信息</p>
+            <p class="f-20 text-c">
+              {{ data.message }} <sub class="pos-r t-0 f-12">条</sub>
+            </p>
+          </div>
+        </router-link>
         <div>
           <div class="tj-img">
             <img src="@/assets/img/ico-up.svg" />

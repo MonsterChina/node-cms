@@ -5,11 +5,10 @@
       :data="tableData"
       tooltip-effect="dark"
       row-key="id"
-      size="small"
       @selection-change="handleSelectionChange"
     >
       <el-table-column type="selection"></el-table-column>
-      <el-table-column prop="id" width="50" label="编号"></el-table-column>
+      <el-table-column prop="id" width="100" label="编号"></el-table-column>
       <el-table-column prop="username" label="登录用户"></el-table-column>
       <el-table-column prop="ip" label="登录IP"></el-table-column>
       <el-table-column prop="createdAt" label="登录日期">

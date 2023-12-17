@@ -10,12 +10,11 @@
       :data="tableData"
       tooltip-effect="dark"
       row-key="id"
-      size="small"
       @selection-change="handleSelectionChange"
     >
       <el-table-column type="selection"></el-table-column>
-      <el-table-column prop="id" width="50" label="编号"></el-table-column>
-      <el-table-column prop="title" width="300" label="标题"></el-table-column>
+      <el-table-column prop="id" label="编号"></el-table-column>
+      <el-table-column prop="title" label="标题"></el-table-column>
       <el-table-column prop="img_url" label="图片链接">
         <template #default="scope">
           <el-popover
@@ -36,7 +35,7 @@
       </el-table-column>
       <el-table-column prop="link_url" label="跳转链接"> </el-table-column>
 
-      <el-table-column fixed="right" width="92" label="操作">
+      <el-table-column fixed="right" width="100" label="操作">
         <template #default="scope">
           <el-button :icon="Edit" circle @click="toEdit(scope.row)"></el-button>
           <el-button

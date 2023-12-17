@@ -11,7 +11,6 @@
       :data="tableData"
       tooltip-effect="dark"
       row-key="id"
-      size="small"
       @selection-change="handleSelectionChange"
       v-loading="loading"
     >

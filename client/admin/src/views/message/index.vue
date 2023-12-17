@@ -10,18 +10,17 @@
       :data="tableData"
       tooltip-effect="dark"
       row-key="id"
-      size="small"
       @selection-change="handleSelectionChange"
     >
       <el-table-column type="selection"></el-table-column>
-      <el-table-column prop="id" width="50" label="编号"></el-table-column>
+      <el-table-column prop="id" width="80" label="编号"></el-table-column>
       <el-table-column prop="name" width="300" label="联系人"></el-table-column>
       <el-table-column prop="tel" label="手机号"></el-table-column>
       <el-table-column prop="company" label="公司名称"></el-table-column>
       <el-table-column prop="createdAt" label="发布时间">
         <template #default="scope">{{ scope.row.createdAt }}</template>
       </el-table-column>
-      <el-table-column fixed="right" width="92" label="操作">
+      <el-table-column fixed="right" width="100" label="操作">
         <template #default="scope">
           <el-button :icon="View" circle @click="toEdit(scope.row)"></el-button>
           <el-button

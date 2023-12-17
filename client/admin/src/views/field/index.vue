@@ -21,7 +21,6 @@
       tooltip-effect="dark"
       style="width: 100%"
       row-key="id"
-      size="small"
       @selection-change="handleSelectionChange"
       v-loading="loading"
     >

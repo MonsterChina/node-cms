@@ -30,7 +30,6 @@
       :data="tableData"
       tooltip-effect="dark"
       row-key="id"
-      size="small"
       @selection-change="handleSelectionChange"
     >
       <el-table-column type="selection"></el-table-column>
@@ -38,7 +37,7 @@
       <el-table-column prop="name" label="名称"></el-table-column>
       <el-table-column prop="path" label="标识"></el-table-column>
 
-      <el-table-column fixed="right" width="92" label="操作">
+      <el-table-column fixed="right" width="100" label="操作">
         <template #default="scope">
           <el-button :icon="Edit" circle @click="toEdit(scope.row)"></el-button>
           <el-button

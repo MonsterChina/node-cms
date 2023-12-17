@@ -10,11 +10,10 @@
       :data="tableData"
       tooltip-effect="dark"
       row-key="id"
-      size="small"
       @selection-change="handleSelectionChange"
     >
       <el-table-column type="selection"></el-table-column>
-      <el-table-column prop="id" width="50" label="编号"></el-table-column>
+      <el-table-column prop="id" width="100" label="编号"></el-table-column>
       <el-table-column prop="name" width="300" label="名称"></el-table-column>
       <el-table-column prop="value" label="角色"></el-table-column>
 

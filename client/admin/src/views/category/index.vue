@@ -28,7 +28,6 @@
       :data="tableData"
       tooltip-effect="dark"
       row-key="name"
-      size="small"
       :tree-props="{ children: 'children', hasChildren: 'hasChildren' }"
       @selection-change="handleSelectionChange"
       v-loading="loading"

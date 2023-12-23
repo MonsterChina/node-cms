@@ -142,6 +142,11 @@ html {
 
 }
 
+.search-input {
+    background-color: transparent;
+}
+
+
 .header-wrap .nav-item {
     position: relative;
     height: 42px;

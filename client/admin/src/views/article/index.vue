@@ -47,7 +47,7 @@
       <el-table-column
         prop="id"
         label="编号"
-        width="60"
+        width="120"
         fixed
       ></el-table-column>
       <el-table-column prop="title" label="标题">
@@ -74,7 +74,7 @@
       <el-table-column
         prop="createdAt"
         label="更新时间"
-        width="160"
+        width="170"
       ></el-table-column>
       <el-table-column prop="status" label="状态" width="60">
         <template #default="scope">{{

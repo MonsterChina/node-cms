@@ -6,6 +6,8 @@ config.appName = "禅悦cms";
 config.port = '81';
 config.versionTime = "2023-12-23";
 config.author = "明空";
+config.authorEmail = "867528315@qq.com";
+config.authorWechat = "yanyutao2014";
 
 config.appRoot = path.join(__dirname, "../");
 

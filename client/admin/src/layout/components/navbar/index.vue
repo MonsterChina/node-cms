@@ -87,12 +87,12 @@
 </template>
 
 <script setup name="NavBar">
-import IconLanguage from "../../../icons/IconLanguage.vue";
-import IconSun from "../../../icons/IconSun.vue";
-import IconMoon from "../../../icons/IconMoon.vue";
-import IconBell from "../../../icons/IconBell.vue";
-import IconFullscreen from "../../../icons/IconFullscreen.vue";
-import IconLaunch from "../../../icons/IconLaunch.vue";
+import IconLanguage from "@/components/icons/IconLanguage.vue";
+import IconSun from "@/components/icons/IconSun.vue";
+import IconMoon from "@/components/icons/IconMoon.vue";
+import IconBell from "@/components/icons/IconBell.vue";
+import IconFullscreen from "@/components/icons/IconFullscreen.vue";
+import IconLaunch from "@/components/icons/IconLaunch.vue";
 import { ref, computed } from "vue";
 import { useRoute } from "vue-router";
 import { userStore } from "@/stores/user";

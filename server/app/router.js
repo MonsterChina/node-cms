@@ -23,7 +23,7 @@ router.get("/robots.txt", function (req, res, next) {
 });
 
 //404处理
-router.use(init(), (req, res, next) => {
+router.use((req, res, next) => {
   const {config:{template},helper} = req.app.locals;
   let ip = req.headers["x-forwarded-for"] || req.ip;
   console.log("404-->", `${req.method}-${decodeURI(req.url)}-${ip}`);

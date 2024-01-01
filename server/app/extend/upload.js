@@ -39,8 +39,6 @@ const storage = multer.diskStorage({
 
 const upload = multer({ storage: storage });
 
-//const uploads = multer({ dest: path.join(`app/public/uploads/${template}`) }); //本地服务文件夹
 module.exports = {
   upload,
-  //uploads,
 };

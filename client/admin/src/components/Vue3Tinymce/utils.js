@@ -3,16 +3,16 @@
  * 无状态函数、可移植
  */
 export const uuid = (prefix) => {
-  return prefix + '_' + (Date.now() + Math.floor(Math.random() * 1000000));
+  return prefix + "_" + (Date.now() + Math.floor(Math.random() * 1000000));
 };
 
 export const getTinymce = () => {
-  const root = typeof window !== 'undefined' ? window : global;
-  return root && 'tinymce' in root ? root.tinymce : null;
+  const root = typeof window !== "undefined" ? window : global;
+  return root && "tinymce" in root ? root.tinymce : null;
 };
 
 export function getContent(editor) {
-  if (!editor) return '';
+  if (!editor) return "";
   return editor.getContent();
 }
 
@@ -23,7 +23,7 @@ export function setContent(val, editor) {
 
 export function resetContent(val, editor) {
   if (!editor) return;
-  if (!!editor.resetContent) return editor.resetContent(val);
+  if (editor.resetContent) return editor.resetContent(val);
   // 若无 reset fun，则手动 reset
   editor.setContent(val);
   editor.setDirty(false); // 恢复初始状态
@@ -32,7 +32,7 @@ export function resetContent(val, editor) {
 
 export function setModeDisabled(editor, disabled = true) {
   if (!editor) return;
-  editor.mode.set(disabled ? 'readonly' : 'design');
+  editor.mode.set(disabled ? "readonly" : "design");
 }
 
 // custom images upload handler
@@ -45,14 +45,17 @@ export function imageUploadHandler(setting, blobInfo, progress) {
       custom_images_upload_header,
       custom_images_upload_param,
       custom_images_upload_callback,
-      custom_images_limit_size
+      custom_images_limit_size,
     } = setting || {};
 
     let xhr, formData;
 
-     // 这里进行图片大小检查
-    if (custom_images_limit_size && blobInfo.blob().size > custom_images_limit_size) {
-      let msg = `Image size exceeds the limit ${custom_images_limit_size/1024}KB`
+    // 这里进行图片大小检查
+    if (
+      custom_images_limit_size &&
+      blobInfo.blob().size > custom_images_limit_size
+    ) {
+      let msg = `图片大小不能超过 ${custom_images_limit_size / 1024}KB`;
       reject(msg);
       return;
     }
@@ -60,7 +63,7 @@ export function imageUploadHandler(setting, blobInfo, progress) {
     // 是否开启 withCredentials <= images_upload_credentials
     xhr.withCredentials = !!images_upload_credentials;
     // images_upload_url
-    xhr.open('POST', images_upload_url || '');
+    xhr.open("POST", images_upload_url || "");
 
     if (custom_images_upload_header) {
       Object.keys(custom_images_upload_header).forEach((key) => {
@@ -74,31 +77,31 @@ export function imageUploadHandler(setting, blobInfo, progress) {
 
     xhr.onload = function () {
       if (xhr.status === 403) {
-        reject({ message: 'HTTP Error: ' + xhr.status, remove: true });
+        reject({ message: "HTTP Error: " + xhr.status, remove: true });
         return;
       }
 
       if (xhr.status < 200 || xhr.status >= 300) {
-        reject('HTTP Error: ' + xhr.status);
+        reject("HTTP Error: " + xhr.status);
         return;
       }
 
       let json = JSON.parse(xhr.responseText);
 
       if (!json) {
-        reject('Invalid JSON: ' + xhr.responseText);
+        reject("Invalid JSON: " + xhr.responseText);
         return;
       }
 
       // 处理返回图片地址 custom_images_upload_callback
       // 默认 json.location
       let backImgUrl =
-        typeof custom_images_upload_callback === 'function'
+        typeof custom_images_upload_callback === "function"
           ? custom_images_upload_callback(json)
           : json.location;
 
       if (!backImgUrl) {
-        reject('Failed Path: location image path is error/empty');
+        reject("Failed Path: location image path is error/empty");
         return;
       }
 
@@ -107,12 +110,12 @@ export function imageUploadHandler(setting, blobInfo, progress) {
 
     xhr.onerror = function () {
       reject(
-        'Image upload failed due to a XHR Transport error. Code: ' + xhr.status
+        "Image upload failed due to a XHR Transport error. Code: " + xhr.status,
       );
     };
 
     formData = new FormData();
-    formData.append('file', blobInfo.blob(), blobInfo.filename());
+    formData.append("file", blobInfo.blob(), blobInfo.filename());
 
     // 额外的请求参数 custom_images_upload_param
     if (custom_images_upload_param) {
@@ -127,5 +130,5 @@ export function imageUploadHandler(setting, blobInfo, progress) {
 
 export function getContentStyle(style) {
   const defaultStyle = `body{font-size: 14px;} img{padding: 0 2px;} `;
-  return defaultStyle + (style ? style : '');
+  return defaultStyle + (style ? style : "");
 }

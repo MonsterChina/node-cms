@@ -53,7 +53,7 @@
 
 <script>
 import { update, detail } from "@/api/frag.js";
-import Vue3Tinymce from "@jsdawn/vue3-tinymce";
+import Vue3Tinymce from "@/components/Vue3Tinymce/src/main.vue";
 import { tinymceSet } from "@/config/tinymce.js";
 export default {
   name: "frag-edit",

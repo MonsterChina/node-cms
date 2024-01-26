@@ -1,4 +1,4 @@
-# <center>禅悦内容管理系统（`chancms`）</center>
+# <center>禅悦内容管理系统（`chanyue-cms`）</center>
 
 禅悦CMS是一款基于Express和MySQL研发的高质量实用型CMS管理系统。它具备多种类型网站开发，易扩展、基于模块化和插件化开发模式，适用于商用企业级程序开发。
 

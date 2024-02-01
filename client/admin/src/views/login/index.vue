@@ -125,8 +125,9 @@ export default defineComponent({
         console.log(error);
       }
     },
-
+    //登录日志
     async loginLog(id) {
+      //添加登录日志
       await create(id);
     },
 

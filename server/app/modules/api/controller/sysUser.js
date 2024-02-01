@@ -3,7 +3,7 @@ const svgCaptcha = require("svg-captcha");
 const SysUserService = require("../service/sysUser.js");
 const {
   config,
-  helper: { md5, setToken, success, fail },
+  helper: { md5, setToken,getToken, success, fail },
 } = require("../../config.js");
 
 class SysUserController {
@@ -69,8 +69,9 @@ class SysUserController {
   // 查
   static async detail(req, res, next) {
     try {
-      const id = req.query.id;
-      const data = await SysUserService.detail(id);
+      const token = req.cookies.token;
+      const user = await getToken(token, config.token.KEY);
+      const data = await SysUserService.detail(user.uid);
       res.json({ ...success, data: data });
     } catch (err) {
       next(err);

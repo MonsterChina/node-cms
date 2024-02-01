@@ -16,7 +16,7 @@ export const userStore = defineStore("user", {
         if (res.code == 200) {
           this.token = res.data.token;
           setCookie("token", res.data.token);
-          setCookie("uid", res.data.id);
+          // setCookie("uid", res.data.id);
         }
         return res;
       } catch (error) {

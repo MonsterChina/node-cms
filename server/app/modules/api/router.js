@@ -33,7 +33,7 @@ router.get('/captcha', SysUserController.captcha); // 验证码
 router.post('/sysUser/login', SysUserController.login);
 router.get('/sysUser/list', SysUserController.list);
 router.get('/sysUser/search', SysUserController.search);
-router.get('/sysUser/detail', SysUserController.detail);
+router.get('/sysUser/detail',auth(), SysUserController.detail);
 router.post('/sysUser/create', auth(), SysUserController.create);
 router.get('/sysUser/delete', auth(), SysUserController.delete);
 router.post('/sysUser/update', auth(), SysUserController.update);

@@ -81,7 +81,7 @@
       <p class="f-13 text-c mt-10 c-fff">
         Copyright &copy; 2016-2023
         <a
-          href="https://gitee.com/yanyutao0402/chanyue-cms"
+          href="https://www.chancms.top"
           class="mr-5 c-fff"
           target="_blank"
           title="chanyue"

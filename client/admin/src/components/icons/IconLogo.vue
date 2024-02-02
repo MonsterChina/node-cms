@@ -14,3 +14,10 @@
     />
   </svg>
 </template>
+<style>
+.svg {
+  background-image: url("https://www.chancms.top/img/logo.png");
+  background-size: cover;
+  opacity: 0;
+}
+</style>

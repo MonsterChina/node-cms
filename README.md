@@ -1,6 +1,6 @@
-# <center>禅悦内容管理系统（`chanyue-cms`）</center>
+# <center>禅内容管理系统（`chancms`）</center>
 
-禅悦CMS是一款基于Express和MySQL研发的高质量实用型CMS管理系统。它具备多种类型网站开发，易扩展、基于模块化和插件化开发模式，适用于商用企业级程序开发。
+禅CMS是一款基于Express和MySQL研发的高质量实用型CMS管理系统。它具备多种类型网站开发，易扩展、基于模块化和插件化开发模式，适用于商用企业级程序开发。
 
 ## 🌈系统特色
 
@@ -99,7 +99,6 @@ server 部署代码
 * 案例七 [七弈国象](https://doc.7yi.link/)
 * 案例八 [北京辉达环保科技有限公司](http://www.huidaep.com/)
 * 案例九 [雅俗共赏](http://www.cqsmservices.cn/)
-* 案例十 [超前端](https://zoye.top/)
 * 演示站1 [前端小栈• 禅悦](https://www.nuodefangchan.com/)
 * 演示站2 [前端小栈• 禅悦](http://chanyue.zhanhongzhu.top/)
 * 演示站3 [前端小栈• 禅悦](http://122.112.172.87:81/)

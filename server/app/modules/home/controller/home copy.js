@@ -20,7 +20,7 @@ class HomeController {
 
       // 指定多栏目栏目获取文章列表 await CommonService.getArticleListByCids([59,1,29,]) 不传入默认所有栏目
       let article = await CommonService.getArticleListByCids();
-      res.render(`${template}/chanyue.html`,{...result,article});
+      res.render(`${template}/index.html`,{...result,article});
     } catch (error) {
       console.error(error);
       next(error);

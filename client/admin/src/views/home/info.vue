@@ -63,7 +63,7 @@
             <div class="bg-fff pd-20 radius-6 mb-20">
               <div class="mb-12 f-16 c-1d2129 bold">系统特色</div>
               <p class="f-13 mb-6 c-4e5969">
-                chancmsCMS是一款基于Express和MySQL研发的高质量实用型CMS管理系统。它具备多种类型网站开发，易扩展、基于模块化和插件化开发模式，适用于商用企业级程序开发。
+                ChanCMS是一款基于Express和MySQL研发的高质量实用型CMS管理系统。它具备多种类型网站开发，易扩展、基于模块化和插件化开发模式，适用于商用企业级程序开发。
               </p>
               <p class="f-13 mb-6 c-4e5969">轻量、灵活、稳定、高性能。</p>
               <p class="f-13 mb-6 c-4e5969">
@@ -141,7 +141,7 @@ export default {
         tag: 0,
         article: 0,
         version: "v.1.6.0",
-        appName: "ChanCMS",
+        appName: "禅cms",
         port: "",
         versionTime: "",
         author: "",
@@ -169,7 +169,7 @@ export default {
           lineHeight: 25,
         },
         title: {
-          name: "ChanCMS",
+          name: "禅cms",
           fontSize: 15,
           color: "#666666",
         },

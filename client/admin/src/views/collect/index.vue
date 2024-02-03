@@ -101,7 +101,7 @@ export default {
         img: "",
         createdAt: new Date(),
         updatedAt: new Date(),
-        content: "ChanCMS",
+        content: "欢迎使用禅cms系统",
         status: "0",
         pv: 1,
         link: "",

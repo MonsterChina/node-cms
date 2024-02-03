@@ -81,11 +81,11 @@
       <p class="f-13 text-c mt-10 c-fff">
         Copyright &copy; 2016-2023
         <a
-          href="https://www.ChanCMS.top"
+          href="https://www.chancms.top"
           class="mr-5 c-fff"
           target="_blank"
           title="chanyue"
-          >ChanCMS</a
+          >禅cms</a
         >
         ● 位于南京 服务全国
       </p>

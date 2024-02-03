@@ -70,7 +70,7 @@ export default {
         type: "1",
         name: "",
         mark: "",
-        content: "ChanCMS",
+        content: "欢迎使用禅cms系统",
       },
       paramsRules: {
         //校验规则

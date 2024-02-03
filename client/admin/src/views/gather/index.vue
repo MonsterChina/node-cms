@@ -97,7 +97,7 @@ export default {
         img: "",
         createdAt: new Date(),
         updatedAt: new Date(),
-        content: "禅悦",
+        content: "ChanCMS",
         status: "0",
         pv: 1,
         link: "",

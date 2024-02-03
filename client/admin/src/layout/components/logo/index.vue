@@ -1,7 +1,7 @@
 <template>
   <h1 class="logo">
     <IconLogo class="icon mr-10"></IconLogo>
-    <span class="f-20" v-show="!flag">禅悦cms</span>
+    <span class="f-20" v-show="!flag">ChanCMS</span>
   </h1>
 </template>
 

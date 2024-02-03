@@ -16,7 +16,7 @@
 </template>
 <style>
 .svg {
-  background-image: url("https://www.chancms.top/img/logo.png");
+  background-image: url("https://www.ChanCMS.top/img/logo.png");
   background-size: cover;
   opacity: 0;
 }

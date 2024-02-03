@@ -3,7 +3,7 @@
     <div class="login">
       <h1 class="title row align-c">
         <IconLogo class="icon"></IconLogo>
-        禅悦后台管理系统
+        chancms后台管理系统
       </h1>
       <div class="login-cont">
         <el-form
@@ -81,11 +81,11 @@
       <p class="f-13 text-c mt-10 c-fff">
         Copyright &copy; 2016-2023
         <a
-          href="https://www.chancms.top"
+          href="https://www.ChanCMS.top"
           class="mr-5 c-fff"
           target="_blank"
           title="chanyue"
-          >禅悦CMS</a
+          >ChanCMS</a
         >
         ● 位于南京 服务全国
       </p>

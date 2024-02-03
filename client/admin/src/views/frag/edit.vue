@@ -70,7 +70,7 @@ export default {
         type: "1",
         name: 0,
         mark: "",
-        content: "禅悦",
+        content: "ChanCMS",
       },
       dialogVisible: false,
       disabled: false,

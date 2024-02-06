@@ -105,7 +105,7 @@ server 部署代码
 
 ## 👵开发文档
 
-* **官网:https://www.chancms.top <https://yanyutao0402.gitee.io/chanyue-doc>**
+* **官网:https://www.chancms.top**
 * **官网文档 <https://yanyutao0402.gitee.io/chanyue-doc>**
 
 ## ❤️项目关注

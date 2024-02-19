@@ -1,27 +1,28 @@
+const Chan = require("chanjs");
+let {
+  utils: { setToken, getToken },
+  api: { success },
+} = Chan.helper;
+const {
+  token: { KEY, TIME },
+} = Chan.config;
 
-const {config, helper: {setToken,getToken,success}} = require('../../config.js');
-
-const {token:{KEY,TIME}} = config;
-
-class TokenController  {
-
+class TokenController {
   // 更新token时间
-  static async update(res,req,next) {
+  static async update(res, req, next) {
     try {
       const username = req.locals.username;
       const uid = req.locals.uid;
-      const token = setToken({ username, uid },
-       KEY,
-        TIME);
+      const token = setToken({ username, uid }, KEY, TIME);
 
-      res.json({ ...success, data: {token} });
+      res.json({ ...success, data: { token } });
     } catch (err) {
       next(err);
     }
   }
 
   // 校验token是否正确
-  static async check(req,res,next) {
+  static async check(req, res, next) {
     try {
       const token = req.query.token;
       const res = await getToken(token, KEY);
@@ -30,7 +31,6 @@ class TokenController  {
       next(err);
     }
   }
-
 }
 
 module.exports = TokenController;

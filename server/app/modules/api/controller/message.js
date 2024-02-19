@@ -1,10 +1,12 @@
 
 const dayjs = require('dayjs');
-const path = require('path');
-const {helper: {success} } = require('../../config.js');
-
-
-const MessageService = require('../service/message.js');
+const Chan = require("chanjs");
+let {api: { success}} = Chan.helper;
+const {
+  api: {
+    service: { message },
+  },
+} = Chan.modules;
 
 class MessageController  {
 
@@ -12,7 +14,7 @@ class MessageController  {
   static async create(req, res, next) {
     try {
       const body = req.body;
-      const data = await MessageService.create(body);
+      const data = await message.create(body);
       res.json({ ...success, data: data })
     } catch (err) {
       next(err);
@@ -24,7 +26,7 @@ class MessageController  {
   static async delete(req, res, next) {
     try {
       const id = req.query.id;
-      const data = await MessageService.delete(id);
+      const data = await message.delete(id);
       res.json({ ...success, data: data });
     } catch (err) {
       next(err);
@@ -35,7 +37,7 @@ class MessageController  {
   static async update(req, res, next) {
     try {
       const body = req.body;
-      const data = await MessageService.update(body);
+      const data = await message.update(body);
       res.json({ ...success, data: data });
     } catch (err) {
       next(err);
@@ -47,7 +49,7 @@ class MessageController  {
   static async find(req, res, next) {
     try {
       const id = req.query.id;
-      const data = await MessageService.find(id);
+      const data = await message.find(id);
       data.createdAt = dayjs(data.createdAt).format('YYYY-MM-DD HH:mm:ss');
       res.json({ ...success, data: data });
     } catch (err) {
@@ -60,7 +62,7 @@ class MessageController  {
   static async detail(req, res, next) {
     try {
       const id = req.query.id;
-      const data = await MessageService.detail(id);
+      const data = await message.detail(id);
       data.createdAt = dayjs(data.createdAt).format('YYYY-MM-DD HH:mm:ss');
       res.json({ ...success, data: data });
     } catch (err) {
@@ -75,7 +77,7 @@ class MessageController  {
     try {
 
       const {cur,keyword,pageSize=20} = req.query;
-      const data = await MessageService.search(key, cur, pageSize);
+      const data = await message.search(key, cur, pageSize);
       data.list.forEach(ele => {
         ele.createdAt = dayjs(ele.createdAt).format('YYYY-MM-DD HH:mm');
       });
@@ -89,7 +91,7 @@ class MessageController  {
   static async list(req, res, next) {
     try {
       const {cur,pageSize=20} = req.query;
-      const data = await MessageService.list(cur, pageSize);
+      const data = await message.list(cur, pageSize);
       data.list.forEach(ele => {
         ele.createdAt = dayjs(ele.createdAt).format('YYYY-MM-DD HH:mm');
       });

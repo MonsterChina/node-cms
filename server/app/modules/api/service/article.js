@@ -1,8 +1,11 @@
 
 const path = require("path");
-const {knex, helper: { delImg,filterImgFromStr} } = require('../../config.js');
 
-const BaseService = require("./base");
+const Chan = require("chanjs");
+let {utils: { filterImgFromStr, delImg}} = Chan.helper;
+let knex = Chan.knex;
+
+
 async function getImgsByArticleId(id, arr) {
   const imgStr = ` SELECT img,content FROM article WHERE id=${id}`;
   const img = await knex.raw(imgStr, []);

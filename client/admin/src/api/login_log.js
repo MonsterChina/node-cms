@@ -10,13 +10,10 @@ export let list = (cur) => {
 };
 
 //增
-export let create = (id) => {
+export let create = () => {
   return http({
     url: `${API.BASE_API}/api/loginLog/create`,
     method: "post",
-    data: {
-      uid: id,
-    },
   });
 };
 

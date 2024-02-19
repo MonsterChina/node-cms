@@ -1,10 +1,8 @@
-
-const BaseService = require('./base');
-const {knex} = require('../../config.js');
+const Chan = require("chanjs");
+let knex = Chan.knex;
 
 class ModelService  {
   static model = 'model';
- 
 
   // 增
   static async create(body) {

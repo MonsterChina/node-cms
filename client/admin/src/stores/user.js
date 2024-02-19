@@ -13,6 +13,7 @@ export const userStore = defineStore("user", {
     async login(params) {
       try {
         const res = await Login.toLogin(params);
+        this.token = res.data.token;
         if (res.code == 200) {
           this.token = res.data.token;
           setCookie("token", res.data.token);
@@ -26,8 +27,9 @@ export const userStore = defineStore("user", {
 
     async getUserInfo() {
       try {
-        let uid = getCookie("uid");
-        const res = await Login.userInfo(uid);
+        // let uid = getCookie("uid");
+        // alert(uid);
+        const res = await Login.userInfo();
         if (res.code == 200 && res.data) {
           let role = res.data.value;
           this.userInfo = { role, ...res.data };

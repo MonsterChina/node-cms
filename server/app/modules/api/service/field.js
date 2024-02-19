@@ -1,7 +1,6 @@
+const Chan = require("chanjs");
+let knex = Chan.knex;
 
-const BaseService = require('./base');
-const path = require('path');
-const {knex} = require('../../config.js');
 class FieldService {
   static model = 'field';
 

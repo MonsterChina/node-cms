@@ -1,20 +1,19 @@
+const Chan = require("chanjs");
+let {api: { success }} = Chan.helper;
 
-const dayjs = require('dayjs');
-const path = require('path');
+const {
+  api: {
+    service: { tag },
+  },
+} = Chan.modules;
 
-const {helper: {success}} = require('../../config.js');
-
-const TagService = require('../service/tag.js');
-
-class TagController  {
-
-  
+class tagController  {
 
   // 增
   static async create(req, res, next) {
     try {
       const body = req.body;
-      const data = await TagService.create(body);
+      const data = await tag.create(body);
       res.json({ ...success, data: data })
     } catch (err) {
       next(err);
@@ -25,7 +24,7 @@ class TagController  {
   static async delete(req, res, next) {
     try {
       const id = req.query.id;
-      const data = await TagService.delete(id);
+      const data = await tag.delete(id);
       res.json({ ...success, data: data });
     } catch (err) {
       next(err);
@@ -36,7 +35,7 @@ class TagController  {
   static async update(req, res, next) {
     try {
       const body = req.body;
-      const data = await TagService.update(body);
+      const data = await tag.update(body);
       res.json({ ...success, data: data });
     } catch (err) {
       next(err);
@@ -47,7 +46,7 @@ class TagController  {
   static async detail(req, res, next) {
     try {
       const id = req.query.id;
-      const data = await TagService.detail(id);
+      const data = await tag.detail(id);
       res.json({ ...success, data: data });
     } catch (err) {
       next(err);
@@ -59,7 +58,7 @@ class TagController  {
     try {
       const cur = req.query.cur;
       const pageSize = 50;
-      const data = await TagService.list(cur, pageSize);
+      const data = await tag.list(cur, pageSize);
       res.json({ ...success, data: data });
     } catch (err) {
       next(err);
@@ -70,7 +69,7 @@ class TagController  {
   static async has(req, res, next) {
     try {
       const path = req.query.path;
-      const data = await TagService.has(path);
+      const data = await tag.has(path);
       res.json({ ...success, data: data });
     } catch (err) {
       next(err);
@@ -83,7 +82,7 @@ class TagController  {
       const cur = req.query.cur;
       const key = req.query.keyword;
       const pageSize = req.query.pageSize || 10;
-      const data = await TagService.search(key, cur, pageSize);
+      const data = await tag.search(key, cur, pageSize);
       
       res.json({ ...success, data: data });
     } catch (err) {
@@ -93,4 +92,4 @@ class TagController  {
 
 }
 
-module.exports = TagController;
+module.exports = tagController;

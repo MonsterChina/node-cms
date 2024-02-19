@@ -160,7 +160,6 @@ export default {
     async create() {
       try {
         let res = await create(this.params);
-        console.log("this.params", this.params);
         if (res.code == 200) {
           this.$message({
             message: "新增成功^_^",

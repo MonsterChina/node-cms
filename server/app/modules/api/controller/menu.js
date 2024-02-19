@@ -1,15 +1,19 @@
 
+const Chan = require("chanjs");
+let {api: { success}} = Chan.helper;
 
-const {helper: {success}} = require('../../config.js');
-const path = require('path');
-const MenuService = require('../service/menu.js');
+const {
+  api: {
+    service: { menu },
+  },
+} = Chan.modules;
 
 class MenuController  {
 
   // 查
   static async find(req, res, next) {
     try {
-      const data = await MenuService.find();
+      const data = await menu.find();
       res.json({ ...success, data: data })
     } catch (err) {
       next(err);
@@ -20,7 +24,7 @@ class MenuController  {
   static async update(req, res, next) {
     try {
       const body = req.body;
-      const data = await MenuService.update(body);
+      const data = await menu.update(body);
       res.json({ ...success, data: data });
     } catch (err) {
       next(err);

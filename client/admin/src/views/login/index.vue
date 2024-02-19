@@ -126,11 +126,6 @@ export default defineComponent({
       }
     },
     //登录日志
-    async loginLog(id) {
-      //添加登录日志
-      await create(id);
-    },
-
     async login() {
       const users = userStore();
       this.$refs.loginForm.validate((valid) => {
@@ -149,7 +144,7 @@ export default defineComponent({
           }
           // 登录逻辑 当需要返回用await 不需要返回值，可以用then
           const { username, password } = this.loginForm;
-          users.login({ username, password }).then((res) => {
+          users.login({ username, password }).then(async (res) => {
             if (res.code == 500) {
               // eslint-disable-next-line no-undef
               ElNotification({
@@ -160,7 +155,8 @@ export default defineComponent({
               return false;
             }
 
-            this.loginLog(res.data.id);
+            //添加登录日志
+            await create();
             // eslint-disable-next-line no-undef
             ElNotification({
               title: "提示",

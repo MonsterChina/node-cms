@@ -1,5 +1,6 @@
+const Chan = require("chanjs");
+let {utils: { filterFields, formatDay}} = Chan.helper;
 
-const { helper: { filterFields, formatDay } } = require('../../config.js');
 const CommonService = require("./common.js");
 class HomeService {
   constructor() { }

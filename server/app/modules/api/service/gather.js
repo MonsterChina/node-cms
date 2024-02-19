@@ -1,9 +1,7 @@
 
-const { knex } = require('../../config.js');
+const Chan = require("chanjs");
+let knex = Chan.knex;
 const BaseService = require('./base');
-const axios = require('axios')
-const iconv = require('iconv-lite');
-
 class GatherService {
   static model = 'gather';
 

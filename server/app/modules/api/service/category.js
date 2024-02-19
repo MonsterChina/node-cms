@@ -1,10 +1,12 @@
 const BaseService = require("./base");
-const {knex} = require('../../config.js');
+
+const Chan = require("chanjs");
+let knex = Chan.knex;
+
 class CategoryService  {
   static model = "category";
   // 增
   static async create(body) {
-    const { app } = this;
     try {
       const result = await BaseService.insert(CategoryService.model, body);
       return result ? "success" : "fail";

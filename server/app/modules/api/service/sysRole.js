@@ -1,7 +1,5 @@
-
-const {knex} = require('../../config.js');
-
-const BaseService = require('./base.js');
+const Chan = require("chanjs");
+let knex = Chan.knex;
 
 class SysRoleService {
   static model = 'sys_role';

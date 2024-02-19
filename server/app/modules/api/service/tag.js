@@ -1,5 +1,5 @@
-const BaseService = require("./base");
-const {knex} = require('../../config.js');
+const Chan = require("chanjs");
+const knex = Chan.knex;
 
 class TagService  {
   static model = "tag";

@@ -11,12 +11,12 @@ module.exports = async function (app) {
   //挂载配置
   await sysconfig(app);
 
-  const { logger,appRoot, cookieKey, maxAge } = app.locals.config;
+  const { logger,APP_PATH, cookieKey, maxAge } = app.locals.config;
   //日志
   app.use(morgan(logger.level));
 
   // favicon 图标
-  app.use(favicon(path.join(appRoot, "public/favicon.ico")));
+  app.use(favicon(path.join(APP_PATH, "public/favicon.ico")));
 
   //cookie
   app.use(cookieParser(cookieKey));
@@ -31,7 +31,7 @@ module.exports = async function (app) {
   //使用静态资源 ,
   app.use(
     "/public",
-    express.static(path.join(appRoot, "public"), {
+    express.static(path.join(APP_PATH, "public"), {
       maxAge:maxAge,
     })
   );

@@ -545,6 +545,7 @@ const router = createRouter({
 import { userStore } from "@/stores/user";
 router.beforeEach(async (to, from) => {
   const user = userStore();
+
   if (user.token) {
     //已登录
     if (to.path === "/login") {

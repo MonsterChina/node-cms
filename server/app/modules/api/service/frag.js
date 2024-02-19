@@ -1,7 +1,6 @@
-
-const BaseService = require('./base');
-const path = require('path');
-const {knex, helper: {convertArrayToObject}} = require('../../config.js');
+const Chan = require("chanjs");
+let {utils: { convertArrayToObject }} = Chan.helper;
+let knex = Chan.knex;
 
 class FragService  {
   static model = 'frag';

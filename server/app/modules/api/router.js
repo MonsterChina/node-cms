@@ -1,182 +1,154 @@
-const express = require('express');
-const router = express.Router();
 
-const SiteController = require('./controller/site.js');
-const SysAppController = require('./controller/sysApp.js');
-const SysUserController = require('./controller/sysUser.js');
-const SysRoleController = require('./controller/sysRole.js');
-const SysMenuController = require('./controller/menu.js');
-const LoginLogController = require('./controller/loginLog.js');
+const Chan = require("chanjs");
+const auth = require("../../middleware/auth.js");
+let { upload } = Chan.helper.upload;
 
-const CategoryController = require('./controller/category.js');
-const ArticleController = require('./controller/article.js');
-const CollectController = require('./controller/collect.js')
-const GatherController = require('./controller/gather.js')
-const ModelController = require('./controller/model.js');
-const FieldController = require('./controller/field.js');
-const FragController = require('./controller/frag.js');
-const TagController = require('./controller/tag.js');
-const FriendlinkController = require('./controller/friendlink.js');
-const MessageController = require('./controller/message.js');
-const SlideController = require('./controller/slide.js');
-const QiniuController = require('./controller/qiniu.js');
+module.exports = (opt) => {
+  const {
+    router,
+    modules: { api:{controller}},
+    app
+  } = opt;
+  // 验证码
+  router.get("/captcha", controller.sysUser.captcha); // 验证码
 
-const config = require('../../config/index.js');
-const { upload, uploads } = require('../../extend/upload.js');
-const SysAppService = require('./service/sysApp.js');
-const auth = require('../../middleware/auth.js');
+  // 登录
+  router.post("/sysUser/login", controller.sysUser.login);
+  router.get("/sysUser/list", controller.sysUser.list);
+  router.get("/sysUser/search", controller.sysUser.search);
+  router.get("/sysUser/detail", auth(), controller.sysUser.detail);
+  router.post("/sysUser/create", auth(), controller.sysUser.create);
+  router.get("/sysUser/delete", auth(), controller.sysUser.delete);
+  router.post("/sysUser/update", auth(), controller.sysUser.update);
 
-// 验证码
-router.get('/captcha', SysUserController.captcha); // 验证码
+  // 站点信息
+  router.get("/site/find", auth(), controller.site.find);
+  router.post("/site/updateInfo", auth(), controller.site.updateInfo);
+  router.post("/site/updateSeo", auth(), controller.site.updateSeo);
+  router.get("/site/runEnv", controller.site.runEnv);
+  router.get("/sysApp/find", controller.sysApp.find);
+  router.get("/sysApp/views", controller.sysApp.getViews);
+  router.get("/sysApp/config", controller.sysApp.config);
+  router.post("/sysApp/update", auth(), controller.sysApp.update);
 
-// 登录
-router.post('/sysUser/login', SysUserController.login);
-router.get('/sysUser/list', SysUserController.list);
-router.get('/sysUser/search', SysUserController.search);
-router.get('/sysUser/detail',auth(), SysUserController.detail);
-router.post('/sysUser/create', auth(), SysUserController.create);
-router.get('/sysUser/delete', auth(), SysUserController.delete);
-router.post('/sysUser/update', auth(), SysUserController.update);
+  // 网站栏目
+  router.get("/category/find", controller.category.find);
+  router.get("/category/findId", controller.category.findId);
+  router.get("/category/findSubId", controller.category.findSubId);
+  router.get("/category/search", controller.category.search);
+  router.get("/category/delete", auth(), controller.category.delete);
+  router.post("/category/update", auth(), controller.category.update);
+  router.post("/category/create", auth(), controller.category.create);
 
-// 站点信息
-router.get('/site/find', auth(), SiteController.find);
-router.post('/site/updateInfo', auth(), SiteController.updateInfo);
-router.post('/site/updateSeo', auth(), SiteController.updateSeo);
-router.get('/site/runEnv', SiteController.runEnv);
-router.get('/sysApp/find', SysAppController.find);
-router.get('/sysApp/views', SysAppController.getViews);
-router.get('/sysApp/config', SysAppController.config);
-router.post('/sysApp/update', auth(), SysAppController.update);
+  // 文章栏目
+  router.get("/article/list", controller.article.list);
+  router.get("/article/tongji", controller.article.tongji);
+  router.get("/article/search", controller.article.search);
+  router.get("/article/detail", controller.article.detail);
+  router.get("/article/findField", auth(), controller.article.findField);
+  router.post("/article/create", auth(), controller.article.create);
+  router.get("/article/delete", auth(), controller.article.delete);
+  router.post("/article/update", auth(), controller.article.update);
 
-// 网站栏目
-router.get('/category/find', CategoryController.find);
-router.get('/category/findId', CategoryController.findId);
-router.get('/category/findSubId', CategoryController.findSubId);
-router.get('/category/search', CategoryController.search);
-router.get('/category/delete', auth(), CategoryController.delete);
-router.post('/category/update', auth(), CategoryController.update);
-router.post('/category/create', auth(), CategoryController.create);
+  //上传
+  router.post("/upload", auth(), upload.any(),controller.article.upload);
 
-// 文章栏目
-router.get('/article/list', ArticleController.list);
-router.get('/article/tongji', ArticleController.tongji);
-router.get('/article/search', ArticleController.search);
-router.get('/article/detail', ArticleController.detail);
-router.get('/article/findField', auth(), ArticleController.findField);
-router.post('/article/create', auth(), ArticleController.create);
-router.get('/article/delete', auth(), ArticleController.delete);
-router.post('/article/update', auth(), ArticleController.update);
-//上传
-(async function() {
-    let config = await SysAppService.config();
-    const {uploadWay='1'} = config;
-    let uploadConfig = {
-        '1': {
-            type: upload.any(),
-            method: ArticleController.upload,
-        },
-        '2': {
-            type: upload.any(),
-            method: QiniuController.upload,
-        },
-    }[uploadWay];
-    router.post('/upload', auth(), uploadConfig.type, uploadConfig.method);
-  })();
+  // 七牛云相关
+  router.get("/qiniu/getUploadToken", controller.qiniu.getUploadToken);
+  router.post("/qiniu/upload", auth(), upload.any(),controller.qiniu.upload);
 
+  // 模型管理
+  router.get("/model/list", controller.model.list);
+  router.get("/model/detail", controller.model.detail);
+  router.get("/model/hasUse", auth(), controller.model.hasUse);
+  router.post("/model/create", auth(), controller.model.create);
+  router.post("/model/delete", auth(), controller.model.delete);
+  router.post("/model/update", auth(), controller.model.update);
 
-// 模型管理
-router.get('/model/list', ModelController.list);
-router.get('/model/detail', ModelController.detail);
-router.get('/model/hasUse', auth(), ModelController.hasUse);
-router.post('/model/create', auth(), ModelController.create);
-router.post('/model/delete', auth(), ModelController.delete);
-router.post('/model/update', auth(), ModelController.update);
+  // 字段管理
+  router.get("/field/list", controller.field.list);
+  router.get("/field/detail", controller.field.detail);
+  router.post("/field/create", auth(), controller.field.create);
+  router.get("/field/delete", auth(), controller.field.delete);
+  router.post("/field/update", auth(), controller.field.update);
 
-// 字段管理
-router.get('/field/list', FieldController.list);
-router.get('/field/detail', FieldController.detail);
-router.post('/field/create', auth(), FieldController.create);
-router.get('/field/delete', auth(), FieldController.delete);
-router.post('/field/update', auth(), FieldController.update);
+  // 碎片管理
+  router.get("/frag/list", controller.frag.list);
+  router.get("/frag/search", controller.frag.search);
+  router.get("/frag/detail", controller.frag.detail);
+  router.post("/frag/create", auth(), controller.frag.create);
+  router.get("/frag/delete", auth(), controller.frag.delete);
+  router.post("/frag/update", auth(), controller.frag.update);
 
-// 碎片管理
-router.get('/frag/list', FragController.list);
-router.get('/frag/search', FragController.search);
-router.get('/frag/detail', FragController.detail);
-router.post('/frag/create', auth(), FragController.create);
-router.get('/frag/delete', auth(), FragController.delete);
-router.post('/frag/update', auth(), FragController.update);
+  // tag标签管理
+  router.get("/tag/list", controller.tag.list);
+  router.post("/tag/create", auth(), controller.tag.create);
+  router.get("/tag/detail", controller.tag.detail);
+  router.get("/tag/has", controller.tag.has);
+  router.get("/tag/search", controller.tag.search);
+  router.get("/tag/delete", auth(), controller.tag.delete);
+  router.post("/tag/update", auth(), controller.tag.update);
 
-// tag标签管理
-router.get('/tag/list', TagController.list);
-router.post('/tag/create', auth(), TagController.create);
-router.get('/tag/detail', TagController.detail);
-router.get('/tag/has', TagController.has);
-router.get('/tag/search', TagController.search);
-router.get('/tag/delete', auth(), TagController.delete);
-router.post('/tag/update', auth(), TagController.update);
+  // 友情链接
+  router.get("/friendlink/list", controller.friendlink.list);
+  router.get("/friendlink/detail", controller.friendlink.detail);
+  router.post("/friendlink/create", auth(), controller.friendlink.create);
+  router.get("/friendlink/delete", auth(), controller.friendlink.delete);
+  router.post("/friendlink/update", auth(), controller.friendlink.update);
 
-// 友情链接
-router.get('/friendlink/list', FriendlinkController.list);
-router.get('/friendlink/detail', FriendlinkController.detail);
-router.post('/friendlink/create', auth(), FriendlinkController.create);
-router.get('/friendlink/delete', auth(), FriendlinkController.delete);
-router.post('/friendlink/update', auth(), FriendlinkController.update);
+  // 留言管理
+  router.get("/message/list", controller.message.list);
+  router.get("/message/search", controller.message.search);
+  router.get("/message/detail", controller.message.detail);
+  router.post("/message/create", controller.message.create);
+  router.get("/message/delete", auth(), controller.message.delete);
+  router.post("/message/update", auth(), controller.message.update);
 
-// 留言管理
-router.get('/message/list', MessageController.list);
-router.get('/message/search', MessageController.search);
-router.get('/message/detail', MessageController.detail);
-router.post('/message/create',  MessageController.create);
-router.get('/message/delete', auth(), MessageController.delete);
-router.post('/message/update', auth(), MessageController.update);
+  // 轮播管理
+  router.get("/slide/list", controller.slide.list);
+  router.get("/slide/search", controller.slide.search);
+  router.get("/slide/detail", controller.slide.detail);
+  router.post("/slide/create", auth(), controller.slide.create);
+  router.get("/slide/delete", auth(), controller.slide.delete);
+  router.post("/slide/update", auth(), controller.slide.update);
 
+  //页面采集
+  router.post("/collect/getPages", controller.collect.getPages);
+  router.post("/collect/getArticle", controller.collect.getArticle);
+  router.get("/collect/list", controller.collect.list);
+  router.get("/collect/search", controller.collect.search);
+  router.get("/collect/detail", controller.collect.detail);
+  router.post("/collect/create", auth(), controller.collect.create);
+  router.get("/collect/delete", auth(), controller.collect.delete);
+  router.post("/collect/update", auth(), controller.collect.update);
 
-// 轮播管理
-router.get('/slide/list', SlideController.list);
-router.get('/slide/search', SlideController.search);
-router.get('/slide/detail', SlideController.detail);
-router.post('/slide/create', auth(), SlideController.create);
-router.get('/slide/delete', auth(), SlideController.delete);
-router.post('/slide/update', auth(), SlideController.update);
+  //接口采集
+  router.get("/gather/getArticle", controller.gather.getArticle);
+  router.get("/gather/list", controller.gather.list);
+  router.get("/gather/search", controller.gather.search);
+  router.get("/gather/detail", controller.gather.detail);
+  router.post("/gather/create", auth(), controller.gather.create);
+  router.get("/gather/delete", auth(), controller.gather.delete);
+  router.post("/gather/update", auth(), controller.gather.update);
 
-//页面采集
-router.post('/collect/getPages', CollectController.getPages);
-router.post('/collect/getArticle', CollectController.getArticle);
-router.get('/collect/list', CollectController.list);
-router.get('/collect/search', CollectController.search);
-router.get('/collect/detail', CollectController.detail);
-router.post('/collect/create', auth(), CollectController.create);
-router.get('/collect/delete', auth(), CollectController.delete);
-router.post('/collect/update', auth(), CollectController.update);
+  
+  //角色管理
+  router.get("/sysRole/list", auth(), controller.sysRole.list);
+  router.post("/sysRole/create", auth(), controller.sysRole.create);
+  router.get("/sysRole/delete", auth(), controller.sysRole.delete);
+  router.post("/sysRole/update", auth(), controller.sysRole.update);
+  router.get("/sysRole/detail", auth(), controller.sysRole.detail);
 
-//接口采集
-router.get('/gather/getArticle', GatherController.getArticle);
-router.get('/gather/list', GatherController.list);
-router.get('/gather/search', GatherController.search);
-router.get('/gather/detail', GatherController.detail);
-router.post('/gather/create', auth(), GatherController.create);
-router.get('/gather/delete', auth(), GatherController.delete);
-router.post('/gather/update', auth(), GatherController.update);
+  //系统菜单
+  router.get("/sysMenu/find", auth(), controller.menu.find);
+  router.post("/sysMenu/update", auth(), controller.menu.update);
 
-// 七牛云相关
-router.get('/qiniu/getUploadToken', QiniuController.getUploadToken);
+  //登录日志
+  router.post("/loginLog/create", auth(), controller.loginLog.create);
+  router.get("/loginLog/delete", auth(), controller.loginLog.delete);
+  router.get("/loginLog/list", auth(), controller.loginLog.list);
 
+  //配置前缀
+  app.use('/api',router)
+};
 
-//角色管理
-router.get('/sysRole/list', auth(),SysRoleController.list);
-router.post('/sysRole/create', auth(), SysRoleController.create);
-router.get('/sysRole/delete', auth(), SysRoleController.delete);
-router.post('/sysRole/update', auth(), SysRoleController.update);
-router.get('/sysRole/detail',auth(), SysRoleController.detail);
-
-//系统菜单
-router.get('/sysMenu/find', auth(), SysMenuController.find);
-router.post('/sysMenu/update', auth(), SysMenuController.update);
-
-//登录日志
-router.post('/loginLog/create', auth(), LoginLogController.create);
-router.get('/loginLog/delete', auth(), LoginLogController.delete);
-router.get('/loginLog/list', auth(),LoginLogController.list);
-
-module.exports = router;

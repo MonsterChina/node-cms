@@ -1,20 +1,26 @@
 
 
-const dayjs = require('dayjs');
-const path = require('path');
-const { helper: {success}} = require('../../config.js');
-const ModelService = require('../service/model.js');
+const Chan = require("chanjs");
+let {api: { success }} = Chan.helper;
+
+
+const {
+  api: {
+    service: { model },
+  },
+} = Chan.modules;
+
 class ModelController  {
   // 增
   static async create(req, res, next) {
     try {
       const body = req.body;
-      const has = await ModelService.findByName(body.model_name, body.table_name);
+      const has = await model.findByName(body.model_name, body.table_name);
       if (has.length > 0) {
         this.fail({ msg: '模型命名已重复' });
         return;
       }
-      const data = await ModelService.create(body);
+      const data = await model.create(body);
       res.json({ ...success, data: data });
     } catch (err) {
       next(err);
@@ -25,7 +31,7 @@ class ModelController  {
   static async delete(req, res, next) {
     try {
       const body = req.body;
-      const data = await ModelService.delete(body);
+      const data = await model.delete(body);
       res.json({ ...success, data: data });
     } catch (err) {
       next(err);
@@ -36,7 +42,7 @@ class ModelController  {
   static async update(req, res, next) {
     try {
       const body = req.body;
-      const data = await ModelService.update(body);
+      const data = await model.update(body);
       res.json({ ...success, data: data });
     } catch (err) {
       next(err);
@@ -47,7 +53,7 @@ class ModelController  {
   static async detail(req, res, next) {
     try {
       const id = req.query.id;
-      const data = await ModelService.detail(id);
+      const data = await model.detail(id);
       res.json({ ...success, data: data});
     } catch (err) {
       next(err);
@@ -59,7 +65,7 @@ class ModelController  {
   static async hasUse(req, res, next) {
     try {
       const id = req.query.id;
-      const data = await ModelService.hasUse(id);
+      const data = await model.hasUse(id);
       res.json({ ...success, data:data[0] });
     } catch (err) {
       next(err);
@@ -71,7 +77,7 @@ class ModelController  {
     try {
       const cur = req.query.cur;
       const pageSize = 10;
-      const data = await ModelService.list(cur, pageSize);
+      const data = await model.list(cur, pageSize);
       res.json({ ...success, data });
     } catch (err) {
       next(err);

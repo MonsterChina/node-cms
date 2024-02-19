@@ -1,15 +1,21 @@
+const Chan = require("chanjs");
+let {api: { success }} = Chan.helper;
 
-
-const {helper: {success}} = require('../../config.js');
 const path = require('path');
-const SiteService = require('../service/site.js');
+
+
+const {
+  api: {
+    service: { site },
+  },
+} = Chan.modules;
 
 class SiteController  {
 
   // 查
   static async find(req, res, next) {
     try {
-      const data = await SiteService.find();
+      const data = await site.find();
       res.json({ ...success, data: data })
     } catch (err) {
       next(err);
@@ -21,7 +27,7 @@ class SiteController  {
   static async create(req, res, next) {
     try {
       const body = req.body;
-      const data = await SiteService.create(body);
+      const data = await site.create(body);
       res.json({ ...success, data: data })
     } catch (err) {
       next(err);
@@ -32,7 +38,7 @@ class SiteController  {
   static async delete(req, res, next) {
     try {
       const id = req.query.id;
-      const data = await SiteService.delete(id);
+      const data = await site.delete(id);
       res.json({ ...success, data: data });
     } catch (err) {
       next(err);
@@ -43,7 +49,7 @@ class SiteController  {
   static async updateInfo(req, res, next) {
     try {
       const body = req.body;
-      const data = await SiteService.updateInfo(body);
+      const data = await site.updateInfo(body);
       res.json({ ...success, data: data });
     } catch (err) {
       next(err);
@@ -53,7 +59,7 @@ class SiteController  {
   static async updateSeo(req, res, next) {
     try {
       const body = req.body;
-      const data = await SiteService.updateSeo(body);
+      const data = await site.updateSeo(body);
       res.json({ ...success, data: data });
     } catch (err) {
       next(err);
@@ -64,7 +70,7 @@ class SiteController  {
   static async findId(req, res, next) {
     try {
       const id = req.query.id;
-      const data = await SiteService.find(id);
+      const data = await site.find(id);
       res.json({ ...success, data: data });
     } catch (err) {
       next(err);

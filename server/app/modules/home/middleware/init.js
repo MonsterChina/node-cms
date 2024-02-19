@@ -1,14 +1,17 @@
-const CommonService = require(`../service/common.js`);
-const SiteService = require("../../api/service/site.js");
-const FragService = require("../../api/service/frag.js");
-const TagService = require("../../api/service/tag.js");
-const FriendlinkService = require("../../api/service/friendlink.js");
+
+const Chan = require("chanjs");
+const {
+  home: {service: { common }},
+  api:{service:{site,frag,tag,friendlink}}
+} = Chan.modules;
+
+let data = {site,frag,tag,friendlink,common};
 
 module.exports = () => {
   return async (req, res, next) => {
     try {
-      const {
-        helper,
+      let { utils } = Chan.helper;
+      let {
         config: { template, dataCache },
       } = req.app.locals;
 
@@ -17,21 +20,21 @@ module.exports = () => {
         return;
       }
       // 站点
-      const site = await SiteService.find();
+      const site = await data.site.find();
       site.json = site.json || "";
       // 分类
-      const category = await CommonService.category();
+      const category = await data.common.category();
       //导航
-      const nav = helper.tree(category);
+      const nav = utils.tree(category);
       // 友情链接
-      let friendlink = await FriendlinkService.list();
+      let friendlink = await data.friendlink.list();
       friendlink = friendlink.list || [];
       //样式路径
       const base_url = `/public/template/${template}`;
       //获取碎片 默认获取100条
-      const frag = await FragService.list();
+      const frag = await data.frag.list();
       //获取tag标签 默认100条
-      const tag = await TagService.list();
+      const tag = await data.tag.list();
       req.app.locals = {
         ...req.app.locals,
         site,

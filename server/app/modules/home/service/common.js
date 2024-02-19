@@ -1,5 +1,6 @@
-const { helper: { filterFields, formatDay } } = require('../../config.js');
-const { knex } = require("../../config.js");
+const Chan = require("chanjs");
+let {utils: { filterFields, formatDay}} = Chan.helper;
+let knex = Chan.knex;
 
 class CommonService {
   constructor() {}

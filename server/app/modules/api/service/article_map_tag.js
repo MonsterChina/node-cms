@@ -1,5 +1,7 @@
 const BaseService = require("./base");
-const {knex} = require('../../config.js');
+
+const Chan = require("chanjs");
+let knex = Chan.knex;
 
 class ArticleMapTagService{
 

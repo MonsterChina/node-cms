@@ -1,5 +1,13 @@
-const {config, helper: {success,fail}} = require('../../config.js');
-const QiniuService = require("../service/qiniu.js");
+const Chan = require("chanjs");
+let {api: { success, fail }} = Chan.helper;
+
+const {
+  api: {
+    service: { qiniu },
+  },
+} = Chan.modules;
+
+
 const fs = require("fs");
 
 class QiniuController  {
@@ -7,7 +15,7 @@ class QiniuController  {
   // 获取七牛云上传token
   static async getUploadToken(req, res, next) {
     try {
-      const data = await QiniuService.getUploadToken();
+      const data = await qiniu.getUploadToken();
       res.json({ ...success, data: data });
     } catch (error) {
       next(error);
@@ -22,7 +30,7 @@ class QiniuController  {
       let file = req.file;
       const { originalname, filename, path } = file;
     
-      const uploadResult = await QiniuService.upload(file,{bucket,secretKey,accessKey});
+      const uploadResult = await qiniu.upload(file,{bucket,secretKey,accessKey});
       const { key='' } = uploadResult.data;
       if (uploadResult.code == 200) {
         fs.unlinkSync(file.path); //删除服务本地文件

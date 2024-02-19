@@ -1,10 +1,15 @@
 
 const dayjs = require('dayjs');
-const path = require('path');
+const Chan = require("chanjs");
+let {api: { success}} = Chan.helper;
 
-const {helper: {success}} = require('../../config.js');
+const {
+  api: {
+    service: { friendlink },
+  },
+} = Chan.modules;
 
-const FriendlinkService = require('../service/friendlink.js');
+
 class FriendlinkController  {
 
   // 增
@@ -12,7 +17,7 @@ class FriendlinkController  {
     try {
       const body = req.body;
       body.createdAt = dayjs(body.createdAt).format('YYYY-MM-DD HH:mm:ss');
-      const data = await FriendlinkService.create(body);
+      const data = await friendlink.create(body);
       res.json({ ...success, data: data })
     } catch (err) {
       next(err);
@@ -23,7 +28,7 @@ class FriendlinkController  {
   static async delete(req, res, next) {
     try {
       const id = req.query.id;
-      const data = await FriendlinkService.delete(id);
+      const data = await friendlink.delete(id);
       res.json({ ...success, data: data });
     } catch (err) {
       next(err);
@@ -35,7 +40,7 @@ class FriendlinkController  {
   static async update(req, res, next) {
     try {
       const body = req.body;
-      const data = await FriendlinkService.update(body);
+      const data = await friendlink.update(body);
       res.json({ ...success, data: data });
     } catch (err) {
       next(err);
@@ -46,7 +51,7 @@ class FriendlinkController  {
   static async find(req, res, next) {
     try {
       const id = req.query.id;
-      const data = await FriendlinkService.find(id);
+      const data = await friendlink.find(id);
       res.json({ ...success, data: data });
     } catch (err) {
       next(err);
@@ -57,7 +62,7 @@ class FriendlinkController  {
   static async detail(req, res, next) {
     try {
       const id = req.query.id;
-      const data = await FriendlinkService.detail(id);
+      const data = await friendlink.detail(id);
       res.json({ ...success, data: data });
     } catch (err) {
       next(err);
@@ -70,7 +75,7 @@ class FriendlinkController  {
       const cur = req.query.cur;
       const key = req.query.keyword;
       const pageSize = req.query.pageSize || 10;
-      const data = await FriendlinkService.search(key, cur, pageSize);
+      const data = await friendlink.search(key, cur, pageSize);
       data.forEach(ele => {
         ele.createdAt = dayjs(ele.createdAt).format('YYYY-MM-DD HH:mm');
       });
@@ -85,7 +90,7 @@ class FriendlinkController  {
     try {
       const cur = req.query.cur;
       const pageSize = 10;
-      const data = await FriendlinkService.list(cur, pageSize);
+      const data = await friendlink.list(cur, pageSize);
       data.list.forEach(ele => {
         ele.createdAt = dayjs(ele.createdAt).format('YYYY-MM-DD HH:mm');
       });

@@ -1,10 +1,6 @@
-const {
-  appRoot
-} = require("../../config.js");
-
 const fs = require('fs');
 const path = require('path');
-const axios = require('axios');
+
 class OpenController {
   //60秒读懂世界
   static async news60s(req, res, next) {

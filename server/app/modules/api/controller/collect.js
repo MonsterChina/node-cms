@@ -1,67 +1,84 @@
 const dayjs = require("dayjs");
-const {
-  config,
-  helper: {success, fail },
-} = require("../../config.js");
-const CollectService = require("../service/collect.js");
-const cheerio = require('cheerio');
-class CollectController {
 
-  static model = 'collect';
+const cheerio = require("cheerio");
+const Chan = require("chanjs");
+let {
+  api: { success },
+} = Chan.helper;
+
+const {
+  api: {
+    service: { collect },
+  },
+} = Chan.modules;
+
+
+class CollectController {
+  static model = "collect";
 
   static async getPages(req, res, next) {
     try {
       let arr = [];
       const { targetUrl, listTag, charset } = req.body;
-      const data = await CollectService.common(targetUrl, charset)
+      const data = await collect.common(targetUrl, charset);
       const $ = cheerio.load(data.toString(), { decodeEntities: false });
       $(`${listTag}`).each(function () {
-        arr.push($(this).attr('href'))
+        arr.push($(this).attr("href"));
       });
       res.json({ ...success, data: arr });
     } catch (error) {
-      next(error)
+      next(error);
     }
   }
 
-
-  //测试列表所有地址 
+  //测试列表所有地址
   static async getArticle(req, res, next) {
     try {
-      const { taskUrl, titleTag, articleTag, removeCode, clearRegCode, charset } = req.body;
-      const data = await CollectService.common(taskUrl, charset);
+      const {
+        taskUrl,
+        titleTag,
+        articleTag,
+        removeCode,
+        clearRegCode,
+        charset,
+      } = req.body;
+      const data = await collect.common(taskUrl, charset);
       const $ = cheerio.load(data.toString(), { decodeEntities: false });
       const title = $(`${titleTag}`).text().trim();
       //动态清理节点
       eval(removeCode);
-      $(`${articleTag}`).find('*')
-        .not('img')
-        .remove('script')
-        .remove('style')
-        .remove('iframe')
-        .remove('audio')
-        .remove('video')
-        .remove('noscript')
-        .removeAttr('class')
-        .removeAttr('id')
-        .removeAttr('style')
+      $(`${articleTag}`)
+        .find("*")
+        .not("img")
+        .remove("script")
+        .remove("style")
+        .remove("iframe")
+        .remove("audio")
+        .remove("video")
+        .remove("noscript")
+        .removeAttr("class")
+        .removeAttr("id")
+        .removeAttr("style")
         .each((index, element) => {
           const attributes = element.attributes;
           for (let i = attributes.length - 1; i >= 0; i--) {
             const attributeName = attributes[i].name;
-            if (attributeName.startsWith('data-')) {
+            if (attributeName.startsWith("data-")) {
               $(element).removeAttr(attributeName);
             }
           }
         });
 
       // 获取清理后的文本内容
-      let articleText = $(`${articleTag}`).html().trim()
-        .replace(/\r|\n/g, "").replace(/\"/g, "")
-        .replace(/<span\b[^>]*>(.*?)<\/span>/gi, '$1')
-        .replace(/<div\b[^>]*>(.*?)<\/div>/gi, '$1')
-        .replace(/<a\b[^>]*>(.*?)<\/a>/gi, '$1')
-        .replace(/<p>(\s*|<br\s*\/?>)<\/p>/g, '');
+      let articleText = $(`${articleTag}`)
+        .html()
+        .trim()
+        .replace(/\r|\n/g, "")
+        .replace(/\"/g, "")
+        .replace(/<span\b[^>]*>(.*?)<\/span>/gi, "$1")
+        .replace(/<div\b[^>]*>(.*?)<\/div>/gi, "$1")
+        .replace(/<a\b[^>]*>(.*?)<\/a>/gi, "$1")
+        .replace(/<p>(\s*|<br\s*\/?>)<\/p>/g, "");
 
       // 动态正则替换
       const regex = new RegExp(clearRegCode, "gi");
@@ -70,16 +87,15 @@ class CollectController {
 
       res.json({ ...success, data: { title: title, article: articleText } });
     } catch (error) {
-      next(error)
+      next(error);
     }
   }
-
 
   // 增
   static async create(req, res, next) {
     try {
       const body = req.body;
-      const data = await CollectService.create(body);
+      const data = await collect.create(body);
       res.json({ ...success, data: data });
     } catch (err) {
       next(err);
@@ -90,7 +106,7 @@ class CollectController {
   static async delete(req, res, next) {
     try {
       const id = req.query.id;
-      const data = await CollectService.delete(id);
+      const data = await collect.delete(id);
       res.json({ ...success, data: data });
     } catch (err) {
       next(err);
@@ -101,7 +117,7 @@ class CollectController {
   static async update(req, res, next) {
     try {
       const body = req.body;
-      const data = await CollectService.update(body);
+      const data = await collect.update(body);
       res.json({ ...success, data: data });
     } catch (err) {
       next(err);
@@ -112,7 +128,7 @@ class CollectController {
   static async detail(req, res, next) {
     try {
       const id = req.query.id;
-      const data = await CollectService.detail(id);
+      const data = await collect.detail(id);
       res.json({ ...success, data: data });
     } catch (err) {
       next(err);
@@ -125,7 +141,7 @@ class CollectController {
       const cur = req.query.cur;
       const key = req.query.keyword;
       const pageSize = 10;
-      const data = await CollectService.search(key, cur, pageSize);
+      const data = await collect.search(key, cur, pageSize);
       data.list.forEach((ele) => {
         ele.createdAt = dayjs(ele.createdAt).format("YYYY-MM-DD HH:mm");
       });
@@ -140,7 +156,7 @@ class CollectController {
     try {
       const cur = req.query.cur;
       const pageSize = 10;
-      let data = await CollectService.list(cur, pageSize);
+      let data = await collect.list(cur, pageSize);
       data.list.forEach((ele) => {
         ele.createdAt = dayjs(ele.createdAt).format("YYYY-MM-DD HH:mm");
       });
@@ -149,8 +165,6 @@ class CollectController {
       next(err);
     }
   }
-
-
 }
 
 module.exports = CollectController;

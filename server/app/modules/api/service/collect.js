@@ -1,5 +1,6 @@
+const Chan = require('chanjs');
+let knex = Chan.knex;
 
-const { knex } = require('../../config.js');
 const BaseService = require('./base');
 const axios = require('axios')
 const iconv = require('iconv-lite');
@@ -9,7 +10,6 @@ class CollectService {
 
   static async common(url, charset) {
     try {
-      console.log(url,charset)
       const { data } = await axios.get(url, {
         responseType: 'arraybuffer',
         headers: {

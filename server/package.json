@@ -1,7 +1,7 @@
 {
-  "name": "chanyue-cms",
+  "name": "chancms",
   "version": "1.4.0",
-  "description": "\"chanyue-cms\"",
+  "description": "\"A lightweight and high-quality CMS management system based on express+MySQL\"",
   "main": "app.js",
   "scripts": {
     "dev": "nodemon app.js",
@@ -17,6 +17,7 @@
     "art-template": "^4.13.2",
     "axios": "^1.6.0",
     "body-parser": "^1.20.2",
+    "chanjs": "^1.0.4",
     "cheerio": "^1.0.0-rc.12",
     "cookie-parser": "^1.4.6",
     "dayjs": "^1.11.10",

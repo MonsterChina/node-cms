@@ -1,9 +1,8 @@
 
-const {
-  config,
-  knex,
-  helper: { setToken, success, fail, filterBody },
-} = require("../../config.js");
+
+
+const Chan = require('chanjs');
+const {config,knex,helper: {utils:{filterBody},api:{success, fail}}} = require('chanjs');
 class WeiXinController {
   constructor(props) {
     this.model = "weixin";

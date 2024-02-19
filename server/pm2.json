@@ -1,7 +1,7 @@
 ﻿{
     "apps": [
         {
-            "name": "禅悦cms",
+            "name": "禅cms",
             "script": "app.js",
             "watch": [
                 "app"

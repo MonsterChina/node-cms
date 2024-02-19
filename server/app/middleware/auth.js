@@ -1,12 +1,18 @@
+const Chan = require("chanjs");
+let {
+  utils: { getToken },
+} = Chan.helper;
+
 module.exports = () => {
   return async (req, res, next) => {
     const token = req.cookies.token || req.headers.auth;
     if (token) {
-      const { helper, config } = req.app.locals;
+      let { config } = req.app.locals;
       try {
-        await helper.getToken(token, config.token.KEY);
+        await getToken(token, config.token.KEY);
         await next();
       } catch (error) {
+        console.error("token-->", error);
         res.json({
           code: 501,
           msg: error,

@@ -1,45 +1,42 @@
-const fs = require("fs");
 const path = require("path");
-const express = require("express");
-const router = express.Router();
-const api = require("./modules/api/router.js");
-const home = require(`./modules/home/router.js`);
 const open = require(`./plugin/router.js`);
-const init = require("./modules/home/middleware/init.js");
 
-//前台
-router.use("/", home);
+/**
+ * @description 处理额为路由
+ * @param {*} app 
+ * @param {*} router 
+ */
+const routers = (app, router) => {
+  const {
+    config: { template = "default", APP_PATH },
+  } = app;
 
-//接口
-router.use("/api", api);
+  //开源api（非自动加载模式）
+  router.use("/open", open);
 
-//开源api
-router.use("/open", open);
+  //机器人抓取
+  router.get("/robots.txt", function (req, res, next) {
+    res.type("text/plain");
+    res.sendFile(path.join(APP_PATH, "/public/robots.txt"));
+  });
 
-//机器人抓取
-router.get("/robots.txt", function (req, res, next) {
-  res.type('text/plain');
-  res.sendFile(path.join(__dirname, "/public/robots.txt"));
-});
+  //404处理
+  router.use((req, res, next) => {
+    let ip = req.headers["x-forwarded-for"] || req.ip;
+    console.log("404-->", `${req.method}-${decodeURI(req.url)}-${ip}`);
+    res.render(`${template}/404.html`);
+  });
 
-//404处理
-router.use((req, res, next) => {
-  const {config:{template},helper} = req.app.locals;
-  let ip = req.headers["x-forwarded-for"] || req.ip;
-  console.log("404-->", `${req.method}-${decodeURI(req.url)}-${ip}`);
-  res.render(`${template}/404.html`);
-});
+  //处理错误
+  router.use((err, req, res) => {
+    console.error("500-->", req.method, req.url, err);
+    let data = { url: req.url, method: req.method, error: err.message };
+    if (req.is("html") || req.is("html") == null) {
+      res.render(`${template}/500.html`, { data });
+    } else {
+      res.json({ code: 500, data, msg: data.error });
+    }
+  });
+};
 
-//在所有组件挂在之后处理错误中间件
-router.use((err, req, res) => {
-  const {config:{template},helper} = req.app.locals;
-  console.error("500-->", req.method, req.url, err);
-  let data = { url: req.url, method: req.method, error: err.message };
-  if (req.is("html") || req.is("html") == null) {
-    res.render(`${template}/500.html`, { data });
-  } else {
-    res.json({ code: 500, data, msg: data.error });
-  }
-});
-
-module.exports = router;
+module.exports = routers;

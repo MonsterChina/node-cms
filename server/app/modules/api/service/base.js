@@ -1,6 +1,5 @@
-
-const {knex } = require('../../config.js');
-
+const Chan = require('chanjs');
+const knex = Chan.knex;
 class BaseService {
 	constructor() {
 	}

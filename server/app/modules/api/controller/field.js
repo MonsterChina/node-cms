@@ -1,9 +1,11 @@
+const Chan = require("chanjs");
+let {api: { success, fail }} = Chan.helper;
 
-const dayjs = require('dayjs');
-const path = require('path');
-const {helper: {success,fail}} = require('../../config.js');
-
-const FieldService = require('../service/field.js');
+const {
+  api: {
+    service: { field },
+  },
+} = Chan.modules;
 
 class FieldController  {
 
@@ -11,13 +13,12 @@ class FieldController  {
   static async create(req, res, next) {
     try {
       const body = req.body;
-      const has = await FieldService.findByName(body.field_cname, body.field_ename);
+      const has = await field.findByName(body.field_cname, body.field_ename);
       if (has.length > 0) {
         res.json({ ...fail, msg: '字段命名已重复' });
         return;
       }
-      const data = await FieldService.create(body);
-
+      const data = await field.create(body);
       res.json({ ...success, data: data });
     } catch (err) {
       next(err);
@@ -28,7 +29,7 @@ class FieldController  {
   static async delete(req, res, next) {
     try {
       const id = req.query.id;
-      const data = await FieldService.delete(id);
+      const data = await field.delete(id);
       res.json({ ...success, data: data });
     } catch (err) {
       next(err);
@@ -39,7 +40,7 @@ class FieldController  {
   static async update(req, res, next) {
     try {
       const body = req.body;
-      const data = await FieldService.update(body);
+      const data = await field.update(body);
       res.json({ ...success, data: data });
     } catch (err) {
       next(err);
@@ -51,7 +52,7 @@ class FieldController  {
   static async detail(req, res, next) {
     try {
       const id = req.query.id;
-      const data = await FieldService.detail(id);
+      const data = await field.detail(id);
       res.json({ ...success, data: data });
     } catch (err) {
       next(err);
@@ -64,7 +65,7 @@ class FieldController  {
       const cur = req.query.cur;
       const model_id = req.query.model_id;
       const pageSize = 10;
-      const data = await FieldService.list(model_id, cur, pageSize);
+      const data = await field.list(model_id, cur, pageSize);
       res.json({ ...success, data: data });
     } catch (err) {
       next(err);

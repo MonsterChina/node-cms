@@ -10,6 +10,7 @@ module.exports =()=>{
               }
               return;
             }
+            
             if(content_id){
                 res.redirect(`/article/${content_id}.html`);
                 return;

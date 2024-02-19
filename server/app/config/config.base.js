@@ -1,14 +1,23 @@
 const path = require("path");
 
+/**
+ * @description 根目录
+ */
+const ROOT_PATH = process.cwd();
+
+/**
+ * @description 程序目录
+ */
+const APP_PATH = path.join(ROOT_PATH, 'app');
+
 const config = {};
-config.version = "v2.0.8";
-config.appName = "禅悦cms";
+config.version = "v3.0.0";
+config.appName = "禅cms";
 config.port = '81';
-config.versionTime = "2023-12-23";
+config.versionTime = "2024-02-09";
 config.author = "明空";
 config.authorEmail = "867528315@qq.com";
 config.authorWechat = "yanyutao2014";
-
 config.appRoot = path.join(__dirname, "../");
 
 // cookie sign key
@@ -19,7 +28,7 @@ config.token = {
   TIME: "1d", // 失效时间 10
 };
 
-config.secret = {
+config.secretcms = {
   key: "chanyue-cms", // md5 加盐
 };
 
@@ -60,6 +69,6 @@ config.static = {
   preload: false,
 };
 
-config.views = [path.join(config.appRoot, `plugin/open/view`)];
+config.views = [path.join(APP_PATH, `plugin/open/view`)];
 
 module.exports = config;

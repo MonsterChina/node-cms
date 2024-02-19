@@ -1,5 +1,6 @@
+const Chan = require("chanjs");
+let knex = Chan.knex;
 
-const {knex} = require('../../config.js');
 class LoginLogService {
   static model = 'login_log';
   // 增加

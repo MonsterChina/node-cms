@@ -2,7 +2,6 @@ const multer = require("multer");
 const dayjs = require("dayjs");
 const fs = require("fs");
 const path = require("path");
-const { template } = require("../config/index.js");
 
 const storage = multer.diskStorage({
   //配置上传的目录

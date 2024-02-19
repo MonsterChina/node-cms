@@ -1,20 +1,27 @@
 const dayjs = require("dayjs");
-const LoginLogService = require("../service/loginLog.js");
+
+const Chan = require("chanjs");
+let {utils: { getIp, getToken},api: { success }} = Chan.helper;
+
 const {
-  helper: { success,getIp},
-} = require("../../config.js");
+  api: {
+    service: { loginLog },
+  },
+} = Chan.modules;
+
 
 class LoginLogController {
-
   // 增
   static async create(req, res, next) {
     try {
-      const {uid} = req.body;
+      const {config} = req.app.locals;
+      const token = req.cookies.token;
+      const user = await getToken(token, config.token.KEY);
       let body = {
-        uid,
+        uid:user.uid,
         ip: getIp(req),
-      }
-      const data = await LoginLogService.create(body);
+      };
+      const data = await loginLog.create(body);
       res.json({ ...success, data: data });
     } catch (err) {
       next(err);
@@ -24,7 +31,7 @@ class LoginLogController {
   // 删除
   static async delete(req, res, next) {
     try {
-      const data = await LoginLogService.delete();
+      const data = await loginLog.delete();
       res.json({ ...success, data: data });
     } catch (err) {
       next(err);
@@ -34,8 +41,8 @@ class LoginLogController {
   // 列表
   static async list(req, res, next) {
     try {
-      const {pageSize,cur} = req.query;
-      let data = await LoginLogService.list(cur, pageSize);
+      const { pageSize, cur } = req.query;
+      let data = await loginLog.list(cur, pageSize);
       data.list.forEach((ele) => {
         ele.createdAt = dayjs(ele.createdAt).format("YYYY-MM-DD HH:mm:ss");
       });
@@ -44,7 +51,6 @@ class LoginLogController {
       next(err);
     }
   }
- 
 }
 
 module.exports = LoginLogController;

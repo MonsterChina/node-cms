@@ -28,9 +28,9 @@ export default class Login extends Base {
     // });
   }
   //改成真实的就就支持了角色权限控制
-  static userInfo(uid) {
+  static userInfo() {
     return http({
-      url: `${API.BASE_API}/api/sysUser/detail?id=${uid}`,
+      url: `${API.BASE_API}/api/sysUser/detail`,
       method: "get",
     });
     // return new Promise((resovle, reject) => {

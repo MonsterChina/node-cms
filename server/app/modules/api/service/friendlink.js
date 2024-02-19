@@ -1,5 +1,7 @@
-const { knex } = require("../../config.js");
-const BaseService = require("./base");
+
+const Chan = require("chanjs");
+let knex = Chan.knex;
+
 class FriendlinkService {
   static model = "friendlink";
 

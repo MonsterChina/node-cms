@@ -1,8 +1,14 @@
 
-const CategoryService = require('../service/category.js');
 
-const {helper: {success} } = require('../../config.js');
 
+const Chan = require("chanjs");
+let {api: { success }} = Chan.helper;
+
+const {
+  api: {
+    service: { category },
+  },
+} = Chan.modules;
 
 class CategoryController {
 
@@ -10,7 +16,7 @@ class CategoryController {
   static async create(req, res, next) {
     try {
       const body = req.body;
-      const data = await CategoryService.create(body);
+      const data = await category.create(body);
       res.json({ ...success, data: data });
     } catch (err) {
       next(err);
@@ -21,7 +27,7 @@ class CategoryController {
   static async delete(req, res, next) {
     try {
       const id = req.query.id;
-      const data = await CategoryService.delete(id);
+      const data = await category.delete(id);
       res.json({ ...success, data: data });
     } catch (err) {
       next(err);
@@ -32,7 +38,7 @@ class CategoryController {
   static async update(req, res, next) {
     try {
       const body = req.body;
-      const data = await CategoryService.update(body);
+      const data = await category.update(body);
       res.json({ ...success, data: data });
     } catch (err) {
       next(err);
@@ -42,7 +48,7 @@ class CategoryController {
   // 查
   static async find(req, res, next) {
     try {
-      const data = await CategoryService.find();
+      const data = await category.find();
       res.json({ ...success, data: data });
     } catch (err) {
       next(err);
@@ -53,7 +59,7 @@ class CategoryController {
   static async findId(req, res, next) {
     try {
       const id = req.query.id;
-      const data = await CategoryService.findId(id);
+      const data = await category.findId(id);
       res.json({ ...success, data: data });
     } catch (err) {
       next(err);
@@ -64,7 +70,7 @@ class CategoryController {
   static async findSubId(req, res, next) {
     try {
       const id = req.query.id;
-      const data = await CategoryService.findSubId(id);
+      const data = await category.findSubId(id);
       res.json({ ...success, data: data });
     } catch (err) {
       next(err);
@@ -75,7 +81,7 @@ class CategoryController {
   static async search(req, res, next) {
     try {
       const q = req.query.q;
-      const data = await CategoryService.search(q);
+      const data = await category.search(q);
       res.json({ ...success, data: data });
     } catch (err) {
       next(err);

@@ -1,7 +1,17 @@
 
 const dayjs = require('dayjs');
-const ArticleService = require('../service/article.js');
-const {helper: {success,filterBody}} = require('../../config.js');
+
+const Chan = require("chanjs");
+let {
+  utils: { filterBody},
+  api: { success },
+} = Chan.helper;
+
+const {
+  api: {
+    service: { article },
+  },
+} = Chan.modules;
 
 class ArticleController {
 
@@ -12,7 +22,7 @@ class ArticleController {
       body.defaultParams.createdAt = dayjs(body.defaultParams.createdAt).format('YYYY-MM-DD HH:mm:ss');
       body.defaultParams.updatedAt = dayjs(body.defaultParams.updatedAt).format('YYYY-MM-DD HH:mm:ss');
       body.defaultParams.content = filterBody(body.defaultParams.content);
-      const data = await ArticleService.create(body);
+      const data = await article.create(body);
       res.json({ ...success, data: data });
     } catch (err) {
       next(err);
@@ -23,7 +33,7 @@ class ArticleController {
   static async delete(req, res, next) {
     try {
       const id = req.query.id;
-      const data = await ArticleService.delete(id);
+      const data = await article.delete(id);
       res.json({ ...success, data: data });
     } catch (err) {
       next(err);
@@ -37,18 +47,17 @@ class ArticleController {
       body.createdAt = dayjs(body.createdAt).format('YYYY-MM-DD HH:mm:ss');
       body.updatedAt = dayjs(body.updatedAt).format('YYYY-MM-DD HH:mm:ss');
       body.content = filterBody(body.content);
-      const data = await ArticleService.update(body);
+      const data = await article.update(body);
       res.json({ ...success, data: data });
     } catch (err) {
       next(err);
     }
   }
 
-
   // 查
   static async find(req, res, next) {
     try {
-      const data = await ArticleService.find();
+      const data = await article.find();
       res.json({ ...success, data: data });
     } catch (err) {
       next(err);
@@ -59,7 +68,7 @@ class ArticleController {
   static async detail(req, res, next) {
     try {
       const id = req.query.id;
-      const data = await ArticleService.detail(id);
+      const data = await article.detail(id);
       res.json({ ...success, data: data });
     } catch (err) {
       next(err);
@@ -70,7 +79,7 @@ class ArticleController {
   static async findSubId(req, res, next) {
     try {
       const id = req.query.id;
-      const data = await ArticleService.findSubId(id);
+      const data = await article.findSubId(id);
       res.json({ ...success, data: data });
     } catch (err) {
       next(err);
@@ -82,7 +91,7 @@ class ArticleController {
   static async search(req, res, next) {
     try {
       const {cur,keyword,cid=0,pageSize=20} = req.query
-      const data = await ArticleService.search(keyword, cur, pageSize, +cid);
+      const data = await article.search(keyword, cur, pageSize, +cid);
       data.list.forEach(ele => {
         ele.createdAt = dayjs(ele.createdAt).format('YYYY-MM-DD HH:mm:ss');
       });
@@ -99,7 +108,7 @@ class ArticleController {
       const cur = req.query.cur;
       const cid = req.query.cid;
       const pageSize = 10;
-      const data = await ArticleService.list(cur, pageSize, cid);
+      const data = await article.list(cur, pageSize, cid);
       data.list.forEach(ele => {
         ele.updatedAt = dayjs(ele.updatedAt).format('YYYY-MM-DD HH:mm:ss');
       });
@@ -131,7 +140,7 @@ class ArticleController {
   static async findField(req, res, next) {
     try {
       const cid = req.query.cid;
-      const data = await ArticleService.findField(cid);
+      const data = await article.findField(cid);
       res.json({ ...success, data: data });
     } catch (err) {
       next(err);
@@ -141,7 +150,7 @@ class ArticleController {
   static async tongji(req, res, next) {
     try {
       const {config:{version,appName,port,versionTime,author}} = req.app.locals;
-      const data = await ArticleService.tongji();
+      const data = await article.tongji();
       res.json({ ...success, data: {...data,version,appName,port,versionTime,author }});
     } catch (err) {
       next(err);

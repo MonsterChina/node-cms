@@ -175,7 +175,6 @@ export default {
           defaultParams: this.params,
           fieldParams: {},
         });
-        console.log("-------->", res);
         if (res.code == 200) {
           this.$message({
             message: `第一${this.step + 1}条数据完成^_^`,

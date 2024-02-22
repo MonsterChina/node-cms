@@ -56,6 +56,7 @@ import { create } from "@/api/frag.js";
 import Vue3Tinymce from "@/components/Vue3Tinymce/src/main.vue";
 import { tinymceSet } from "@/config/tinymce.js";
 import { pinyin } from "pinyin-pro";
+import { uploadUrl } from "@/api/upload.js";
 export default {
   name: "frag-add",
   components: {
@@ -87,7 +88,9 @@ export default {
     };
   },
   computed: {},
-  async mounted() {},
+  async mounted() {
+    this.setting.images_upload_url = await uploadUrl();
+  },
 
   created() {},
   unmounted() {},

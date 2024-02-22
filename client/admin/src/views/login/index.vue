@@ -100,7 +100,6 @@ import { login, captcha } from "@/api/index";
 import { setCookie, getCookie } from "@/utils/tool.js";
 import IconLogo from "@/components/icons/IconLogo.vue";
 import { create } from "@/api/login_log.js";
-import { find, update } from "@/api/sys_app.js";
 export default defineComponent({
   components: { IconLogo },
   data() {
@@ -117,18 +116,6 @@ export default defineComponent({
     this.getCaptcha();
   },
   methods: {
-    //查询
-    async query() {
-      try {
-        let res = await find();
-        if (res.code === 200) {
-          let { uploadWay } = res.data;
-          setCookie("uploadWay", uploadWay);
-        }
-      } catch (error) {
-        console.log(error);
-      }
-    },
     async getCaptcha() {
       try {
         let v = Math.random().toString().slice(4, 8);
@@ -170,7 +157,6 @@ export default defineComponent({
 
             //添加登录日志
             await create();
-            await this.query();
             // eslint-disable-next-line no-undef
             ElNotification({
               title: "提示",

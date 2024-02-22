@@ -55,6 +55,7 @@
 import { update, detail } from "@/api/frag.js";
 import Vue3Tinymce from "@/components/Vue3Tinymce/src/main.vue";
 import { tinymceSet } from "@/config/tinymce.js";
+import { uploadUrl } from "@/api/upload.js";
 export default {
   name: "frag-edit",
   components: {
@@ -89,7 +90,9 @@ export default {
     };
   },
   computed: {},
-  async mounted() {},
+  async mounted() {
+    this.setting.images_upload_url = await uploadUrl();
+  },
 
   async created() {
     this.params.id = this.$route.params.id;

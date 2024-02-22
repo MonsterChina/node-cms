@@ -304,7 +304,7 @@ import { upload } from "@/api/upload.js";
 import Vue3Tinymce from "@/components/Vue3Tinymce/src/main.vue";
 import { tinymceSet } from "@/config/tinymce.js";
 import { htmlDecode } from "@/utils/tool.js";
-
+import { uploadUrl } from "@/api/upload.js";
 import {
   getImgUrlFromStr,
   filterHtml,
@@ -392,7 +392,9 @@ export default {
     };
   },
   computed: {},
-  async mounted() {},
+  async mounted() {
+    this.setting.images_upload_url = await uploadUrl();
+  },
   async created() {
     this.params.id = this.$route.params.id;
     await this.detail(); // 文章详情

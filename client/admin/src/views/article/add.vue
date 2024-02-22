@@ -320,6 +320,7 @@ import { search } from "@/api/tag.js";
 import { upload } from "@/api/upload.js";
 import Vue3Tinymce from "@/components/Vue3Tinymce/src/main.vue";
 import { tinymceSet } from "@/config/tinymce.js";
+import { uploadUrl } from "@/api/upload.js";
 import {
   addLabelValue,
   getImgUrlFromStr,
@@ -390,7 +391,9 @@ export default {
     };
   },
   computed: {},
-  mounted() {},
+  async mounted() {
+    this.setting.images_upload_url = await uploadUrl();
+  },
   created() {
     this.query();
     this.searchTag();

@@ -128,6 +128,7 @@
 import { tongji } from "@/api/article.js";
 import { runEnv } from "@/api/site.js";
 import qiunVueUcharts from "@qiun/vue-ucharts";
+import { setCookie } from "@/utils/tool";
 export default {
   name: "home-info",
   components: {

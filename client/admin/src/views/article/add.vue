@@ -482,6 +482,7 @@ export default {
       //把上传文件的添加到 ForDate对象中
       fd.append("file", file.file);
       let res = await upload(fd);
+      console.log("--->", res);
       if (res.code === 200) {
         this.params.img = res.data.path;
       }

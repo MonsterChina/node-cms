@@ -37,7 +37,7 @@ class QiniuService  {
     let month = (date.getMonth()+1).toString().padStart(2,'0');
     let day = date.getDate().toString().padStart(2,'0');
     // upload
-    let key = `/uploads/${year}/${month}/${day}/${new Date().getTime()}_${file.originalname}`
+    let key = `uploads/${year}/${month}/${day}/${new Date().getTime()}_${file.originalname}`
     //上传token
     let uploadToken = await this.getUploadToken(config);
     let _config = new qiniu.conf.Config();
@@ -46,6 +46,11 @@ class QiniuService  {
     let putExtra = new qiniu.form_up.PutExtra();
     putExtra.fname = file.filename;
     putExtra.metadata = {};
+
+    console.log('uploadToken', uploadToken,
+    key, 
+    localFile, 
+    putExtra, )
     return new Promise(async resove=>{
       formUploader.putFile(
         uploadToken,

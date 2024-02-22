@@ -26,10 +26,8 @@ class QiniuController  {
   static async upload(req, res, next) {
     try {
       const {config:{domain,bucket,secretKey,accessKey}} = req.app.locals;
-
-      let file = req.file;
+      let file = req.file || req.files[0];
       const { originalname, filename, path } = file;
-    
       const uploadResult = await qiniu.upload(file,{bucket,secretKey,accessKey});
       const { key='' } = uploadResult.data;
       if (uploadResult.code == 200) {
@@ -37,7 +35,7 @@ class QiniuController  {
         res.json({
           ...success,
           data: {
-            path: `//${domain}${key}`,
+            path: `//${domain}/${key}`,
             domain,
             originalname,
             filename,

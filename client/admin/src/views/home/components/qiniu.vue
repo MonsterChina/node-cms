@@ -3,19 +3,19 @@
     <!-- 基本设置 -->
     <el-tab-pane label="七牛云配置" class="mt-20" name="qiniu">
       <el-form ref="set" :model="set" label-width="80px">
-        <el-form-item prop="accessKey" label="accessKey">
+        <el-form-item prop="accessKey" label="accessKey(AK)">
           <el-input v-model="set.accessKey"></el-input>
         </el-form-item>
 
-        <el-form-item prop="secretKey" label="secretKey">
+        <el-form-item prop="secretKey" label="secretKey(SK)">
           <el-input v-model="set.secretKey"></el-input>
         </el-form-item>
 
-        <el-form-item prop="domain" label="domain">
+        <el-form-item prop="domain" label="域名">
           <el-input v-model="set.domain"></el-input>
         </el-form-item>
 
-        <el-form-item prop="bucket" label="bucket">
+        <el-form-item prop="bucket" label="空间">
           <el-input v-model="set.bucket"></el-input>
         </el-form-item>
 

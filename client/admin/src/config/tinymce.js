@@ -1,17 +1,12 @@
 //http://tinymce.ax-z.cn/configure/content-filtering.php#allow_conditional_comments
 //  http://tinymce.ax-z.cn/
-
-import { getCookie } from "@/utils/tool.js";
-import API from "../config/index.js";
-import { uploadUrl } from "@/api/upload.js";
-
 export let tinymceSet = {
   //避免图片地址和链接地址转换成相对路径
   convert_urls: false,
   // 开启组件拓展的 上传图片功能，工具栏 图片按钮 弹框中出现 `upload` 选项
   custom_images_upload: true,
   // 复用 图片上传 api 地址
-  images_upload_url: await uploadUrl(),
+  images_upload_url: "/api/upload",
   // 图片上传大小限制,默认200kb
   custom_images_limit_size: 1024 * 200,
   branding: false, //是否禁用“Powered by TinyMCE”

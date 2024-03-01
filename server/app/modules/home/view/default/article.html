@@ -3,7 +3,11 @@
 
 <head>
     <meta charset="utf-8">
-    <title>{{site.name}}-{{site.title}}</title>
+    <meta name="description" content="{{cate.seo_description || site.description}}">
+    <meta name="keywords" content="{{cate.seo_keywords || site.keywords}}" />
+    <meta property="og:title" content="{{article.title}}-{{cate.name}}-{{site.name}}" />
+    <meta property="og:description" content="{{cate.seo_description || site.description}}" />
+    <title>{{article.title}}-{{site.name}}</title>
     {{include './common/meta.html'}}
 
 <body class="bg-f8f8f8">
@@ -152,7 +156,7 @@
     <!-- 移动端导航 -->
     {{include './common/wap-nav.html'}}
     
-    <div class="api ignore mb-20 mt-20 pd-20 bg-f2f2f2">
+    <div class="ignore mb-20 mt-20 pd-20 bg-f2f2f2">
         <h1>接口页面--全局数据：</h1>
         <p class="mb-20">site-> {{site}} </p>
         <p class="mb-20">111-->{{site.json.siteSubtitle}}</p>

@@ -3,7 +3,11 @@
 
 <head>
     <meta charset="utf-8">
-    <title>{{site.name}}-{{site.title}}</title>
+    <meta name="description" content="{{cate.seo_description || site.description}}">
+    <meta name="keywords" content="{{cate.seo_keywords || site.keywords}}" />
+    <meta property="og:title" content="{{article.title}}-{{cate.name}}-{{site.name}}" />
+    <meta property="og:description" content="{{cate.seo_description || site.description}}" />
+    <title>{{article.title}}-{{site.name}}</title>
     {{include './common/meta.html'}}
 
 <body class="bg-f8f8f8">

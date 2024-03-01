@@ -76,6 +76,7 @@ class HomeController {
       let view = navSub.cate.list_view || "list.html";
       await res.render(`${template}/${view}`, {
         position,
+        cate: navSub.cate,
         navSub,
         pageHtml,
         ...data,
@@ -152,6 +153,7 @@ class HomeController {
 
       await res.render(`${template}/${view}`, {
         ...data,
+        cate: navSub.cate,
         article,
         navSub,
         position,
@@ -234,6 +236,7 @@ class HomeController {
       let view = navSub.cate.article_view || "page.html";
       await res.render(`${template}/${view}`, {
         data: data.list,
+        cate: navSub.cate,
         navSub,
         position,
         article,

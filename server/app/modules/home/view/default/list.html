@@ -3,11 +3,11 @@
 
 <head>
     <meta charset="utf-8">
-    <meta name="description" content="{{navSub.cate.seo_description}}">
-    <meta name="keywords" content="{{navSub.cate.seo_keywords}}" />
-    <meta property="og:title" content="{{navSub.cate.seo_title}}" />
+    <meta name="description" content="{{cate.seo_description || site.description}}">
+    <meta name="keywords" content="{{cate.seo_keywords || site.keywords}}" />
+    <meta property="og:title" content="{{cate.seo_title || cate.name}}-{{site.name}}" />
     <meta property="og:description" content="{{site.description}}" />
-    <title>{{navSub.cate.seo_title}}-{{site.name}}</title>
+    <title>{{cate.seo_title || cate.name}}-{{site.name}}</title>
     {{include './common/meta.html'}}
 
 <body class="bg-f8f8f8">
@@ -161,7 +161,7 @@
     <!-- 移动端导航 -->
     {{include './common/wap-nav.html'}}
 
-    <div class="api ignore mb-20 mt-20 pd-20 bg-f2f2f2">
+    <div class="ignore mb-20 mt-20 pd-20 bg-f2f2f2">
         <h1>接口页面--全局数据：</h1>
         <p class="mb-20">site-> {{site}} </p>
         <p class="mb-20">111-->{{site.json.siteSubtitle}}</p>
@@ -185,48 +185,6 @@
 
     {{include './common/js.html'}}
 
-    <!-- <script>
-        var app = Vue.createApp({
-            data: function () {
-                return {
-                    drawer: false,
-                    current: 1,
-                    total: parseInt('{{data.count}}')
-                }
-            },
-            created() {
-                var regex = /(\d+)/;
-                var matches = location.pathname.match(regex);
-                var number = matches && matches.length > 0 ? parseInt(matches[0]) : null;
-                this.current = number
-            },
-            mounted() {
-                let _this = this;
-                document.querySelector('.ico-open').addEventListener('click', () => {
-                    _this.drawer = true
-                })
-            },
-            methods: {
-                handleCurrentChange(v) {
-                    var url = location.pathname;
-                    var match = url.match(/(\d+)/); // 提取数字部分
-                    if (match && match.length > 0) {
-                        var number = parseInt(match[0]);
-                        var newURL = url.replace(match[0], v);
-                        location.href = newURL;
-                    } else {
-                        var newURL = url.replace("index", "index" + v);
-                        location.href = newURL;
-                    }
-                },
-                handleClose() {
-                    this.drawer = false
-                }
-            }
-        });
-        app.use(ElementPlus);
-        app.mount('#app');
-    </script> -->
 </body>
 
 </html>

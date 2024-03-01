@@ -142,7 +142,7 @@ export default {
         tag: 0,
         article: 0,
         version: "v.1.6.0",
-        appName: "禅cms",
+        appName: "ChanCMS",
         port: "",
         versionTime: "",
         author: "",
@@ -170,7 +170,7 @@ export default {
           lineHeight: 25,
         },
         title: {
-          name: "禅cms",
+          name: "ChanCMS",
           fontSize: 15,
           color: "#666666",
         },

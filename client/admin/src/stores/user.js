@@ -13,11 +13,9 @@ export const userStore = defineStore("user", {
     async login(params) {
       try {
         const res = await Login.toLogin(params);
-        this.token = res.data.token;
         if (res.code == 200) {
           this.token = res.data.token;
           setCookie("token", res.data.token);
-          // setCookie("uid", res.data.id);
         }
         return res;
       } catch (error) {

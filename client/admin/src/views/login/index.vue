@@ -79,13 +79,13 @@
 
     <footer class="login-footer overflow-h">
       <p class="f-13 text-c mt-10 c-fff">
-        Copyright &copy; 2016-2023
+        Copyright &copy; 2016-2024
         <a
           href="https://www.chancms.top"
           class="mr-5 c-fff"
           target="_blank"
           title="chanyue"
-          >禅cms</a
+          >ChanCMS</a
         >
         ● 位于南京 服务全国
       </p>

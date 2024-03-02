@@ -3,7 +3,7 @@
     <div class="login">
       <h1 class="title row align-c">
         <IconLogo class="icon"></IconLogo>
-        chancms后台管理系统
+        ChanCMS后台管理系统
       </h1>
       <div class="login-cont">
         <el-form

@@ -8,12 +8,7 @@
     <meta property="og:title" content="{{site.title}}" />
     <meta property="og:description" content="{{site.description}}" />
     <title>{{site.title}}-{{site.name}}</title>
-
-
-
-    
     {{include './common/meta.html'}}
-
 <style>
     #captcha {
         height: 202px;
@@ -189,80 +184,6 @@
   {{include './common/wap-nav.html'}}
 
 
-    <!-- <script src="./js/vue@3.js"></script>
-    <script src="./js/element-plus.js"></script>
-    <script src="./js/longbow.slidercaptcha.min.js"></script>
-    <script>
-        var app = Vue.createApp({
-            data: function () {
-                return {
-                    drawer: false,
-                    message: {
-                        title: "",
-                        wx: "",
-                        tel: '',
-                        description: "",
-                    },
-                }
-            },
-
-            mounted() {
-                this.captcha()
-                let _this = this;
-                document.querySelector('.ico-open').addEventListener('click', () => {
-                    _this.drawer = true
-                })
-            },
-            methods: {
-                handleClose() {
-                    this.drawer = false
-                },
-                captcha() {
-                    var captcha = sliderCaptcha({
-                        id: 'captcha',
-                        width: 230,
-                        // height: 150,
-                        // sliderL: 42,
-                        // sliderR: 9,
-                        offset: 5,//5像素偏差
-                        loadingText: '正在加载中...',
-                        failedText: '再试一次',
-                        barText: '向右滑动填充拼图',
-                        setSrc: function () {
-                            return './img/01.jpg';
-                        },
-
-                        onSuccess: function () {  //成功事件
-                            alert('成功')
-                            // var handler = setTimeout(function () {
-                            //     window.clearTimeout(handler);
-                            //     captcha.reset();
-                            // }, 500);
-                            captcha.reset();
-                        }, onFail: function () {
-
-                        },
-                        onRefresh: function () {
-
-                        }
-                    });
-                },
-                submitSeo(formName) {
-                    this.$refs[formName].validate((valid) => {
-                        if (valid) {
-                            alert(1)
-                        } else {
-                            console.log("error submit!!");
-                            return false;
-                        }
-                    });
-                },
-            }
-        });
-
-        app.use(ElementPlus);
-        app.mount('#app');
-    </script> -->
 
 </body>
 

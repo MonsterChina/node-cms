@@ -33,7 +33,9 @@
 
                 <div class="bg-fff radius-6 pd-25">
                     <header class="border-b pos-r">
-                        <h2 class="f-26 c-252933  bold mt-10">  <i class="ico-20 ico-speech pos-r t-4 ml-4 mr-4" id="audio"></i> {{article.title}}</h2>
+                        <h2 class="f-26 c-252933  bold mt-10">
+                            <!-- <i class="ico-20 ico-speech pos-r t-4 ml-4 mr-4" id="audio"></i> -->
+                            {{article.title}}</h2>
                         <p class="f-12 mt-5 mb-26 row">
                             <span class="c-999 ">
                                 <i class="ico-20 ico-time pos-r t-4"></i> {{article.updatedAt}}
@@ -156,7 +158,7 @@
     <!-- 移动端导航 -->
     {{include './common/wap-nav.html'}}
     
-    <div class="ignore mb-20 mt-20 pd-20 bg-f2f2f2">
+    <div class="ignore api mb-20 mt-20 pd-20 bg-f2f2f2">
         <h1>接口页面--全局数据：</h1>
         <p class="mb-20">site-> {{site}} </p>
         <p class="mb-20">111-->{{site.json.siteSubtitle}}</p>

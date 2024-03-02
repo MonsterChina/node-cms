@@ -121,8 +121,6 @@ server 部署代码
  加入微信群交流使用，🧒 👧 👱  🧔 👴
  联系微信: `yanyutao2014` 🍇 🍋 🍌
 
-![交流微信群](https://gitee.com/yanyutao0402/chanyue-cms/raw/master/server/app/public/template/default/img/wechat-group.jpg)
-
 ## 管理后台部分截图
 
 ![后台展示](https://gitee.com/yanyutao0402/chanyue-cms/raw/master/server/app/public/template/default/img/info.png)

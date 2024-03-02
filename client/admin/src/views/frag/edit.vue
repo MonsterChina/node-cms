@@ -71,7 +71,7 @@ export default {
         type: "1",
         name: 0,
         mark: "",
-        content: "欢迎使用禅cms系统",
+        content: "欢迎使用ChanCMS系统",
       },
       dialogVisible: false,
       disabled: false,

@@ -12,9 +12,9 @@ const APP_PATH = path.join(ROOT_PATH, 'app');
 
 const config = {};
 config.version = "v3.0.0";
-config.appName = "禅cms";
+config.appName = "ChanCms";
 config.port = '81';
-config.versionTime = "2024-02-09";
+config.versionTime = "2024-03-02";
 config.author = "明空";
 config.authorEmail = "867528315@qq.com";
 config.authorWechat = "yanyutao2014";

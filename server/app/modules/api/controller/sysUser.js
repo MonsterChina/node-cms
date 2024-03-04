@@ -80,9 +80,13 @@ class SysUserController {
   // 查
   static async detail(req, res, next) {
     try {
-      const token = req.cookies.token;
-      const user = await getToken(token, config.token.KEY);
-      const data = await sysUser.detail(user.uid);
+      let uid = req.query.id;
+      if(!uid){
+        const token = req.cookies.token;
+        const user = await getToken(token, config.token.KEY);
+        uid = user.uid;
+      }
+      const data = await sysUser.detail(uid);
       res.json({ ...success, data: data });
     } catch (err) {
       next(err);

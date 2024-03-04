@@ -2,7 +2,7 @@ const path = require("path");
 const open = require(`./plugin/router.js`);
 
 /**
- * @description 处理额为路由
+ * @description 处理路由
  * @param {*} app 
  * @param {*} router 
  */

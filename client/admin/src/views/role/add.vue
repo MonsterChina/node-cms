@@ -20,8 +20,8 @@
       </el-form-item>
 
       <el-form-item label="是否显示">
-        <el-radio v-model="params.status" label="1">启用</el-radio>
-        <el-radio v-model="params.status" label="2">关闭</el-radio>
+        <el-radio v-model="params.status" value="1">启用</el-radio>
+        <el-radio v-model="params.status" value="2">关闭</el-radio>
       </el-form-item>
 
       <el-form-item>

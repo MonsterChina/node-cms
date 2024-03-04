@@ -92,8 +92,8 @@
         ]"
       >
         <el-radio-group v-model="params.status" class="ml-4">
-          <el-radio label="1" size="large">草稿</el-radio>
-          <el-radio label="2" size="large">发布</el-radio>
+          <el-radio value="1" size="large">草稿</el-radio>
+          <el-radio value="2" size="large">发布</el-radio>
         </el-radio-group>
       </el-form-item>
 

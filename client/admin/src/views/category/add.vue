@@ -73,13 +73,13 @@
           </el-form-item>
 
           <el-form-item label="栏目类型">
-            <el-radio v-model="params.type" label="0">栏目</el-radio>
-            <el-radio v-model="params.type" label="1">单页</el-radio>
+            <el-radio v-model="params.type" value="0">栏目</el-radio>
+            <el-radio v-model="params.type" value="1">单页</el-radio>
           </el-form-item>
 
           <el-form-item label="是否显示">
-            <el-radio v-model="params.status" label="0">显示</el-radio>
-            <el-radio v-model="params.status" label="1">隐藏</el-radio>
+            <el-radio v-model="params.status" value="0">显示</el-radio>
+            <el-radio v-model="params.status" value="1">隐藏</el-radio>
           </el-form-item>
         </div>
 
@@ -94,19 +94,19 @@
 
           <el-form-item label="扩展模型">
             <el-radio-group v-model="params.mid">
-              <el-radio label="0">基本模型</el-radio>
+              <el-radio value="0">基本模型</el-radio>
               <el-radio
                 v-for="(item, index) of modList"
                 :key="index"
-                :label="item.id"
+                :value="item.id"
                 >{{ item.model_name }}</el-radio
               >
             </el-radio-group>
           </el-form-item>
 
           <el-form-item label="打开方式">
-            <el-radio v-model="params.target" label="0">当前页面</el-radio>
-            <el-radio v-model="params.target" label="1">新页面</el-radio>
+            <el-radio v-model="params.target" value="0">当前页面</el-radio>
+            <el-radio v-model="params.target" value="1">新页面</el-radio>
           </el-form-item>
 
           <el-form-item label="栏目排序">

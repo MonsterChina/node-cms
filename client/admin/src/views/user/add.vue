@@ -17,15 +17,15 @@
 
       <el-form-item label="角色">
         <el-radio-group v-model="params.role_id">
-          <el-radio :label="item.id" v-for="item in role" :key="item.id">
+          <el-radio :value="item.id" v-for="item in role" :key="item.id">
             {{ item.name }}</el-radio
           >
         </el-radio-group>
       </el-form-item>
 
       <el-form-item label="是否显示">
-        <el-radio v-model="params.status" label="1">启用</el-radio>
-        <el-radio v-model="params.status" label="2">关闭</el-radio>
+        <el-radio v-model="params.status" value="1">启用</el-radio>
+        <el-radio v-model="params.status" value="2">关闭</el-radio>
       </el-form-item>
 
       <el-form-item>

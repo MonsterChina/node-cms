@@ -203,8 +203,8 @@
 
             <el-col :sm="24" :md="12" :lg="8">
               <el-form-item label="是否显示">
-                <el-radio v-model="params.status" label="0">发布</el-radio>
-                <el-radio v-model="params.status" label="1">不发布</el-radio>
+                <el-radio v-model="params.status" value="0">发布</el-radio>
+                <el-radio v-model="params.status" value="1">不发布</el-radio>
               </el-form-item>
             </el-col>
           </el-row>

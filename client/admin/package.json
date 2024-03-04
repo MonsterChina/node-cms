@@ -14,7 +14,7 @@
     "@jsdawn/vue3-tinymce": "^2.0.4",
     "@qiun/vue-ucharts": "^2.5.0-20230101",
     "axios": "^1.6.0",
-    "element-plus": "^2.4.1",
+    "element-plus": "^2.6.0",
     "js-cookie": "^3.0.5",
     "pinia": "^2.1.7",
     "pinia-plugin-persist": "^1.0.0",

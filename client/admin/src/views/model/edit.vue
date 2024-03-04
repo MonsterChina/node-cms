@@ -14,8 +14,8 @@
         <el-input v-model="params.table_name" :disabled="disable"></el-input>
       </el-form-item>
       <el-form-item label="是否启用">
-        <el-radio v-model="params.status" label="1">开启</el-radio>
-        <el-radio v-model="params.status" :disabled="disable" label="0"
+        <el-radio v-model="params.status" value="1">开启</el-radio>
+        <el-radio v-model="params.status" :disabled="disable" value="0"
           >禁用</el-radio
         >
       </el-form-item>

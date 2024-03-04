@@ -12,15 +12,15 @@
 
         <el-form-item label="上传方式">
           <el-radio-group v-model="set.uploadWay" class="ml-4">
-            <el-radio label="1">普通</el-radio>
-            <el-radio label="2">七牛云</el-radio>
+            <el-radio value="1">普通</el-radio>
+            <el-radio value="2">七牛云</el-radio>
           </el-radio-group>
         </el-form-item>
 
         <el-form-item label="文件缓存">
           <el-radio-group v-model="set.maxAge" class="ml-4">
-            <el-radio label="1">开启</el-radio>
-            <el-radio label="2">关闭</el-radio>
+            <el-radio value="1">开启</el-radio>
+            <el-radio value="2">关闭</el-radio>
           </el-radio-group>
 
           <el-popover
@@ -40,8 +40,8 @@
 
         <el-form-item label="数据缓存">
           <el-radio-group v-model="set.dataCache" class="ml-4">
-            <el-radio label="1">开启</el-radio>
-            <el-radio label="2">关闭</el-radio>
+            <el-radio value="1">开启</el-radio>
+            <el-radio value="2">关闭</el-radio>
           </el-radio-group>
 
           <el-popover

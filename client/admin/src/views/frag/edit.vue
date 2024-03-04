@@ -19,8 +19,8 @@
 
         <el-form-item label="碎片类型" prop="type">
           <el-radio-group v-model="params.type" class="ml-4">
-            <el-radio label="1">富文本</el-radio>
-            <el-radio label="2">文本框</el-radio>
+            <el-radio value="1">富文本</el-radio>
+            <el-radio value="2">文本框</el-radio>
           </el-radio-group>
         </el-form-item>
 

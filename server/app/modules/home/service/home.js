@@ -8,7 +8,8 @@ class HomeService {
   static async home() {
     try {
       //banner轮播图
-      let bannerSlide = await CommonService.bannerSlide();
+      let banner = await CommonService.bannerSlide();
+      console.log('banner--->',banner)
 
       //文章轮播图
       let slide = await CommonService.getArticleList(0, 5, 3);
@@ -65,7 +66,7 @@ class HomeService {
       let recommendImgs = await CommonService.getNewImgList(5, '', 2);
       const recommendImgsField = ["id", "title", "path", "img", "description"];
       recommendImgs = filterFields(recommendImgs, recommendImgsField);
-      return { bannerSlide,slide, topnews,  imgs, recommend, recommendImgs,hot };
+      return { banner,slide, topnews,  imgs, recommend, recommendImgs,hot };
     } catch (err) {
       console.error(err);
       return err;

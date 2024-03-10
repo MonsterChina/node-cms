@@ -17,7 +17,7 @@
     "art-template": "^4.13.2",
     "axios": "^1.6.0",
     "body-parser": "^1.20.2",
-    "chanjs": "^1.0.4",
+    "chanjs": "^1.0.5",
     "cheerio": "^1.0.0-rc.12",
     "cookie-parser": "^1.4.6",
     "dayjs": "^1.11.10",

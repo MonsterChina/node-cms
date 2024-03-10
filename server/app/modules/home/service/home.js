@@ -9,7 +9,6 @@ class HomeService {
     try {
       //banner轮播图
       let banner = await CommonService.bannerSlide();
-      console.log('banner--->',banner)
 
       //文章轮播图
       let slide = await CommonService.getArticleList(0, 5, 3);
